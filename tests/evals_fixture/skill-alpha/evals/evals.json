@@ -1,0 +1,14 @@
+{
+  "evals": [
+    {
+      "id": "anti-fabrication-mandatory",
+      "description": "Every number in rendered output must trace to the sidecar.",
+      "severity": "blocker"
+    },
+    {
+      "id": "code-set-stamp-present",
+      "description": "Output must carry a code-set pinning footer.",
+      "severity": "warn"
+    }
+  ]
+}

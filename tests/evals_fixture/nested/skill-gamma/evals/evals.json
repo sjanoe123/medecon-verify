@@ -1,0 +1,14 @@
+{
+  "evals": [
+    {
+      "id": "age-90-plus-aggregated",
+      "description": "Ages 90+ must be reported as an aggregated band, not individual age.",
+      "severity": "warn"
+    },
+    {
+      "id": "some-future-eval-id",
+      "description": "Placeholder eval id with no built-in checker yet — exercises not_runnable.",
+      "severity": "warn"
+    }
+  ]
+}

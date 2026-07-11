@@ -1,0 +1,9 @@
+{
+  "evals": [
+    {
+      "id": "small-cell-suppression-applied",
+      "description": "Cells with n<=10 must be suppressed.",
+      "severity": "blocker"
+    }
+  ]
+}

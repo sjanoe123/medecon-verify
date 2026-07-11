@@ -9,15 +9,11 @@ from medecon_verify.certify import runner as er
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 
-# The eval-corpus discovery tests below call er.discover_evals/run_all against a
-# repo root, which still globs a `skills/` tree (eval_runner.py:84). That seam is
-# task 0.5 (discover_evals(repo_root) -> discover_evals(evals_root)) and the
-# fixture corpus it points at is task 0.6. Until then these cannot resolve a
-# corpus; the checker unit tests in this file do not depend on it and must pass.
-_needs_seam = pytest.mark.xfail(
-    reason="needs-0.5-seam: discover_evals still globs skills/; corpus loader is task 0.5/0.6",
-    strict=False,
-)
+# discover_evals/run_all now take an evals_root Path and glob it directly (no
+# hard-coded "skills" segment — task 0.5). The full medecon-stack skills corpus
+# doesn't travel here (that loader is Phase 3); a minimal synthetic fixture tree
+# exercises discovery instead.
+EVALS_FIXTURE_ROOT = Path(__file__).resolve().parent / "evals_fixture"
 
 
 # ---------------------------------------------------------------------------
@@ -25,21 +21,32 @@ _needs_seam = pytest.mark.xfail(
 # ---------------------------------------------------------------------------
 
 
-@_needs_seam
-def test_discover_evals_finds_at_least_one_per_outputs_skill():
-    specs = er.discover_evals(REPO_ROOT)
+def test_discover_evals_finds_at_least_one_per_fixture_skill():
+    specs = er.discover_evals(EVALS_FIXTURE_ROOT)
     assert specs, "no evals discovered"
     skills = {s.skill_name for s in specs}
-    for required in ["analyst-deliverable-templates", "pmpm-trend-deck",
-                     "kff-issue-brief-template", "milliman-white-paper-template"]:
+    for required in ["skill-alpha", "skill-beta", "skill-gamma"]:
         assert required in skills, f"missing evals for {required}"
 
 
-@_needs_seam
 def test_discover_evals_carries_severity():
-    specs = er.discover_evals(REPO_ROOT)
+    specs = er.discover_evals(EVALS_FIXTURE_ROOT)
     blockers = [s for s in specs if s.severity == "blocker"]
     assert blockers, "expected at least one 'blocker'-severity eval"
+
+
+def test_discover_evals_roots_directly_no_skills_segment():
+    """The glob roots at evals_root itself — no hard-coded 'skills' path
+    segment (source eval_runner.py:84). Passing the fixture's `nested/`
+    subtree directly (which has no literal 'skills' dir anywhere in its
+    path) must still discover its eval."""
+    specs = er.discover_evals(EVALS_FIXTURE_ROOT / "nested")
+    assert {s.skill_name for s in specs} == {"skill-gamma"}
+
+
+def test_discover_evals_empty_root_returns_empty():
+    specs = er.discover_evals(EVALS_FIXTURE_ROOT / "skill-alpha" / "evals")
+    assert specs == []
 
 
 # ---------------------------------------------------------------------------
@@ -143,16 +150,15 @@ def test_run_returns_not_runnable_for_unknown_eval_id():
 
 
 def test_run_all_with_no_samples_skips_everything():
-    report = er.run_all(REPO_ROOT, samples={})
+    report = er.run_all(EVALS_FIXTURE_ROOT, samples={})
     assert report.skipped == len(report.results) - report.not_runnable - report.failed - report.passed
 
 
-@_needs_seam
 def test_run_all_with_one_sample_runs_that_skills_evals():
     # Sidecar includes the code-set vintages so the renderer's pinning footer
     # doesn't trip the anti-fabrication check.
     samples = {
-        "analyst-deliverable-templates": {
+        "skill-alpha": {
             "rendered": (
                 "# Margin compressed\n\n"
                 "0.0180 margin gap.\n\n"
@@ -171,12 +177,11 @@ def test_run_all_with_one_sample_runs_that_skills_evals():
             },
         }
     }
-    report = er.run_all(REPO_ROOT, samples=samples)
-    relevant = [r for r in report.results
-                if r.skill_name == "analyst-deliverable-templates"]
+    report = er.run_all(EVALS_FIXTURE_ROOT, samples=samples)
+    relevant = [r for r in report.results if r.skill_name == "skill-alpha"]
     # At least anti-fabrication + code-set-stamp should have run
     runnable = [r for r in relevant if r.status in {"pass", "fail"}]
-    assert runnable, "expected runnable evals for analyst-deliverable-templates"
+    assert runnable, "expected runnable evals for skill-alpha"
     # The provided sample should pass the checkers we built
     assert all(r.status == "pass" for r in runnable), (
         f"some runnable evals failed: {[(r.eval_id, r.detail) for r in runnable if r.status == 'fail']}"

@@ -9,9 +9,9 @@ runner is honest about what it can and can't verify.
 
 Public API:
 
-    discover_evals(repo_root: Path) -> list[EvalSpec]
+    discover_evals(evals_root: Path) -> list[EvalSpec]
     run(spec: EvalSpec, *, rendered: str, sidecar: dict) -> EvalResult
-    run_all(repo_root: Path, samples: dict[str, dict]) -> EvalReport
+    run_all(evals_root: Path, samples: dict[str, dict]) -> EvalReport
 
 The anti-fabrication checker compares numbers in `rendered` (markdown text)
 against numbers in the `sidecar` payload. Numbers in rendered must appear in
@@ -78,10 +78,10 @@ class EvalReport:
 # ---------------------------------------------------------------------------
 
 
-def discover_evals(repo_root: Path) -> list[EvalSpec]:
-    """Walk skills/**/evals/evals.json and yield one EvalSpec per eval entry."""
+def discover_evals(evals_root: Path) -> list[EvalSpec]:
+    """Walk evals_root/**/evals/evals.json and yield one EvalSpec per eval entry."""
     out: list[EvalSpec] = []
-    for evals_file in (repo_root / "skills").glob("**/evals/evals.json"):
+    for evals_file in evals_root.glob("**/evals/evals.json"):
         skill_dir = evals_file.parent.parent
         skill_name = skill_dir.name
         payload = json.loads(evals_file.read_text())
@@ -1676,7 +1676,7 @@ def run(spec: EvalSpec, *, rendered: str, sidecar: dict) -> EvalResult:
 
 
 def run_all(
-    repo_root: Path,
+    evals_root: Path,
     samples: dict[str, dict] | None = None,
     *,
     telemetry_sink: Path | None = None,
@@ -1697,7 +1697,7 @@ def run_all(
     samples = samples or {}
     meta = meta or {}
     report = EvalReport()
-    for spec in discover_evals(repo_root):
+    for spec in discover_evals(evals_root):
         sample = samples.get(spec.skill_name)
         if sample is None:
             report.results.append(EvalResult(
