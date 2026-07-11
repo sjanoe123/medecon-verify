@@ -6,7 +6,8 @@ discipline; every Outputs-layer skill stamps deliverables via this module.
 
 Public contract (pinned):
 
-    stamp(deliverable: dict, *, asof: date | None = None) -> dict
+    stamp(deliverable: dict, *, asof: date | None = None,
+          strict: bool = False) -> dict
         Add the code-set version stamps that apply to a deliverable.
         Returns the deliverable dict with a `code_set_versions` field.
 
@@ -14,6 +15,18 @@ Public contract (pinned):
         a backward-looking analysis (end date > 90 days before today) and
         `asof` is not provided, this raises CodesetVersionError. The fix is
         to pass `asof` explicitly (typically `analysis_period['end']`).
+
+        strict mode (1.1.1): with `strict=True`, any registry-backed stamp
+        that would degrade to "UNKNOWN" (no installed or bundled vintage
+        registry covers `asof`) raises CodesetVersionError naming the missing
+        registry and the current reference-data package version. Default
+        behavior (`strict=False`) is unchanged and SemVer-safe: an
+        out-of-registry vintage still yields a visible "UNKNOWN" stamp.
+
+The vintage registries are not hard-coded here — they are versioned reference
+data loaded through `_data_discovery` (installed `medecon-verify-data` feed →
+bundled lagged free tier → strict error). See that module for the precedence
+chain.
 
     detect_icd10_fy(records: list[dict], date_field: str = "service_date") -> str
         Detect the ICD-10-CM fiscal year vintage from a sample of records.
@@ -36,6 +49,8 @@ from __future__ import annotations
 
 from datetime import date, datetime, timedelta
 
+from . import _data_discovery as _data
+
 try:  # package import and script-path import both work
     from .dateparse import parse_date as _parse_date
 except ImportError:  # pragma: no cover - fallback when run as a bare module
@@ -49,44 +64,43 @@ class CodesetVersionError(ValueError):
 _BACKWARD_LOOKING_THRESHOLD_DAYS = 90
 
 # ---------------------------------------------------------------------------
-# Registries — extend these to add new vintages
+# Registries — externalized as versioned reference data (task 0.3)
+#
+# These module-level dicts are no longer hard-coded constants: they are loaded
+# at import through `_data_discovery.load_registry`, which resolves each named
+# registry via the precedence chain (installed `medecon-verify-data` feed →
+# bundled lagged free tier → error). To add a new vintage, ship it in the data
+# package or edit the bundled JSON under `data/registries/` — no code change.
+# `_reload_registries()` re-runs discovery (e.g. after a test installs a feed).
 # ---------------------------------------------------------------------------
 
-ICD10CM_FY_REGISTRY = {
-    "FY2022": {"effective": "2021-10-01", "obsolete": "2022-09-30"},
-    "FY2023": {"effective": "2022-10-01", "obsolete": "2023-09-30"},
-    "FY2024": {"effective": "2023-10-01", "obsolete": "2024-09-30"},
-    "FY2025": {"effective": "2024-10-01", "obsolete": "2025-09-30"},
-    "FY2026": {"effective": "2025-10-01", "obsolete": "2026-09-30"},
-}
+_REGISTRY_NAMES = ("icd10cm_fy", "hcpcs_quarter", "ms_drg", "cms_hcc", "hedis")
 
-HCPCS_QUARTER_REGISTRY = {
-    "2025Q1": {"effective": "2025-01-01", "obsolete": "2025-03-31"},
-    "2025Q2": {"effective": "2025-04-01", "obsolete": "2025-06-30"},
-    "2025Q3": {"effective": "2025-07-01", "obsolete": "2025-09-30"},
-    "2025Q4": {"effective": "2025-10-01", "obsolete": "2025-12-31"},
-    "2026Q1": {"effective": "2026-01-01", "obsolete": "2026-03-31"},
-    "2026Q2": {"effective": "2026-04-01", "obsolete": "2026-06-30"},
-}
+# Registry keys that are looked up against a date window (a vintage the stamp can
+# fail to cover). cms_hcc and hedis are derived by rule and never go UNKNOWN.
+_DATE_WINDOWED_STAMPS = ("icd10cm_fy", "hcpcs_quarter", "ms_drg")
 
-MS_DRG_REGISTRY = {
-    "v40": {"fy": "FY2023", "effective": "2022-10-01"},
-    "v41": {"fy": "FY2024", "effective": "2023-10-01"},
-    "v42": {"fy": "FY2025", "effective": "2024-10-01"},
-    "v43": {"fy": "FY2026", "effective": "2025-10-01"},
-}
 
-CMS_HCC_REGISTRY = {
-    "v24": {"applies_to": "PY2017–PY2023", "blend_to_v28": False},
-    "v28": {"applies_to": "PY2024+", "blend_to_v28": True,
-            "phase_in": {"PY2024": 0.33, "PY2025": 0.67, "PY2026": 1.0}},
-}
+def _reload_registries() -> None:
+    """(Re)load every registry from the discovery chain into module globals.
 
-HEDIS_REGISTRY = {
-    "MY2024": {"reporting_year": 2025},
-    "MY2025": {"reporting_year": 2026},
-    "MY2026": {"reporting_year": 2027},
-}
+    Rebinds the module-level ``*_REGISTRY`` dicts. Called once at import; tests
+    call it again after monkeypatching the entry-point seam to swap in a feed.
+    """
+    global ICD10CM_FY_REGISTRY, HCPCS_QUARTER_REGISTRY, MS_DRG_REGISTRY
+    global CMS_HCC_REGISTRY, HEDIS_REGISTRY
+    ICD10CM_FY_REGISTRY = _data.load_registry("icd10cm_fy")
+    HCPCS_QUARTER_REGISTRY = _data.load_registry("hcpcs_quarter")
+    MS_DRG_REGISTRY = _data.load_registry("ms_drg")
+    CMS_HCC_REGISTRY = _data.load_registry("cms_hcc")
+    HEDIS_REGISTRY = _data.load_registry("hedis")
+
+
+ICD10CM_FY_REGISTRY: dict = _data.load_registry("icd10cm_fy")
+HCPCS_QUARTER_REGISTRY: dict = _data.load_registry("hcpcs_quarter")
+MS_DRG_REGISTRY: dict = _data.load_registry("ms_drg")
+CMS_HCC_REGISTRY: dict = _data.load_registry("cms_hcc")
+HEDIS_REGISTRY: dict = _data.load_registry("hedis")
 
 # ---------------------------------------------------------------------------
 # Detection
@@ -245,7 +259,8 @@ def _analysis_period_end(deliverable: dict) -> date | None:
     return None
 
 
-def stamp(deliverable: dict, *, asof: date | None = None) -> dict:
+def stamp(deliverable: dict, *, asof: date | None = None,
+          strict: bool = False) -> dict:
     """Add code-set version stamps to a deliverable.
 
     The stamps are based on `asof`. If `asof` is None, today is used unless
@@ -255,6 +270,14 @@ def stamp(deliverable: dict, *, asof: date | None = None) -> dict:
 
     Callers can override individual stamps by setting them in
     `deliverable['code_set_versions']` before calling stamp.
+
+    strict mode (1.1.1): with `strict=True`, any date-windowed stamp that would
+    degrade to "UNKNOWN" — i.e. no installed or bundled vintage registry covers
+    `asof` — raises CodesetVersionError naming the missing registry and the
+    current reference-data package version. This is the fail-closed renewal
+    enforcement: a lapsed subscriber whose feed no longer covers the current
+    vintage gets a hard failure instead of a silent "UNKNOWN". Default
+    (`strict=False`) behavior is unchanged and SemVer-safe.
     """
     if asof is None:
         period_end = _analysis_period_end(deliverable)
@@ -287,8 +310,36 @@ def stamp(deliverable: dict, *, asof: date | None = None) -> dict:
             or _vintage_for_hedis(asof.year) or "UNKNOWN",
         "stamped_at": asof.isoformat(),
     }
+    if strict:
+        _enforce_strict(stamps, asof)
     deliverable["code_set_versions"] = stamps
     return deliverable
+
+
+def _enforce_strict(stamps: dict, asof: date) -> None:
+    """Raise CodesetVersionError if any date-windowed stamp is UNKNOWN.
+
+    Fail-closed renewal enforcement: strict mode refuses to ship a deliverable
+    whose vintage no installed or bundled registry covers. The message names the
+    first uncovered registry and the current reference-data package so a lapsed
+    subscriber knows exactly what to renew.
+    """
+    for field in _DATE_WINDOWED_STAMPS:
+        if stamps.get(field) == "UNKNOWN":
+            version = _data.data_package_version()
+            if version:
+                source = f"medecon-verify-data {version}"
+            else:
+                source = ("bundled lagged free tier "
+                          "(no medecon-verify-data package installed)")
+            raise CodesetVersionError(
+                f"strict mode: no '{field}' vintage registry covers "
+                f"asof={asof.isoformat()} — the stamp would be UNKNOWN. "
+                f"Current reference data: {source}. Install or upgrade the "
+                "'medecon-verify-data' subscription package to obtain the "
+                "vintage registry covering this date, or pass an explicit "
+                f"override in deliverable['code_set_versions']['{field}']."
+            )
 
 
 def _vintage_for(d: date, registry: dict) -> str | None:

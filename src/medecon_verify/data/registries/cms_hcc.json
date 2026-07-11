@@ -1,0 +1,5 @@
+{
+  "v24": {"applies_to": "PY2017–PY2023", "blend_to_v28": false},
+  "v28": {"applies_to": "PY2024+", "blend_to_v28": true,
+          "phase_in": {"PY2024": 0.33, "PY2025": 0.67, "PY2026": 1.0}}
+}
