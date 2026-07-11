@@ -8,13 +8,30 @@ returns `fail`. A checker that silently passes poisoned input is worthless; this
 suite is what proves it isn't.
 
 One poisoned case per required-guardrail checker. Mirrors
-REQUIRED_GUARDRAIL_EVAL_IDS in test_capability_matrix.py.
+REQUIRED_GUARDRAIL_EVAL_IDS, defined locally below.
 """
 from __future__ import annotations
 
 import pytest
 
 from medecon_verify.certify import runner as er
+
+# The required-guardrail gate set. In medecon-stack this lives in
+# tests/test_capability_matrix.py (which stays behind — it walks skills/), so the
+# self-contained verify suite carries its own copy. Kept byte-identical to the
+# medecon-stack frozenset so the meta-gate below asserts the same invariant.
+# render-split-discipline is deliberately excluded: its checker has no fail-able
+# output invariant at the eval stage; invented-number harm is gated by
+# anti-fabrication-mandatory.
+REQUIRED_GUARDRAIL_EVAL_IDS = frozenset({
+    "anti-fabrication-mandatory",
+    "code-set-stamp-present",
+    "small-cell-suppression-applied",
+    "age-90-plus-aggregated",
+    "safe-harbor-18-clean",
+    "part-2-redisclosure-flag",
+    "scanner-crash-defaults-to-redact",
+})
 
 # (eval_id, poisoned_rendered, poisoned_sidecar, why-it-must-fail)
 NEGATIVE_FIXTURES = [
@@ -92,10 +109,6 @@ def test_every_negative_fixture_targets_a_real_checker() -> None:
         assert eval_id in er.CHECKERS, f"{eval_id} is not a registered checker"
 
 
-@pytest.mark.xfail(
-    reason="needs-0.6-fixtures: imports test_capability_matrix, which stays in medecon-stack",
-    strict=False,
-)
 def test_every_required_guardrail_has_a_biting_negative_fixture() -> None:
     """Meta-gate: every REQUIRED guardrail must have a negative fixture on which
     its checker actually returns `fail`.
@@ -106,8 +119,6 @@ def test_every_required_guardrail_has_a_biting_negative_fixture() -> None:
     checker doesn't fail on the one it has, this test fails — so a non-biting
     guardrail can never silently claim required status again.
     """
-    from test_capability_matrix import REQUIRED_GUARDRAIL_EVAL_IDS
-
     fixtures_by_id: dict[str, list] = {}
     for eval_id, rendered, sidecar, _why in NEGATIVE_FIXTURES:
         fixtures_by_id.setdefault(eval_id, []).append((rendered, sidecar))

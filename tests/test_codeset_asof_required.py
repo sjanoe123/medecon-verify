@@ -16,14 +16,12 @@ import pytest
 
 from medecon_verify import codeset as cv
 
-# The three tests that drive the CLI `deliver` command / `_load_skill` reach a
-# `skills/...render_deliverable.py` script and `output_formats`, neither of which
-# travels into medecon-verify (they stay in medecon-stack). The self-contained
-# renderer fixtures that replace them are task 0.6.
-_needs_fixtures = pytest.mark.xfail(
-    reason="needs-0.6-fixtures: drives a skills/ renderer + output_formats not in medecon-verify",
-    strict=False,
-)
+# The `deliver` CLI command, `cli._load_skill`, the `skills/...render_deliverable.py`
+# script, and `output_formats` do NOT travel into medecon-verify (task 0.4 removed
+# the skill-orchestration CLI half; the renderer stays in medecon-stack). The three
+# renderer/deliver end-to-end tests that lived here therefore have no runtime target
+# in this package and were dropped at integration; the stamp-level codeset behavior
+# they wrapped is covered directly by the tests below and the CLI `stamp` tests.
 
 
 def test_no_analysis_period_uses_today() -> None:
@@ -98,25 +96,6 @@ def test_explicit_asof_always_wins_even_with_old_period() -> None:
     assert out["code_set_versions"]["stamped_at"] == "2020-12-31"
 
 
-@_needs_fixtures
-def test_renderer_propagates_codeset_error() -> None:
-    """The deliverable renderer must surface CodesetVersionError, not swallow it."""
-    from medecon_verify import cli
-
-    mod = cli._load_skill(
-        "skills/outputs/analyst-deliverable-templates/scripts/render_deliverable.py",
-        "_render_deliv_test_for_codeset",
-    )
-    payload = {
-        "title": "test",
-        "analysis_period": {"start": "2024-01-01", "end": "2024-12-31"},
-        "scope": {"decision_maker": "test analyst", "decision": "test", "decision_window": "Q4"},
-        "findings": [],
-    }
-    with pytest.raises(cv.CodesetVersionError):
-        mod.render("exec-summary", payload)
-
-
 def test_cli_stamp_command_no_asof_still_works() -> None:
     """CLI `medecon stamp` with no flags must keep printing today's vintages."""
     from click.testing import CliRunner
@@ -140,50 +119,6 @@ def test_cli_stamp_command_with_asof_uses_passed_date() -> None:
     import json
     payload = json.loads(result.output)
     assert payload["stamped_at"] == "2024-06-15"
-
-
-@_needs_fixtures
-def test_cli_deliver_refuses_old_period_without_asof(tmp_path) -> None:
-    """End-to-end: backward-looking deliverable hits the refusal at CLI level."""
-    import json
-    from click.testing import CliRunner
-    from medecon_verify.cli import main
-
-    payload = {
-        "title": "old analysis",
-        "analysis_period": {"start": "2024-01-01", "end": "2024-12-31"},
-        "scope": {"decision_maker": "test analyst", "decision": "test", "decision_window": "Q4"},
-        "findings": [],
-    }
-    payload_path = tmp_path / "p.json"
-    payload_path.write_text(json.dumps(payload))
-
-    runner = CliRunner()
-    result = runner.invoke(main, ["deliver", "exec-summary", str(payload_path)])
-    assert result.exit_code == 2
-    assert "CODESET STAMP REFUSED" in result.output
-
-
-@_needs_fixtures
-def test_cli_deliver_succeeds_with_asof(tmp_path) -> None:
-    import json
-    from click.testing import CliRunner
-    from medecon_verify.cli import main
-
-    payload = {
-        "title": "old analysis",
-        "analysis_period": {"start": "2024-01-01", "end": "2024-12-31"},
-        "scope": {"decision_maker": "test analyst", "decision": "test", "decision_window": "Q4"},
-        "findings": [],
-    }
-    payload_path = tmp_path / "p.json"
-    payload_path.write_text(json.dumps(payload))
-
-    runner = CliRunner()
-    result = runner.invoke(
-        main, ["deliver", "exec-summary", str(payload_path), "--asof", "2024-12-31"]
-    )
-    assert result.exit_code == 0, result.output
 
 
 def test_cli_asof_bad_format_rejected() -> None:

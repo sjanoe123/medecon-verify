@@ -25,7 +25,8 @@ from __future__ import annotations
 
 import csv
 from dataclasses import dataclass, field
-from importlib import resources
+
+from medecon_verify import _data_discovery
 
 #: Package holding the bundled HCC coefficient / crosswalk reference tables.
 #: This is the single load boundary for riskadj data — see ``_data_file``.
@@ -33,14 +34,19 @@ _DATA_PACKAGE = "medecon_verify.riskadj.data"
 
 
 def _data_file(name: str):
-    """Locate a bundled reference-data file as an importlib.resources Traversable.
+    """Locate a reference-data file as an importlib.resources Traversable.
 
     Single, clean load boundary for every riskadj coefficient/crosswalk table.
-    Works from a source checkout and an installed/zipped wheel alike (no reliance
-    on ``__file__`` layout). Task 0.3's external data-package discovery replaces
-    the body of this function only — the ``_load_*`` callers below are unchanged.
+    Resolves through the shared data-package discovery precedence (installed
+    ``medecon-verify-data`` feed → bundled lagged free tier), so a paying
+    subscriber's fresher HCC tables transparently supersede the bundled copies —
+    the same discovery path ``codeset`` uses for the vintage registries (product
+    plan 1.1.1). Works from a source checkout and an installed/zipped wheel alike
+    (no reliance on ``__file__`` layout). The ``_load_*`` callers below are
+    unchanged: they consume the returned Traversable via ``.is_file()``/``.open()``
+    and surface a missing table through ``_V28_USING_FALLBACK``.
     """
-    return resources.files(_DATA_PACKAGE).joinpath(name)
+    return _data_discovery.data_resource(name, package=_DATA_PACKAGE)
 
 
 def _norm_icd(code: str) -> str:

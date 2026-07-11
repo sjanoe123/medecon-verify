@@ -213,6 +213,40 @@ def registry_source(name: str) -> str:
     raise RegistryNotFound(name)
 
 
+def data_resource(name: str, *, package: str, subdir: tuple[str, ...] = ()):
+    """Resolve a bundled/installed data *file* through the same provider precedence.
+
+    The riskadj engine's HCC coefficient/crosswalk tables are versioned reference
+    *data* just like the vintage registries, so they resolve through the identical
+    precedence chain (product plan 1.1.1: "the riskadj engine gets the same
+    discovery path"):
+
+    1. **Installed data package** — a compatible ``medecon-verify-data`` provider
+       may optionally expose ``get_data_file(name) -> Traversable | None``. When it
+       returns a resolvable file, that supersedes the bundled copy.
+    2. **Bundled lagged free tier** — the file shipped as package data under
+       ``package`` (optionally within ``subdir``).
+
+    Returns an ``importlib.resources`` Traversable supporting ``.is_file()`` and
+    ``.open(...)`` in a source checkout and an installed/zipped wheel alike. Unlike
+    :func:`load_registry`, this never raises for an absent file: the caller's own
+    ``.is_file()`` check governs the fallback (the engine surfaces a missing table
+    through ``_V28_USING_FALLBACK`` rather than a hard error), so the returned
+    Traversable may point at a non-existent resource.
+    """
+    provider, _version = _load_provider()
+    if provider is not None:
+        getter = getattr(provider, "get_data_file", None)
+        if getter is not None:
+            supplied = getter(name)
+            if supplied is not None:
+                return supplied
+    resource = resources.files(package)
+    for part in subdir:
+        resource = resource / part
+    return resource / name
+
+
 __all__ = [
     "DATA_ENTRY_POINT_GROUP",
     "SUPPORTED_DATA_API_VERSION",
@@ -220,6 +254,7 @@ __all__ = [
     "DataPackageIncompatible",
     "load_registry",
     "registry_source",
+    "data_resource",
     "data_package_version",
     "has_data_package",
     "require_compatible_data_package",
