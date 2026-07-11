@@ -1,0 +1,86 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "medecon-verify"
+version = "1.0.0"
+description = "The correctness-and-compliance layer for healthcare AI agents: deterministic claims adjudication, code-set vintage stamping, privacy guardrails, and pattern-based PHI redaction. No third-party runtime dependencies."
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.11,<3.14"
+authors = [
+    { name = "Sean Janoe", email = "sjanoe@icloud.com" },
+]
+keywords = [
+    "healthcare",
+    "claims",
+    "ai-agents",
+    "phi",
+    "hipaa",
+    "risk-adjustment",
+    "icd-10",
+    "cms-hcc",
+    "compliance",
+    "guardrails",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Healthcare Industry",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering",
+]
+
+# The core library is stdlib-only — no runtime dependencies. The command-line
+# interface ships as the [cli] extra; the console script installs unconditionally
+# and degrades with a clear error when click is not present.
+dependencies = []
+
+[project.optional-dependencies]
+cli = ["click>=8.1.0"]
+dev = ["pytest>=8.0.0"]
+
+[project.scripts]
+medecon-verify = "medecon_verify.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/sjanoe123/medecon-verify"
+Issues = "https://github.com/sjanoe123/medecon-verify/issues"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["medecon_verify", "medecon_verify.*"]
+
+# Bundle the free/lagged reference data so later agents never touch this file:
+#   medecon_verify/data/**            glossary.yaml + externalized vintage registries (task 0.3)
+#   medecon_verify/riskadj/data/**    the 4 HCC CSVs + coefficient-sources.md (task 0.2)
+[tool.setuptools.package-data]
+medecon_verify = [
+    "data/*.yaml",
+    "data/*.yml",
+    "data/*.json",
+    "data/**/*.yaml",
+    "data/**/*.yml",
+    "data/**/*.json",
+    "data/registries/**/*",
+    "riskadj/data/*.csv",
+    "riskadj/data/*.md",
+    "riskadj/data/**/*",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "-q -m 'not slow and not optional'"
+markers = [
+    "slow: heavy / multi-second tests; run with -m slow",
+    "optional: external-network / credential-gated tests; run with -m optional",
+]

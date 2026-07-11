@@ -1,0 +1,1694 @@
+# Healthcare-economics + payer/provider glossary.
+#
+# Source posture: distilled from CMS, AHIMA acronym list, HFMA glossary,
+# Milliman briefs, KFF explainers, and the Tuva project's vocabulary docs.
+# Definitions are rewritten for analyst use, not copy-pasted.
+#
+# Format per entry:
+#   ACRONYM:
+#     definition: one or two sentences. Plain English first; formula or
+#       regulatory cite second if applicable.
+#     see_also: [related, terms]   # optional
+#
+# Add new entries in alphabetical order within their group. The /explain
+# skill loads this file as a flat dict, so groupings are comments only.
+
+# ============================================================================
+# Cost, premium, financial mechanics
+# ============================================================================
+
+PMPM:
+  definition: >-
+    Per-Member-Per-Month. Total dollars divided by member-months. The
+    standard cost normalization in healthcare. Lets you compare a small
+    employer with a large one without scaling apples to oranges.
+  see_also: [PMPY, member-months, MLR]
+
+PMPY:
+  definition: >-
+    Per-Member-Per-Year. Same idea as PMPM on an annual denominator
+    (member-years). MSSP reports use PMPY; commercial actuarial reports
+    typically use PMPM.
+  see_also: [PMPM, member-months]
+
+PEPM:
+  definition: >-
+    Per-Employee-Per-Month. Employer-side analog of PMPM. Denominator is
+    enrolled employees, not covered lives, so dependents inflate the
+    numerator without inflating the denominator.
+  see_also: [PMPM, employer-sponsored]
+
+MLR:
+  definition: >-
+    Medical Loss Ratio. Medical claim spend divided by premium. ACA
+    minimums: 80% individual/small-group, 85% large-group. Below floor
+    triggers rebates owed to enrollees.
+  see_also: [premium, PMPM, rebate]
+
+AAL:
+  definition: >-
+    Allowed Amount per Line. The contracted price for a single claim line
+    after network discount, before member cost-share is netted out.
+  see_also: [allowed, billed, paid]
+
+AWP:
+  definition: >-
+    Average Wholesale Price. A list-price benchmark for prescription drugs
+    historically used in pharmacy contracting. Often called the
+    "ain't-what's-paid" price; usage has shifted toward NADAC and WAC.
+  see_also: [WAC, NADAC, ASP, MAC]
+
+WAC:
+  definition: >-
+    Wholesale Acquisition Cost. Manufacturer's list price to wholesalers,
+    pre-discount. WAC + percentage is a common pharmacy contracting basis.
+  see_also: [AWP, NADAC, ASP]
+
+ASP:
+  definition: >-
+    Average Sales Price. Manufacturer-reported quarterly average for
+    Medicare Part B physician-administered drugs. Medicare reimburses at
+    ASP + 6% (sequestration-adjusted).
+  see_also: [WAC, AWP, Part B]
+
+NADAC:
+  definition: >-
+    National Average Drug Acquisition Cost. CMS-published retail-pharmacy
+    invoice cost for Medicaid pricing. Closer to actual transaction cost
+    than AWP/WAC.
+  see_also: [AWP, WAC, MAC]
+
+MAC:
+  definition: >-
+    Maximum Allowable Cost. PBM-set ceiling for generic drug
+    reimbursement. PBMs maintain proprietary MAC lists.
+  see_also: [PBM, NADAC, AWP]
+
+FFS:
+  definition: >-
+    Fee-for-Service. Payment per discrete service rendered, the dominant
+    historical reimbursement model. Volume-incentivizing, contrasts with
+    capitation and bundles.
+  see_also: [VBC, capitation, FFV]
+
+FFV:
+  definition: >-
+    Fee-for-Value. Umbrella term for payment models tying reimbursement
+    to outcomes/quality (shared savings, bundles, capitation, P4P).
+  see_also: [VBC, MSSP, BPCI]
+
+VBC:
+  definition: >-
+    Value-Based Care. The payment-model paradigm pairing financial
+    accountability with quality measurement. Encompasses ACOs, bundled
+    payments, capitation, P4P, and direct-contracting variants.
+  see_also: [FFV, MSSP, BPCI, REACH]
+
+P4P:
+  definition: >-
+    Pay-for-Performance. Payment adjustment tied to discrete quality or
+    cost metrics. Predates and underlies most modern VBC programs.
+  see_also: [VBC, MIPS, HVBP]
+
+CCR:
+  definition: >-
+    Cost-to-Charge Ratio. Hospital reported cost divided by gross charges.
+    Used to estimate cost from claim charges in MedPAR analysis when actual
+    cost data isn't shared.
+  see_also: [billed, MedPAR, IPPS]
+
+IBNR:
+  definition: >-
+    Incurred-But-Not-Reported. Estimated claim liability for services
+    delivered but not yet adjudicated. Material on partial-year claims data
+    and material to actuarial reserves.
+  see_also: [runout, completion-factor, IBNP]
+
+IBNP:
+  definition: >-
+    Incurred-But-Not-Paid. Includes IBNR plus reported-but-unpaid claims.
+    Slightly broader than IBNR; preferred in some payer reserving practice.
+  see_also: [IBNR, runout]
+
+DSH:
+  definition: >-
+    Disproportionate Share Hospital. Medicare and Medicaid payment
+    adjustment for hospitals serving high shares of low-income patients.
+    Subject to Affordable Care Act reductions.
+  see_also: [UCC, UPL, IPPS]
+
+GME:
+  definition: >-
+    Graduate Medical Education. Medicare payment to teaching hospitals
+    covering residency training. Direct GME (DGME) + Indirect (IME)
+    components.
+  see_also: [IME, IPPS, teaching-hospital]
+
+IME:
+  definition: >-
+    Indirect Medical Education. IPPS adjustment for the operating-cost
+    overhead of teaching hospitals, expressed as a multiplier on the
+    DRG payment.
+  see_also: [GME, IPPS, DRG]
+
+UPL:
+  definition: >-
+    Upper Payment Limit. Federal cap on aggregate Medicaid payments by
+    provider type — payments cannot exceed what Medicare would have paid
+    for the same service.
+  see_also: [DSH, Medicaid]
+
+UCC:
+  definition: >-
+    Uncompensated Care Cost. Hospital cost of care delivered without
+    payment, including charity and bad debt. Relevant to DSH and 340B
+    eligibility.
+  see_also: [DSH, charity-care]
+
+# ============================================================================
+# Coverage products and benefit design
+# ============================================================================
+
+HMO:
+  definition: >-
+    Health Maintenance Organization. Closed-network plan requiring PCP
+    referral for specialists. Lower premium, narrower choice.
+  see_also: [PPO, EPO, POS]
+
+PPO:
+  definition: >-
+    Preferred Provider Organization. Open access with in/out-of-network
+    cost-share differential. No PCP gatekeeping; higher premium than HMO.
+  see_also: [HMO, EPO, POS]
+
+EPO:
+  definition: >-
+    Exclusive Provider Organization. PPO-like open access but no
+    out-of-network coverage except emergencies. Sits between HMO and PPO.
+  see_also: [HMO, PPO]
+
+POS:
+  definition: >-
+    Point-of-Service plan. HMO-like in-network design with limited
+    out-of-network access at higher cost-share. Less common since HDHPs
+    rose.
+  see_also: [HMO, PPO, HDHP]
+
+HDHP:
+  definition: >-
+    High-Deductible Health Plan. IRS-defined plan with elevated deductible
+    and OOP max thresholds. HSA-eligible if it meets the IRS rules.
+  see_also: [HSA, FSA, OOP]
+
+HSA:
+  definition: >-
+    Health Savings Account. Tax-advantaged personal account paired with
+    HDHP. Employer + employee contributions; balances roll over and are
+    portable.
+  see_also: [HDHP, FSA, HRA]
+
+FSA:
+  definition: >-
+    Flexible Spending Account. Pre-tax employee account for health (or
+    dependent care) spend. Use-it-or-lose-it; not portable.
+  see_also: [HSA, HRA, HDHP]
+
+HRA:
+  definition: >-
+    Health Reimbursement Arrangement. Employer-funded reimbursement
+    account. Various flavors (ICHRA, EBHRA, QSEHRA) with different
+    employer-size and integration rules.
+  see_also: [ICHRA, HSA, FSA]
+
+ICHRA:
+  definition: >-
+    Individual Coverage HRA. Employer-funded account that reimburses
+    employees for individual-market coverage premiums. Created 2020;
+    fastest-growing employer benefit design.
+  see_also: [HRA, IFP]
+
+ESI:
+  definition: >-
+    Employer-Sponsored Insurance. The largest US coverage segment
+    (~150M lives). Group market regulated under ERISA, not state insurance
+    law for self-funded plans.
+  see_also: [employer-sponsored, ERISA, ICHRA]
+
+IFP:
+  definition: >-
+    Individual and Family Plan market. ACA-marketplace and off-exchange
+    individually-purchased coverage. Subject to MLR floors and
+    risk-adjustment transfers.
+  see_also: [QHP, marketplace, MLR]
+
+QHP:
+  definition: >-
+    Qualified Health Plan. ACA-marketplace certified plan meeting EHB,
+    actuarial-value, and network-adequacy standards.
+  see_also: [IFP, EHB, marketplace]
+
+EHB:
+  definition: >-
+    Essential Health Benefits. ACA-defined ten benefit categories every
+    QHP must cover (ambulatory, ER, hospitalization, maternity, mental
+    health, Rx, rehab, lab, prevention, pediatric).
+  see_also: [QHP, ACA]
+
+COBRA:
+  definition: >-
+    Consolidated Omnibus Budget Reconciliation Act continuation coverage.
+    Lets terminated employees of group plans buy continued coverage at
+    full premium plus 2% admin for up to 18-36 months.
+  see_also: [ESI, ERISA]
+
+CHIP:
+  definition: >-
+    Children's Health Insurance Program. Federal-state public coverage
+    for children in families above Medicaid eligibility but below ACA
+    subsidy thresholds. State-run.
+  see_also: [Medicaid, FPL]
+
+CHAMPVA:
+  definition: >-
+    Civilian Health and Medical Program of the VA. Coverage for spouses
+    and dependents of disabled or deceased veterans. VA-administered.
+  see_also: [VA, TRICARE]
+
+TRICARE:
+  definition: >-
+    DoD's health program for active-duty servicemembers, retirees, and
+    families. Multiple plan tiers (Prime, Select, For Life).
+  see_also: [DoD, CHAMPVA]
+
+FEHB:
+  definition: >-
+    Federal Employees Health Benefits program. OPM-administered coverage
+    for federal civilian employees + retirees. Largest employer plan in
+    the country.
+  see_also: [ESI, OPM]
+
+OOP:
+  definition: >-
+    Out-of-Pocket maximum. Annual cap on member cost-share before plan
+    pays 100%. ACA limits the OOP max for QHPs.
+  see_also: [HDHP, deductible, coinsurance]
+
+# ============================================================================
+# Public coverage / Medicare / Medicaid
+# ============================================================================
+
+MA:
+  definition: >-
+    Medicare Advantage (Part C). Private plans contracted with CMS to
+    provide Medicare benefits to enrollees, paid via county-bid benchmarks.
+    Now covers >50% of Medicare beneficiaries.
+  see_also: [MAPD, FFS, bid]
+
+MAPD:
+  definition: >-
+    Medicare Advantage Prescription Drug plan. MA plan that bundles Part
+    D drug coverage. The most common MA flavor.
+  see_also: [MA, PDP, Part D]
+
+PDP:
+  definition: >-
+    Medicare Prescription Drug Plan. Standalone Part D coverage purchased
+    alongside FFS Medicare. Distinct from MAPD.
+  see_also: [Part D, MAPD, MA]
+
+DSNP:
+  definition: >-
+    Dual-Eligible Special Needs Plan. MA plan exclusively for beneficiaries
+    enrolled in both Medicare and Medicaid. Subject to integration rules.
+  see_also: [MA, dual-eligible, FIDE-SNP]
+
+CSNP:
+  definition: >-
+    Chronic Condition Special Needs Plan. MA plan limited to beneficiaries
+    with one or more qualifying chronic conditions defined by CMS.
+  see_also: [MA, DSNP, ISNP]
+
+ISNP:
+  definition: >-
+    Institutional Special Needs Plan. MA plan limited to beneficiaries
+    residing in long-term institutional settings (typically SNF/LTAC).
+  see_also: [MA, DSNP, CSNP]
+
+LIS:
+  definition: >-
+    Low-Income Subsidy ("Extra Help"). Federal subsidy reducing Part D
+    premiums and cost-sharing for low-income Medicare beneficiaries.
+  see_also: [Part D, MAPD, dual]
+
+QMB:
+  definition: >-
+    Qualified Medicare Beneficiary. Medicaid-funded category that pays
+    Medicare premiums and cost-sharing for low-income Medicare enrollees.
+  see_also: [SLMB, dual, MSP]
+
+SLMB:
+  definition: >-
+    Specified Low-Income Medicare Beneficiary. Medicaid program paying
+    Medicare Part B premiums for beneficiaries near but above QMB income
+    threshold.
+  see_also: [QMB, MSP]
+
+QI:
+  definition: >-
+    Qualifying Individual. Federally funded Medicaid Part B premium-only
+    program for income tier above SLMB. Capped enrollment.
+  see_also: [QMB, SLMB, MSP]
+
+MSP:
+  definition: >-
+    Medicare Savings Program. Umbrella term for QMB/SLMB/QI/QDWI
+    Medicaid-administered programs assisting low-income Medicare
+    beneficiaries with premiums and cost-sharing.
+  see_also: [QMB, SLMB, QI]
+
+FPL:
+  definition: >-
+    Federal Poverty Level. HHS-published annual income threshold by
+    household size used to determine Medicaid, CHIP, and ACA-subsidy
+    eligibility.
+  see_also: [MAGI, Medicaid, APTC]
+
+MAGI:
+  definition: >-
+    Modified Adjusted Gross Income. ACA + Medicaid income test (federal
+    AGI + tax-exempt interest + foreign earned income + non-taxable Social
+    Security). Determines eligibility for premium tax credits and most
+    non-disabled Medicaid groups.
+  see_also: [FPL, AGI, APTC]
+
+AGI:
+  definition: >-
+    Adjusted Gross Income. IRS-defined gross income minus above-the-line
+    deductions. Base for MAGI computations in coverage eligibility.
+  see_also: [MAGI, FPL]
+
+APTC:
+  definition: >-
+    Advance Premium Tax Credit. Federal subsidy paid directly to insurers
+    to lower marketplace premiums for households 100-400% FPL (no upper
+    cliff under IRA through 2025).
+  see_also: [QHP, MAGI, CSR]
+
+CSR:
+  definition: >-
+    Cost-Sharing Reduction. Marketplace silver-plan benefit enhancement
+    for households 100-250% FPL. Federal reimbursement to insurers ended
+    2017 (silver-loaded into premiums).
+  see_also: [APTC, QHP, silver-loading]
+
+DUAL:
+  definition: >-
+    Dual-eligible. Beneficiary enrolled in both Medicare and Medicaid.
+    Full duals get comprehensive Medicaid; partial duals get only
+    cost-sharing assistance via MSP.
+  see_also: [DSNP, FIDE-SNP, QMB]
+
+# ============================================================================
+# CMS programs and demonstrations
+# ============================================================================
+
+MSSP:
+  definition: >-
+    Medicare Shared Savings Program. CMS's standing ACO program. ACOs
+    benchmark against historical regional spend; meeting quality + saving
+    money triggers shared savings; downside-risk tracks share losses too.
+  see_also: [ACO, benchmark, ACO REACH]
+
+ACO:
+  definition: >-
+    Accountable Care Organization. Group of providers jointly responsible
+    for cost and quality of an attributed beneficiary panel.
+  see_also: [MSSP, REACH, attribution]
+
+REACH:
+  definition: >-
+    ACO REACH (Realizing Equity, Access, and Community Health). CMMI
+    capitated ACO model emphasizing health equity. Successor to GPDC;
+    runs through PY2026.
+  see_also: [ACO, HEBA, GPDC]
+
+GPDC:
+  definition: >-
+    Global and Professional Direct Contracting. CMMI ACO model preceding
+    REACH (2021-2022). Higher upside/downside risk than MSSP, with global
+    capitation option.
+  see_also: [REACH, ACO, capitation]
+
+HEBA:
+  definition: >-
+    Health Equity Benchmark Adjustment. ACO REACH benchmark increase for
+    ACOs serving higher shares of underserved beneficiaries (ADI, dual-
+    eligible).
+  see_also: [REACH, ADI, equity]
+
+ACPT:
+  definition: >-
+    ACO Performance Tier. Tiering used in ACO REACH and MSSP that scales
+    benchmarks by historical performance. Affects savings opportunity.
+  see_also: [ACO, MSSP, REACH]
+
+CMMI:
+  definition: >-
+    Center for Medicare and Medicaid Innovation. CMS innovation center
+    created by ACA Section 3021 to test alternative payment models.
+  see_also: [APM, BPCI, REACH]
+
+APM:
+  definition: >-
+    Alternative Payment Model. CMS umbrella for non-FFS payment
+    arrangements. AAPMs are the qualifying subset for MIPS exclusion +
+    QPP bonus.
+  see_also: [AAPM, MIPS, QPP]
+
+AAPM:
+  definition: >-
+    Advanced Alternative Payment Model. APMs meeting downside-risk +
+    EHR-use thresholds. Clinicians sufficiently participating qualify
+    for QPP 5% lump-sum bonus.
+  see_also: [APM, QPP, MIPS]
+
+QPP:
+  definition: >-
+    Quality Payment Program. CMS clinician payment program created by
+    MACRA, with two tracks: MIPS and AAPM.
+  see_also: [MACRA, MIPS, AAPM]
+
+MACRA:
+  definition: >-
+    Medicare Access and CHIP Reauthorization Act of 2015. Replaced the
+    SGR with MIPS + AAPM tracks under QPP.
+  see_also: [QPP, MIPS, SGR]
+
+SGR:
+  definition: >-
+    Sustainable Growth Rate. Pre-MACRA Medicare physician-payment formula
+    requiring annual congressional override ("doc fix"). Repealed in
+    2015.
+  see_also: [MACRA, QPP]
+
+MIPS:
+  definition: >-
+    Merit-based Incentive Payment System. CMS clinician-level quality
+    program with positive/negative payment adjustment based on score
+    across quality, cost, improvement-activities, and promoting
+    interoperability.
+  see_also: [QPP, MACRA, AAPM]
+
+BPCI:
+  definition: >-
+    Bundled Payments for Care Improvement. CMMI bundle program where
+    providers take risk on a 90-day episode of care anchored by
+    hospitalization. Original BPCI ran 2013-2018.
+  see_also: [BPCI-A, episode, MS-DRG]
+
+BPCI-A:
+  definition: >-
+    BPCI Advanced. Current voluntary CMMI bundle program covering 33
+    inpatient + 4 outpatient clinical episode categories with a 90-day
+    post-discharge window.
+  see_also: [BPCI, episode, target-price]
+
+CJR:
+  definition: >-
+    Comprehensive Care for Joint Replacement. Mandatory CMMI bundled
+    payment for hip and knee replacement (MS-DRGs 469-470). Ran
+    2016-2024 in selected MSAs.
+  see_also: [BPCI, episode, MS-DRG]
+
+OCM:
+  definition: >-
+    Oncology Care Model. CMMI 2016-2022 oncology bundle anchored on
+    chemotherapy episodes. Predecessor to EOM.
+  see_also: [EOM, episode, oncology]
+
+EOM:
+  definition: >-
+    Enhancing Oncology Model. Successor to OCM; runs July 2023-June 2030
+    (extended from 2028; second cohort began July 2025). Smaller
+    cancer-type scope, mandatory downside risk, equity reporting.
+  see_also: [OCM, oncology]
+
+KCC:
+  definition: >-
+    Kidney Care Choices. CMMI kidney-disease APM family encompassing the
+    KCF (Kidney Care First) and CKCC (Comprehensive Kidney Care
+    Contracting) options for ESRD beneficiaries.
+  see_also: [ESRD, dialysis]
+
+ESCO:
+  definition: >-
+    ESRD Seamless Care Organization. Earlier kidney-care ACO model under
+    CEC. Sunset 2021 with KCC launch.
+  see_also: [KCC, ESRD]
+
+CEC:
+  definition: >-
+    Comprehensive ESRD Care model. CMMI's ESRD ACO predecessor (2015-2021)
+    that tested ESCO arrangements.
+  see_also: [ESCO, KCC, ESRD]
+
+PCMH:
+  definition: >-
+    Patient-Centered Medical Home. Primary-care delivery model emphasizing
+    coordinated, longitudinal care with team-based management. NCQA-
+    recognized credential.
+  see_also: [primary-care, NCQA]
+
+CPC+:
+  definition: >-
+    Comprehensive Primary Care Plus. CMMI 2017-2021 multi-payer primary-
+    care advanced APM. Predecessor to Primary Care First.
+  see_also: [PCF, primary-care]
+
+PCF:
+  definition: >-
+    Primary Care First. CMMI 2021-2026 primary-care APM with risk-
+    adjusted PMPM + acute-hospitalization-tied performance payment.
+  see_also: [CPC+, primary-care]
+
+ACO Models:
+  definition: >-
+    The CMS portfolio: MSSP (standing program), ACO REACH (CMMI capitated),
+    Vanguard, Investment ACO, Direct Contracting (GPDC, retired), Pioneer
+    (retired), and the upcoming Making Care Primary (MCP).
+  see_also: [MSSP, REACH, MCP]
+
+MCP:
+  definition: >-
+    Making Care Primary. Upcoming CMMI multi-track primary-care model
+    launching 2024 in eight states. Designed to onboard practices new
+    to APMs.
+  see_also: [PCF, primary-care, CMMI]
+
+HVBP:
+  definition: >-
+    Hospital Value-Based Purchasing. CMS pay-for-performance program
+    redistributing 2% of base-DRG payments based on quality + efficiency
+    score.
+  see_also: [HRRP, HACRP, P4P]
+
+HRRP:
+  definition: >-
+    Hospital Readmissions Reduction Program. CMS penalty (up to -3%) for
+    excess 30-day readmissions across six conditions.
+  see_also: [HVBP, readmission, IPPS]
+
+HACRP:
+  definition: >-
+    Hospital-Acquired Conditions Reduction Program. -1% penalty on
+    bottom-quartile hospitals by HAC composite score.
+  see_also: [HVBP, HRRP, PSI]
+
+# ============================================================================
+# Risk adjustment
+# ============================================================================
+
+HCC:
+  definition: >-
+    Hierarchical Condition Categories. CMS's risk-adjustment grouper
+    mapping ICD-10 diagnoses into clinical categories with weights. v22 is
+    the 2017 model; v24 is the 2020 model (100% in PY2022-PY2023, 75% in
+    PY2021); v28 is the 2024 model, phasing in PY2024-PY2026.
+  see_also: [RAF, v24, v28, CMS-HCC]
+
+CMS-HCC:
+  definition: >-
+    The Medicare-Advantage HCC model used to risk-adjust MA bid
+    benchmarks. Distinct from HHS-HCC (commercial market) and
+    RxHCC (Part D).
+  see_also: [HCC, HHS-HCC, RxHCC]
+
+HHS-HCC:
+  definition: >-
+    The HHS commercial-market risk-adjustment model used for ACA
+    risk-adjustment transfers. Different concurrent-vs-prospective
+    structure than CMS-HCC.
+  see_also: [HCC, risk-transfer]
+
+RxHCC:
+  definition: >-
+    The Part D prescription-drug risk-adjustment model. Predicts drug
+    spend rather than total medical, used for Part D bid risk-adjustment.
+  see_also: [Part D, HCC, MAPD]
+
+RAF:
+  definition: >-
+    Risk Adjustment Factor. The HCC-derived score scaling MA benchmarks
+    or MSSP targets for a beneficiary's health risk. RAF 1.0 = average;
+    >1.0 → sicker, higher payment.
+  see_also: [HCC, MA, MSSP]
+
+CDPS:
+  definition: >-
+    Chronic Illness and Disability Payment System. Medicaid risk-
+    adjustment model developed at UCSD. Used by many state Medicaid
+    managed-care contracts.
+  see_also: [HCC, Medicaid, MARA]
+
+MARA:
+  definition: >-
+    Milliman Advanced Risk Adjusters. Commercial proprietary risk model
+    family used for self-insured employer + provider analytics.
+  see_also: [HCC, CDPS, ETG]
+
+ETG:
+  definition: >-
+    Episode Treatment Group. Symmetry/Optum proprietary clinically-
+    coherent episode classification system. Distinct from CMS bundle
+    definitions.
+  see_also: [MEG, PRG, episode]
+
+MEG:
+  definition: >-
+    Medical Episode Grouper. Truven/Merative episode classification used
+    for commercial cost-of-care analytics.
+  see_also: [ETG, episode]
+
+PRG:
+  definition: >-
+    Procedure Risk Group. Commercial procedure-based risk classifier;
+    Symmetry product. Used in benchmarking + provider profiling.
+  see_also: [ETG, PEG]
+
+PEG:
+  definition: >-
+    Pharmacy Episode Group. Symmetry pharmacy episode classification
+    grouping prescriptions by therapeutic intent.
+  see_also: [ETG, MEG, PRG]
+
+DCG:
+  definition: >-
+    Diagnostic Cost Group. Verisk/DxCG risk-adjustment model predating
+    CMS-HCC. Still used in some commercial and international settings.
+  see_also: [HCC, MARA]
+
+CRG:
+  definition: >-
+    Clinical Risk Group. 3M proprietary population-classification system
+    organizing the population into mutually exclusive health-status
+    categories.
+  see_also: [HCC, CDPS]
+
+ADI:
+  definition: >-
+    Area Deprivation Index. Census-block-group-level socioeconomic
+    deprivation score (Wisconsin/Singh). Used by REACH HEBA + several
+    SDOH adjustments.
+  see_also: [SDOH, HEBA, SVI]
+
+SVI:
+  definition: >-
+    Social Vulnerability Index. CDC/ATSDR census-tract score blending
+    socioeconomic, household composition, minority/language, housing/
+    transportation.
+  see_also: [ADI, SDOH]
+
+SDOH:
+  definition: >-
+    Social Determinants of Health. Non-medical conditions in environments
+    where people live, work, age that affect outcomes: economic stability,
+    education, neighborhood, healthcare access, social context.
+  see_also: [ADI, SVI, Z-codes]
+
+# ============================================================================
+# Quality measurement
+# ============================================================================
+
+HEDIS:
+  definition: >-
+    Healthcare Effectiveness Data and Information Set. NCQA's standardized
+    quality-measurement set, used by ~90% of US health plans. Annually
+    updated MY (measurement year) specifications.
+  see_also: [NCQA, STARS, CAHPS]
+
+STARS:
+  definition: >-
+    CMS Medicare Advantage Star Ratings. 1-5 plan rating across quality,
+    member experience, complaints, customer service. ≥4 stars triggers
+    quality-bonus payment.
+  see_also: [MA, CAHPS, HOS]
+
+CAHPS:
+  definition: >-
+    Consumer Assessment of Healthcare Providers and Systems. AHRQ-
+    sponsored survey family measuring patient experience. Multiple
+    versions (HCAHPS, MA-CAHPS, CG-CAHPS, ED-CAHPS).
+  see_also: [HCAHPS, AHRQ, STARS]
+
+HCAHPS:
+  definition: >-
+    Hospital CAHPS. Inpatient experience survey administered by CMS to
+    discharged patients. Hospital scores feed HVBP.
+  see_also: [CAHPS, HVBP, IPPS]
+
+NQF:
+  definition: >-
+    National Quality Forum. Independent endorsement body for quality
+    measures. Most CMS-program measures carry NQF endorsement IDs.
+  see_also: [HEDIS, CMS, eCQM]
+
+CQM:
+  definition: >-
+    Clinical Quality Measure. Process or outcome measure of clinical
+    care quality, used in MIPS, IQR, and EHR Promoting Interoperability.
+  see_also: [eCQM, MIPS, NQF]
+
+eCQM:
+  definition: >-
+    Electronic Clinical Quality Measure. CQM defined in QDM/CQL syntax
+    for direct EHR-data extraction. CMS reporting accepts QRDA submissions.
+  see_also: [CQM, CQL, QRDA]
+
+PSI:
+  definition: >-
+    Patient Safety Indicator. AHRQ measure family flagging potentially
+    preventable inpatient adverse events from administrative claims data.
+  see_also: [PDI, AHRQ, HACRP]
+
+PDI:
+  definition: >-
+    Pediatric Quality Indicator. AHRQ pediatric-specific QI family
+    parallel to PSI.
+  see_also: [PSI, AHRQ]
+
+IQR:
+  definition: >-
+    Inpatient Quality Reporting. CMS hospital pay-for-reporting program;
+    non-reporting hospitals get -0.25% market-basket reduction.
+  see_also: [HVBP, OQR, CMS]
+
+OQR:
+  definition: >-
+    Outpatient Quality Reporting. CMS hospital outpatient pay-for-
+    reporting program parallel to IQR.
+  see_also: [IQR, OPPS]
+
+PQA:
+  definition: >-
+    Pharmacy Quality Alliance. Standards body for pharmacy quality
+    measures used in CMS Star Ratings (medication adherence triple-
+    weighted measures).
+  see_also: [STARS, MAPD, MTM]
+
+# ============================================================================
+# Codes / vocabularies / data standards
+# ============================================================================
+
+ICD-10-CM:
+  definition: >-
+    International Classification of Diseases, 10th revision, Clinical
+    Modification. The US diagnosis code set. Updated annually by NCHS
+    on the federal fiscal year (Oct 1).
+  see_also: [ICD-10-PCS, NCHS, code-set]
+
+ICD-10-PCS:
+  definition: >-
+    ICD-10 Procedure Coding System. Inpatient procedure code set.
+    Updated annually by CMS (Oct 1). Distinct from CPT/HCPCS for
+    outpatient.
+  see_also: [ICD-10-CM, CPT, HCPCS]
+
+CPT:
+  definition: >-
+    Current Procedural Terminology. AMA-maintained physician + outpatient
+    procedure code set. Updated annually (Jan 1). Category I, II, and
+    III subsets.
+  see_also: [HCPCS, AMA, RVU]
+
+HCPCS:
+  definition: >-
+    Healthcare Common Procedure Coding System. CMS code system; Level I
+    is CPT, Level II is durable medical equipment + drugs not in CPT.
+    Updated quarterly.
+  see_also: [CPT, J-codes, DME]
+
+NDC:
+  definition: >-
+    National Drug Code. FDA-maintained 11-digit drug identifier
+    (5-4-2 labeler-product-package). Used in pharmacy claims and Part B
+    drug billing.
+  see_also: [RxCUI, RxNorm, FDA]
+
+RXCUI:
+  definition: >-
+    RxNorm Concept Unique Identifier. Stable identifier in NLM's RxNorm
+    drug vocabulary; bridges across NDC, brand, generic, and clinical
+    drug forms.
+  see_also: [RxNorm, NDC]
+
+LOINC:
+  definition: >-
+    Logical Observation Identifiers Names and Codes. Regenstrief-
+    maintained vocabulary for lab and clinical observations. Used in
+    HL7 + FHIR for lab interoperability.
+  see_also: [SNOMED, FHIR, lab]
+
+SNOMED:
+  definition: >-
+    SNOMED CT. SNOMED International's clinical terminology — the most
+    comprehensive standardized clinical terminology in active use.
+    Required for USCDI.
+  see_also: [LOINC, USCDI, FHIR]
+
+NPI:
+  definition: >-
+    National Provider Identifier. CMS-issued 10-digit unique provider ID.
+    Type 1 = individual; Type 2 = organization.
+  see_also: [TIN, NPPES, claim]
+
+TIN:
+  definition: >-
+    Taxpayer Identification Number. IRS billing/payee ID; used jointly
+    with NPI for ACO + group-practice attribution.
+  see_also: [NPI, ACO, attribution]
+
+DEA:
+  definition: >-
+    DEA registration number. Drug Enforcement Administration prescriber
+    ID for controlled substances. Distinct from NPI.
+  see_also: [NPI, controlled-substance]
+
+MBI:
+  definition: >-
+    Medicare Beneficiary Identifier. 11-character alphanumeric ID
+    replacing the SSN-based HICN since 2018.
+  see_also: [HICN, Medicare, beneficiary]
+
+HICN:
+  definition: >-
+    Health Insurance Claim Number. Legacy SSN-based Medicare beneficiary
+    ID, fully replaced by MBI in 2020.
+  see_also: [MBI, Medicare]
+
+FHIR:
+  definition: >-
+    Fast Healthcare Interoperability Resources. HL7's modern resource-
+    based interoperability standard. R4 is the production baseline; R5
+    is current. Used for USCDI exchange.
+  see_also: [USCDI, SMART-on-FHIR, HL7]
+
+USCDI:
+  definition: >-
+    United States Core Data for Interoperability. ONC-defined minimum
+    clinical-data set every certified EHR must exchange. Versioned
+    annually.
+  see_also: [FHIR, ONC, EHR]
+
+SMART-on-FHIR:
+  definition: >-
+    SMART (Substitutable Medical Apps, Reusable Technologies) launch
+    framework for OAuth2-secured FHIR-app integration into EHR contexts.
+  see_also: [FHIR, OAuth, USCDI]
+
+X12:
+  definition: >-
+    Accredited Standards Committee X12. The EDI standards body for
+    healthcare administrative transactions (837, 835, 270/271, 276/277,
+    278, 834, 820).
+  see_also: [EDI, 837, 835]
+
+EDI:
+  definition: >-
+    Electronic Data Interchange. The transactional layer for HIPAA-
+    standardized administrative transactions in healthcare.
+  see_also: [X12, 837, 835]
+
+NCPDP:
+  definition: >-
+    National Council for Prescription Drug Programs. Pharmacy EDI
+    standards body. Telecommunication Standard D.0 powers retail-
+    pharmacy claim transactions.
+  see_also: [pharmacy, X12, 837]
+
+# Common HIPAA EDI transactions:
+
+837:
+  definition: >-
+    Healthcare claim. The X12 transaction submitting institutional (837I),
+    professional (837P), or dental (837D) claims to a payer.
+  see_also: [835, X12, claim]
+
+835:
+  definition: >-
+    Healthcare claim payment/advice. The X12 ERA transaction returning
+    payment + adjudication detail from payer to provider.
+  see_also: [837, ERA, EOB]
+
+834:
+  definition: >-
+    Benefit enrollment and maintenance. X12 transaction for sponsor-to-
+    payer enrollment, eligibility, and demographic updates.
+  see_also: [820, X12, eligibility]
+
+820:
+  definition: >-
+    Premium payment. X12 transaction for sponsor-to-payer premium
+    remittance.
+  see_also: [834, X12]
+
+270:
+  definition: >-
+    Eligibility, coverage, or benefit inquiry. X12 transaction asking a
+    payer about a member's coverage.
+  see_also: [271, X12, eligibility]
+
+271:
+  definition: >-
+    Eligibility, coverage, or benefit response. The 270's reply.
+  see_also: [270, X12]
+
+276:
+  definition: >-
+    Claim status request. X12 transaction asking a payer for status of
+    a previously submitted claim.
+  see_also: [277, X12]
+
+277:
+  definition: >-
+    Claim status response. The 276's reply, indicating accepted, denied,
+    paid, or pended.
+  see_also: [276, X12]
+
+278:
+  definition: >-
+    Services review (prior auth). X12 transaction for prior authorization
+    request and response.
+  see_also: [PA-Auth, X12]
+
+# ============================================================================
+# Claims / payment / DRG / RVU world
+# ============================================================================
+
+DRG:
+  definition: >-
+    Diagnosis-Related Group. Inpatient case-mix classification grouping
+    discharges by clinical and resource-use similarity. Used as the
+    payment unit in IPPS.
+  see_also: [MS-DRG, APR-DRG, IPPS]
+
+MS-DRG:
+  definition: >-
+    Medicare Severity DRG. CMS's IPPS DRG variant with three severity
+    tiers per base group (no CC, with CC, with MCC). Updated annually
+    Oct 1.
+  see_also: [DRG, IPPS, MCC]
+
+APR-DRG:
+  definition: >-
+    All Patient Refined DRG. 3M-developed DRG variant with severity-of-
+    illness + risk-of-mortality subclasses. Used by many state Medicaid
+    programs and commercial payers.
+  see_also: [DRG, MS-DRG]
+
+APC:
+  definition: >-
+    Ambulatory Payment Classification. CMS outpatient case-mix grouper
+    used by OPPS for hospital outpatient and ASC reimbursement.
+  see_also: [OPPS, ASC, OCE]
+
+RUG:
+  definition: >-
+    Resource Utilization Group. Skilled nursing facility case-mix
+    classification used in pre-PDPM SNF PPS.
+  see_also: [PDPM, SNF, MDS]
+
+PDPM:
+  definition: >-
+    Patient-Driven Payment Model. Replacement for RUG-IV (Oct 2019) in
+    SNF-PPS. Multi-component case-mix (PT, OT, SLP, nursing, NTA).
+  see_also: [SNF, RUG, MDS]
+
+HHRG:
+  definition: >-
+    Home Health Resource Group. Pre-PDGM home health case-mix grouping.
+  see_also: [PDGM, HH-PPS, OASIS]
+
+PDGM:
+  definition: >-
+    Patient-Driven Groupings Model. Replacement for HHRG (2020) in
+    HH-PPS. 30-day periods + 432 case-mix groups.
+  see_also: [HHRG, HH-PPS, OASIS]
+
+HIPPS:
+  definition: >-
+    Health Insurance Prospective Payment System code. Five-character
+    payment-group code used across SNF, HH, IRF, and LTCH PPS systems
+    on UB-04 claims.
+  see_also: [PDPM, PDGM, IRF-PAI]
+
+RVU:
+  definition: >-
+    Relative Value Unit. The RBRVS unit measuring physician work + practice
+    expense + malpractice. Multiplied by GPCI and conversion factor for
+    payment.
+  see_also: [RBRVS, MPFS, GPCI]
+
+RBRVS:
+  definition: >-
+    Resource-Based Relative Value Scale. The CMS physician fee-schedule
+    methodology assigning RVUs to each CPT code.
+  see_also: [RVU, MPFS]
+
+MPFS:
+  definition: >-
+    Medicare Physician Fee Schedule. Annual CMS fee schedule for
+    physician services published in the PFS final rule (Nov for next CY).
+  see_also: [RVU, RBRVS, GPCI]
+
+GPCI:
+  definition: >-
+    Geographic Practice Cost Index. Locality-specific multipliers
+    adjusting MPFS for cost-of-living differences in work, practice
+    expense, and malpractice.
+  see_also: [MPFS, RVU, locality]
+
+ASC:
+  definition: >-
+    Ambulatory Surgical Center. CMS-certified outpatient surgery
+    facility paid under ASC PPS. Lower payment than HOPD for the same
+    procedure.
+  see_also: [APC, OPPS, HOPD]
+
+OPPS:
+  definition: >-
+    Outpatient Prospective Payment System. CMS payment system for
+    hospital outpatient services, paid in APC units.
+  see_also: [APC, IPPS, ASC]
+
+IPPS:
+  definition: >-
+    Inpatient Prospective Payment System. CMS acute-inpatient payment
+    system paying per MS-DRG, with adjustments for IME, DSH, capital,
+    outliers, and quality programs.
+  see_also: [MS-DRG, IRF-PPS, IPF-PPS]
+
+IRF-PPS:
+  definition: >-
+    Inpatient Rehabilitation Facility PPS. CMS payment system for IRFs,
+    case-mix-adjusted on the IRF-PAI.
+  see_also: [IRF-PAI, IPPS]
+
+LTACH:
+  definition: >-
+    Long-Term Acute Care Hospital. Inpatient hospital with average LOS
+    >25 days. Paid under LTCH-PPS, separate from IPPS.
+  see_also: [LTCH-PPS, IPPS]
+
+NCCI:
+  definition: >-
+    National Correct Coding Initiative. CMS edit set preventing improper
+    code combinations on Part B claims. Two components: PTP edits + MUEs.
+  see_also: [PTP, MUE, OCE]
+
+PTP:
+  definition: >-
+    Procedure-to-Procedure edit. NCCI rule preventing two procedures
+    from being billed together unless an appropriate modifier is appended.
+  see_also: [NCCI, MUE, modifier-25]
+
+MUE:
+  definition: >-
+    Medically Unlikely Edit. NCCI per-line maximum unit cap for a
+    HCPCS/CPT code per beneficiary per date of service.
+  see_also: [NCCI, PTP]
+
+OCE:
+  definition: >-
+    Outpatient Code Editor. CMS OPPS-specific edit set (separate from
+    NCCI) covering APC assignment and bundled-payment logic.
+  see_also: [OPPS, APC, NCCI]
+
+LCD:
+  definition: >-
+    Local Coverage Determination. MAC-issued coverage policy specifying
+    medical-necessity criteria for a service or item in a MAC's
+    jurisdiction.
+  see_also: [NCD, MAC, coverage]
+
+NCD:
+  definition: >-
+    National Coverage Determination. Nation-wide CMS coverage policy.
+    NCDs supersede LCDs in conflict.
+  see_also: [LCD, coverage]
+
+ABN:
+  definition: >-
+    Advance Beneficiary Notice of Noncoverage. Provider notice to a
+    Medicare beneficiary that a service may not be covered, transferring
+    financial liability if signed.
+  see_also: [coverage, denial]
+
+MOON:
+  definition: >-
+    Medicare Outpatient Observation Notice. Required notification to
+    Medicare beneficiaries in observation status >24 hours, explaining
+    cost-share consequences.
+  see_also: [observation, IP, OP]
+
+# ============================================================================
+# Sites of service / utilization / inpatient flavors
+# ============================================================================
+
+ALOS:
+  definition: >-
+    Average Length of Stay. Total inpatient days divided by discharges.
+    A core utilization metric in benchmarking.
+  see_also: [LOS, IP, occupancy]
+
+LOS:
+  definition: >-
+    Length of Stay. Days from admission to discharge for a single
+    encounter. Often expressed as ALOS at the population level.
+  see_also: [ALOS, IP]
+
+OBS:
+  definition: >-
+    Observation status. Hospital outpatient utilization category for
+    short stays under medical decision-making review. Distinct from
+    inpatient admission for billing and coverage.
+  see_also: [IP, OP, MOON]
+
+IP:
+  definition: >-
+    Inpatient. Admission with formal inpatient order; billed under IPPS.
+    The 2-midnight rule governs the inpatient/observation determination.
+  see_also: [OP, OBS, IPPS]
+
+OP:
+  definition: >-
+    Outpatient. Hospital outpatient or ambulatory care; billed under
+    OPPS or MPFS.
+  see_also: [IP, OPPS, MPFS]
+
+ER:
+  definition: >-
+    Emergency Room. Common informal term for the hospital emergency
+    department (ED). EM billing flows through MPFS for the professional
+    component and OPPS for the facility component.
+  see_also: [ED, EMTALA]
+
+ED:
+  definition: >-
+    Emergency Department. Formal site-of-service for emergency care.
+    EMTALA applies to all ED encounters.
+  see_also: [ER, EMTALA]
+
+EMTALA:
+  definition: >-
+    Emergency Medical Treatment and Active Labor Act. Federal law requiring
+    Medicare-participating hospitals to screen and stabilize anyone
+    presenting at the ED regardless of ability to pay.
+  see_also: [ED, ER]
+
+ICU:
+  definition: >-
+    Intensive Care Unit. Highest-acuity inpatient bed type. Distinguished
+    in CMI-adjustment, severity-coding, and revenue-code 200-level
+    aggregation.
+  see_also: [IP, MCC, severity]
+
+SNF:
+  definition: >-
+    Skilled Nursing Facility. Post-acute facility billing under SNF-PPS
+    using PDPM. Three-day prior hospital stay triggers Medicare coverage.
+  see_also: [PDPM, IRF, LTACH]
+
+IRF:
+  definition: >-
+    Inpatient Rehabilitation Facility. Paid under IRF-PPS, requires
+    60% rule (60% of admissions in 13 qualifying conditions).
+  see_also: [IRF-PPS, SNF, LTACH]
+
+HHA:
+  definition: >-
+    Home Health Agency. Medicare-certified home-care provider billing
+    under HH-PPS in 30-day periods.
+  see_also: [HH-PPS, PDGM, OASIS]
+
+# ============================================================================
+# Pharmacy / PBM
+# ============================================================================
+
+PBM:
+  definition: >-
+    Pharmacy Benefit Manager. Third-party administrator for prescription
+    benefits. Negotiates rebates, manages formulary, processes pharmacy
+    claims through NCPDP.
+  see_also: [formulary, rebate, NCPDP]
+
+PA-Auth:
+  definition: >-
+    Prior Authorization. Payer requirement for pre-approval of a service
+    or drug. PA criteria are set by payer + product. Disambiguated from
+    PA-Clinician (Physician Assistant); see footer note.
+  see_also: [ST, QL, formulary]
+
+ST:
+  definition: >-
+    Step Therapy. PBM-imposed requirement to try a preferred (typically
+    cheaper) therapy first before a non-preferred therapy is covered.
+  see_also: [PA-Auth, QL, formulary]
+
+QL:
+  definition: >-
+    Quantity Limit. PBM-imposed maximum days-supply or unit count per
+    fill, often aligned with FDA labeling.
+  see_also: [PA-Auth, ST]
+
+GAP:
+  definition: >-
+    Coverage Gap (Donut Hole). Part D phase between initial coverage
+    and catastrophic coverage. The IRA closes the gap and adds an
+    enrollee OOP cap (2025).
+  see_also: [Part D, IRA, OOP]
+
+IRA:
+  definition: >-
+    Inflation Reduction Act of 2022. Among other things, restructured
+    Part D (negotiated drug prices, $2,000 OOP cap, smoothed payments,
+    insulin cap).
+  see_also: [Part D, MFP, NSP]
+
+MFP:
+  definition: >-
+    Maximum Fair Price. IRA-negotiated price for selected high-spend
+    Part D drugs, effective 2026 first cohort.
+  see_also: [IRA, Part D]
+
+MTM:
+  definition: >-
+    Medication Therapy Management. Pharmacist-led service required by
+    Part D for at-risk beneficiaries. STARS-weighted.
+  see_also: [Part D, STARS, PQA]
+
+# ============================================================================
+# Privacy / security / compliance
+# ============================================================================
+
+HIPAA:
+  definition: >-
+    Health Insurance Portability and Accountability Act of 1996. Privacy
+    Rule governs PHI use/disclosure; Security Rule sets safeguards;
+    Transactions Rule mandates X12 EDI standards.
+  see_also: [PHI, HITECH, BAA]
+
+PHI:
+  definition: >-
+    Protected Health Information. Individually identifiable health
+    information held by a HIPAA-covered entity or business associate.
+    The 18 Safe Harbor identifiers must be removed for de-identification.
+  see_also: [HIPAA, Safe-Harbor, de-identification]
+
+HITECH:
+  definition: >-
+    Health Information Technology for Economic and Clinical Health Act
+    of 2009. Strengthened HIPAA penalties, extended liability to BAs,
+    added breach notification.
+  see_also: [HIPAA, BAA, breach]
+
+BAA:
+  definition: >-
+    Business Associate Agreement. HIPAA-required contract between
+    covered entity and business associate governing PHI use and
+    safeguards.
+  see_also: [HIPAA, BA, DUA]
+
+DUA:
+  definition: >-
+    Data Use Agreement. Required contract for disclosure of a HIPAA
+    Limited Data Set, restricting use, redisclosure, and re-identification.
+  see_also: [LDS, HIPAA, PHI]
+
+LDS:
+  definition: >-
+    Limited Data Set. PHI-class with most direct identifiers removed but
+    retaining dates and ZIP. Released under DUA; less restricted than
+    full identified data.
+  see_also: [DUA, Safe-Harbor]
+
+42 CFR Part 2:
+  definition: >-
+    Federal regulation governing confidentiality of substance use disorder
+    (SUD) treatment records. Stricter than HIPAA on redisclosure;
+    requires patient consent for most disclosures.
+  see_also: [SUD, HIPAA, PHI]
+
+SUD:
+  definition: >-
+    Substance Use Disorder. DSM-5 diagnostic category. Subject to
+    42 CFR Part 2 confidentiality rules in addition to HIPAA.
+  see_also: [42 CFR Part 2, HIPAA]
+
+# ============================================================================
+# HEOR / methods / statistics
+# ============================================================================
+
+HEOR:
+  definition: >-
+    Health Economics and Outcomes Research. Industry name for the
+    intersection of clinical, economic, and quality-of-life research
+    supporting reimbursement and access decisions.
+  see_also: [QALY, ICER, RWE]
+
+RWE:
+  definition: >-
+    Real-World Evidence. Clinical evidence from real-world data sources
+    (claims, EHR, registries) on usage, benefit, or risk of a medical
+    product.
+  see_also: [RWD, HEOR, FDA]
+
+RWD:
+  definition: >-
+    Real-World Data. Patient health-status and care-delivery data
+    routinely collected from sources outside randomized trials.
+  see_also: [RWE, EHR, claims]
+
+ICER:
+  definition: >-
+    Institute for Clinical and Economic Review. Independent US value-
+    assessment body publishing cost-effectiveness analyses (also =
+    "incremental cost-effectiveness ratio" in formula context).
+  see_also: [QALY, ICER-ratio]
+
+QALY:
+  definition: >-
+    Quality-Adjusted Life Year. Health-outcome measure combining length
+    and quality of life. Standard ICER cost-effectiveness denominator.
+  see_also: [ICER, DALY]
+
+DALY:
+  definition: >-
+    Disability-Adjusted Life Year. WHO burden-of-disease metric: years
+    of life lost + years lived with disability.
+  see_also: [QALY, burden-of-disease]
+
+PSM:
+  definition: >-
+    Propensity Score Matching. Causal-inference method matching treated
+    and control units on a model-estimated propensity to receive
+    treatment. Reduces measured-confounder bias.
+  see_also: [IPTW, DiD, ATT]
+
+IPTW:
+  definition: >-
+    Inverse Probability of Treatment Weighting. Causal-inference method
+    weighting observations by 1/propensity (treated) or 1/(1-propensity)
+    (control) to balance covariates.
+  see_also: [PSM, ATE, MSM]
+
+MSM:
+  definition: >-
+    Marginal Structural Model. Causal-inference framework for time-
+    varying treatments + confounders, fit via IPTW.
+  see_also: [IPTW, causal]
+
+DiD:
+  definition: >-
+    Difference-in-Differences. Quasi-experimental design comparing pre/
+    post change in a treated group against a control group's parallel
+    trend.
+  see_also: [event-study, parallel-trends]
+
+RDD:
+  definition: >-
+    Regression Discontinuity Design. Causal-inference method exploiting
+    a sharp eligibility cutoff to compare units just above vs just below
+    threshold.
+  see_also: [DiD, IV]
+
+IV:
+  definition: >-
+    Instrumental Variables. Causal-inference method using an exogenous
+    instrument that affects treatment but not the outcome except through
+    treatment.
+  see_also: [2SLS, Stock-Yogo]
+
+ATT:
+  definition: >-
+    Average Treatment effect on the Treated. The treatment-effect estimand
+    among units that received treatment. Common DiD/PSM target.
+  see_also: [ATE, ITT]
+
+ATE:
+  definition: >-
+    Average Treatment Effect. Population-level treatment-effect estimand
+    averaging across treated and untreated.
+  see_also: [ATT, ITT]
+
+ITT:
+  definition: >-
+    Intent-to-Treat. Analysis principle counting subjects in their
+    randomized arm regardless of compliance. Standard for clinical
+    trials.
+  see_also: [PP, ATE]
+
+# ============================================================================
+# Care delivery + roles
+# ============================================================================
+
+PCP:
+  definition: >-
+    Primary Care Physician. Patient's principal-care clinician.
+    Attribution unit in many ACO models.
+  see_also: [attribution, ACO]
+
+NP:
+  definition: >-
+    Nurse Practitioner. Advanced-practice nurse with independent
+    prescribing authority in most states.
+  see_also: [PA-Clinician, MD, scope-of-practice]
+
+PA-Clinician:
+  definition: >-
+    Physician Assistant. Advanced-practice clinician practicing under
+    physician supervision (varies by state). Disambiguated from PA-Auth
+    (Prior Authorization); see footer note.
+  see_also: [NP, MD]
+
+CCM:
+  definition: >-
+    Chronic Care Management. CMS-billable service code (CPT 99490 + family)
+    for care coordination of beneficiaries with multiple chronic
+    conditions.
+  see_also: [TCM, BHI]
+
+TCM:
+  definition: >-
+    Transitional Care Management. CMS-billable services (CPT 99495/99496)
+    for post-discharge care transitions within 30 days.
+  see_also: [CCM, readmission]
+
+BHI:
+  definition: >-
+    Behavioral Health Integration. CMS-billable collaborative-care
+    services integrating behavioral health into primary care.
+  see_also: [CCM, CoCM]
+
+# ============================================================================
+# IT / EHR / data infrastructure
+# ============================================================================
+
+EHR:
+  definition: >-
+    Electronic Health Record. Provider-side longitudinal patient record
+    system. ONC-certified versions support USCDI exchange and quality
+    reporting.
+  see_also: [EMR, USCDI, ONC]
+
+EMR:
+  definition: >-
+    Electronic Medical Record. Older / narrower term for a single-practice
+    digital record. Often used interchangeably with EHR; technically EHR
+    implies cross-organization exchange.
+  see_also: [EHR, USCDI]
+
+HIE:
+  definition: >-
+    Health Information Exchange. Network or organization moving clinical
+    data among providers, often state-designated or regional.
+  see_also: [HIN, USCDI, FHIR]
+
+HIN:
+  definition: >-
+    Health Information Network. Broader umbrella for entities exchanging
+    health data, including HIEs and TEFCA-onboarded QHINs.
+  see_also: [HIE, TEFCA, QHIN]
+
+TEFCA:
+  definition: >-
+    Trusted Exchange Framework and Common Agreement. ONC-stewarded
+    nationwide interoperability framework; Common Agreement v1 published 2022, with operational QHIN exchange beginning 2023.
+  see_also: [QHIN, ONC, FHIR]
+
+QHIN:
+  definition: >-
+    Qualified Health Information Network. TEFCA-designated exchange
+    operator. Carequality, eHealth Exchange, Epic Nexus, others.
+  see_also: [TEFCA, HIE]
+
+MPI:
+  definition: >-
+    Master Patient Index. Patient-level identity registry within a
+    provider organization, supporting deduplication and matching.
+  see_also: [EMPI, identity-resolution]
+
+EMPI:
+  definition: >-
+    Enterprise Master Patient Index. Multi-organization MPI, often
+    deployed at HIE or health-system level.
+  see_also: [MPI, HIE]
+
+ADT:
+  definition: >-
+    Admission, Discharge, Transfer. HL7 v2 message family used for
+    real-time patient-movement notifications, often the trigger for
+    TCM billing.
+  see_also: [HL7, TCM, FHIR]
+
+ONC:
+  definition: >-
+    Office of the National Coordinator for Health IT. HHS office
+    setting EHR certification, USCDI, and TEFCA standards.
+  see_also: [USCDI, TEFCA, HIT]
+
+# ============================================================================
+# Data sources / public datasets
+# ============================================================================
+
+CCW:
+  definition: >-
+    Chronic Conditions Data Warehouse. CMS research-use data infrastructure
+    housing 100% Medicare claims, MA encounter data, MAX/T-MSIS Medicaid,
+    and Part D PDE.
+  see_also: [VRDC, RIF, MEDPAR]
+
+VRDC:
+  definition: >-
+    Virtual Research Data Center. Remote-access secure environment for
+    CCW data, the standard CMS RUF data tier for research.
+  see_also: [CCW, RIF, ResDAC]
+
+RIF:
+  definition: >-
+    Research Identifiable File. Identified beneficiary-level CMS research
+    data. Highest-tier access; requires DUA, IRB, and ResDAC review.
+  see_also: [LDS, CCW, ResDAC]
+
+ResDAC:
+  definition: >-
+    Research Data Assistance Center. CMS-contracted research-data support
+    operation (Univ of Minnesota). Reviews + provisions CCW/RIF requests.
+  see_also: [CCW, RIF, VRDC]
+
+MEDPAR:
+  definition: >-
+    Medicare Provider Analysis and Review. Inpatient + SNF stay-level
+    summary file aggregating IPPS bills, widely used for hospital
+    benchmarking.
+  see_also: [CCW, IPPS]
+
+T-MSIS:
+  definition: >-
+    Transformed Medicaid Statistical Information System. Modern monthly
+    state Medicaid data submission, replacing MSIS. Powers CMS Medicaid
+    research files.
+  see_also: [Medicaid, TAF]
+
+TAF:
+  definition: >-
+    T-MSIS Analytic Files. CCW research extracts from T-MSIS for
+    research and program-integrity use.
+  see_also: [T-MSIS, CCW]
+
+PUF:
+  definition: >-
+    Public Use File. Aggregated, fully de-identified CMS public dataset
+    available without DUA. Examples: Provider Utilization, Part D Rx,
+    MA Landscape.
+  see_also: [LDS, CCW, RIF]
+
+BCDA:
+  definition: >-
+    Beneficiary Claims Data API. CMS API for ACOs to retrieve Medicare
+    claims for their assigned beneficiaries. Bulk FHIR + token-based
+    access.
+  see_also: [Bulk-FHIR, ACO, MSSP]
+
+Blue Button:
+  definition: >-
+    Blue Button 2.0. CMS API allowing Medicare beneficiaries to
+    authorize third-party app access to their claims via OAuth + FHIR.
+  see_also: [BCDA, Bulk-FHIR, FHIR]
+
+NPPES:
+  definition: >-
+    National Plan and Provider Enumeration System. CMS NPI registry,
+    publicly downloadable. Source-of-truth for individual + organizational
+    NPIs.
+  see_also: [NPI, CMS]
+
+# ============================================================================
+# Misc actuarial + accounting
+# ============================================================================
+
+ASOP:
+  definition: >-
+    Actuarial Standard of Practice. Profession-binding standards published
+    by the Actuarial Standards Board. ASOP 41 governs actuarial
+    communications.
+  see_also: [SOA, ABCD]
+
+SOA:
+  definition: >-
+    Society of Actuaries. Credentialing body for ASA, FSA, CERA
+    designations. Distinct from CAS (P&C focus).
+  see_also: [ASA, FSA-actuary, CAS]
+
+AAA:
+  definition: >-
+    American Academy of Actuaries. US public-policy + standards body
+    for the actuarial profession (distinct from credential-granting SOA/
+    CAS).
+  see_also: [SOA, ASOP]
+
+GAAP:
+  definition: >-
+    Generally Accepted Accounting Principles. US accounting standard
+    from FASB. Insurance carriers report both GAAP and statutory.
+  see_also: [SAP, FASB]
+
+SAP:
+  definition: >-
+    Statutory Accounting Principles. State-regulator-defined insurance
+    accounting framework (NAIC). More conservative than GAAP.
+  see_also: [GAAP, NAIC]
+
+NAIC:
+  definition: >-
+    National Association of Insurance Commissioners. Standards-setting
+    body for state insurance regulators. Maintains SAP and risk-based-
+    capital framework.
+  see_also: [SAP, RBC]
+
+RBC:
+  definition: >-
+    Risk-Based Capital. NAIC-defined capital adequacy formula for
+    insurers. Action levels trigger regulatory intervention below
+    thresholds.
+  see_also: [NAIC, SAP]
+
+# ============================================================================
+# Acronym overlaps to disambiguate
+# ============================================================================
+# Acronyms with multiple healthcare meanings get suffixed keys to avoid
+# YAML duplicate-key collisions (PyYAML's safe_load silently keeps the
+# *last* duplicate, not the first — opposite of intuition). Disambiguated
+# acronyms in this file:
+#   - PA → PA-Auth (Prior Authorization), PA-Clinician (Physician Assistant)
+# Bare lookups for ambiguous acronyms (e.g. /explain PA) are handled in
+# scripts/explain.py with a disambiguation hint.
