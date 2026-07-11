@@ -1,22 +1,38 @@
-"""Cross-cutting test: every Outputs-layer skill ships an evals.json with the
-mandatory anti-fabrication eval. This is a structural check, not a behavioral one.
+"""Cross-cutting eval-coverage gates: every Outputs-layer skill ships an
+evals.json with the mandatory anti-fabrication eval, and every methodology/domain
+(judgment) skill ships an anti-confabulation fidelity blocker. These are
+structural checks, not behavioral ones.
+
+Corpus root
+-----------
+These gates run against a *corpus root* that contains a ``skills/{outputs,
+methodology, domain}/<skill>/evals/evals.json`` tree. In medecon-verify the
+corpus defaults to the self-contained fixture tree under
+``tests/evals_fixture/skills/`` — a minimal but real positive for every gate, so
+the well-formedness, anti-fabrication, and fidelity-severity assertions actually
+execute here rather than being skipped.
+
+The full medecon-stack-wide sweep — the same gates over the entire live
+``skills/**`` tree — continues to run *in the medecon-stack repo*, whose
+``tests/test_eval_coverage.py`` roots at its own repo. Point ``MEDECON_EVAL_CORPUS_ROOT``
+at any corpus root to override the default (that is how medecon-stack aims these
+identical gates at its skills tree). The enumeration and every assertion below
+are identical to that original — only the root is parameterized.
 """
 from __future__ import annotations
 
 import json
+import os
 from pathlib import Path
 
 import pytest
 
-# This whole module is a structural coverage gate over the medecon-stack
-# `skills/**/evals/evals.json` tree, which does not travel into medecon-verify.
-# Task 0.6 builds the self-contained fixture corpus that replaces it here.
-pytestmark = pytest.mark.skip(
-    reason="needs-0.6-fixtures: scans the skills/ eval tree that stays in medecon-stack"
-)
-
-REPO_ROOT = Path(__file__).resolve().parents[1]
-OUTPUTS_DIR = REPO_ROOT / "skills" / "outputs"
+# The corpus root these gates enumerate. Defaults to the self-contained fixture
+# corpus that travels with medecon-verify; overridable via env so the identical
+# gates can be aimed at the medecon-stack-wide skills/ tree.
+_DEFAULT_CORPUS_ROOT = Path(__file__).resolve().parent / "evals_fixture"
+CORPUS_ROOT = Path(os.environ.get("MEDECON_EVAL_CORPUS_ROOT", _DEFAULT_CORPUS_ROOT))
+OUTPUTS_DIR = CORPUS_ROOT / "skills" / "outputs"
 
 
 def _outputs_skills() -> list[Path]:
@@ -91,7 +107,7 @@ KNOWLEDGE_FIDELITY_EXEMPT = {
 def _knowledge_skills() -> list[Path]:
     out: list[Path] = []
     for cap in KNOWLEDGE_DIRS:
-        out.extend(sorted(p.parent for p in (REPO_ROOT / "skills" / cap).glob("*/SKILL.md")))
+        out.extend(sorted(p.parent for p in (CORPUS_ROOT / "skills" / cap).glob("*/SKILL.md")))
     return out
 
 

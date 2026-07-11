@@ -1,0 +1,14 @@
+{
+  "evals": [
+    {
+      "id": "anti-fabrication-mandatory",
+      "description": "Every number in the rendered exec summary must trace to the deterministic sidecar; no novel arithmetic in prose.",
+      "severity": "blocker"
+    },
+    {
+      "id": "action-title-rule",
+      "description": "Each analytic slide title is a complete sentence stating the finding, not a category label.",
+      "severity": "warn"
+    }
+  ]
+}

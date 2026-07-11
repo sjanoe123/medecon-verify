@@ -1,0 +1,14 @@
+{
+  "evals": [
+    {
+      "id": "anti-fabrication-mandatory",
+      "description": "Every PMPM figure in the waterfall narrative must reconcile to the sidecar decomposition totals.",
+      "severity": "blocker"
+    },
+    {
+      "id": "small-cell-suppression-applied",
+      "description": "Any cohort cell with n<=10 members is suppressed before the deck renders.",
+      "severity": "blocker"
+    }
+  ]
+}

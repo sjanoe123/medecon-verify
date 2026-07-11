@@ -1,0 +1,15 @@
+{
+  "evals": [
+    {
+      "id": "no-fabricated-parameters",
+      "description": "Risk-adjustment guidance must never invent an HCC coefficient, a model version, or a normalization factor that is not pinned to the loaded CMS-HCC reference tables.",
+      "assert": "Every coefficient, RAF component, and normalization factor cited traces to the versioned coefficient table for the stated model (v24/v28); a value with no reference-table provenance is a blocker.",
+      "severity": "blocker"
+    },
+    {
+      "id": "hierarchy-suppression-applied",
+      "description": "HCC hierarchies suppress lower-severity categories before RAF is summed.",
+      "severity": "warn"
+    }
+  ]
+}

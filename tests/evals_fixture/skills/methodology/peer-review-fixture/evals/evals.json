@@ -1,0 +1,15 @@
+{
+  "evals": [
+    {
+      "id": "no-fabricated-findings",
+      "description": "A peer-review critique must never invent a defect that is not present in the draft under review, nor assert a statistic the draft does not contain.",
+      "assert": "Every finding the review surfaces cites a concrete line, number, or claim that actually appears in the reviewed draft; no fabricated defects, no invented denominators, no hallucinated code-set mismatches.",
+      "severity": "blocker"
+    },
+    {
+      "id": "twymans-law-applied",
+      "description": "Surprising results are challenged before they are accepted (Twyman's Law).",
+      "severity": "warn"
+    }
+  ]
+}

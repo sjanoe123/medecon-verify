@@ -104,24 +104,64 @@ _FALLBACK_GLOSSARY: dict[str, dict[str, Any]] = {
 _METRIC_TERMS = {"PMPM", "PMPY", "MLR", "RAF", "HCC", "ACPT", "HEBA", "PEPM", "MER"}
 
 
-def _glossary_path() -> Path:
+def _glossary_traversable():
+    """Locate the bundled ``glossary.yaml`` as an ``importlib.resources`` Traversable.
+
+    Traversable-native end to end — the same idiom the riskadj engine and
+    ``_data_discovery.data_resource`` already use: resolve through
+    ``importlib.resources.files(...)`` and let the caller govern loading via
+    ``.is_file()`` / ``.read_text(...)``. This works identically from a source
+    checkout AND from an installed or **zipped/non-filesystem** wheel, where the
+    package has no concrete ``__file__`` on disk. The prior implementation
+    stringified the Traversable into a ``pathlib.Path`` and then called
+    ``path.exists()``, which is always False under a zip loader — silently
+    dropping the entire 1,694-line canonical glossary to the offline fallback.
+
+    The source-checkout fallback (a real ``Path``) is preserved for the rare
+    environment where ``importlib.resources.files`` itself is unavailable; a
+    ``pathlib.Path`` is a valid Traversable (it exposes ``.is_file()`` and
+    ``.read_text()``), so callers treat both returns uniformly.
+    """
     try:
         import importlib.resources as ir
-        return Path(str(ir.files("medecon_verify") / "data" / "glossary.yaml"))
+        return ir.files("medecon_verify") / "data" / "glossary.yaml"
     except (ModuleNotFoundError, ValueError, TypeError):
         return Path(__file__).resolve().parent / "data" / "glossary.yaml"
 
 
-# Parse cache: {path -> (mtime, parsed)}. The 245-term glossary is ~1700 lines;
-# without this it was re-read + re-parsed on every define/resolve/metric_terms
-# call (2+ full parses per metric-terms eval). Keyed by file mtime so an edit
-# busts the cache; no wall-clock dependency.
+# Parse cache: {traversable-key -> (mtime, parsed)}. The 245-term glossary is
+# ~1700 lines; without this it was re-read + re-parsed on every
+# define/resolve/metric_terms call (2+ full parses per metric-terms eval). Keyed
+# by the Traversable's string identity; when the resource resolves to a real file
+# the mtime busts the cache on edit (source-checkout ergonomics). Non-filesystem
+# loaders (zip) have no mtime — they cache once with a sentinel, since a zipped
+# resource is not edited in place.
+_NO_MTIME = -1.0
 _PARSE_CACHE: dict[str, tuple[float, dict]] = {}
 
 
+def _traversable_mtime(trav) -> float | None:
+    """Best-effort mtime for a Traversable that happens to back a real file.
+
+    Returns None for a non-filesystem resource (zip loader), whose backing store
+    has no stat()-able path. Never raises — a failure to stat just disables
+    mtime-based cache invalidation for that resource.
+    """
+    try:
+        fs_path = Path(str(trav))
+        if fs_path.exists():
+            return fs_path.stat().st_mtime
+    except (OSError, ValueError, TypeError):
+        pass
+    return None
+
+
 def _load_external() -> dict[str, dict[str, Any]]:
-    path = _glossary_path()
-    if not path.exists():
+    trav = _glossary_traversable()
+    try:
+        if not trav.is_file():
+            return {}
+    except (OSError, ValueError):
         return {}
     try:
         import yaml
@@ -129,21 +169,26 @@ def _load_external() -> dict[str, dict[str, Any]]:
         # PyYAML genuinely absent (skill-only/offline env) → degrade to fallback.
         return {}
 
-    mtime = path.stat().st_mtime
-    cached = _PARSE_CACHE.get(str(path))
-    if cached is not None and cached[0] == mtime:
-        return cached[1]
+    key = str(trav)
+    mtime = _traversable_mtime(trav)
+    cached = _PARSE_CACHE.get(key)
+    if cached is not None:
+        cached_mtime, cached_data = cached
+        # A real-file resource is fresh only when its mtime is unchanged; a
+        # non-filesystem resource (mtime None) is served straight from cache.
+        if mtime is None or cached_mtime == mtime:
+            return cached_data
 
     # A malformed glossary must fail LOUDLY (a YAMLError here), not silently drop
     # ~230 canonical terms to the offline fallback — that would be a confidently
     # wrong /explain with no signal. So we do NOT swallow yaml.YAMLError.
-    data = yaml.safe_load(path.read_text()) or {}
+    data = yaml.safe_load(trav.read_text(encoding="utf-8")) or {}
     if not isinstance(data, dict):
         result: dict[str, dict[str, Any]] = {}
     else:
         # YAML coerces bare numeric keys (837, 835) to ints; normalize to str.
         result = {str(k): v for k, v in data.items() if isinstance(v, dict)}
-    _PARSE_CACHE[str(path)] = (mtime, result)
+    _PARSE_CACHE[key] = (mtime if mtime is not None else _NO_MTIME, result)
     return result
 
 
