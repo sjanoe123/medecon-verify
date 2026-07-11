@@ -25,7 +25,22 @@ from __future__ import annotations
 
 import csv
 from dataclasses import dataclass, field
-from pathlib import Path
+from importlib import resources
+
+#: Package holding the bundled HCC coefficient / crosswalk reference tables.
+#: This is the single load boundary for riskadj data — see ``_data_file``.
+_DATA_PACKAGE = "medecon_verify.riskadj.data"
+
+
+def _data_file(name: str):
+    """Locate a bundled reference-data file as an importlib.resources Traversable.
+
+    Single, clean load boundary for every riskadj coefficient/crosswalk table.
+    Works from a source checkout and an installed/zipped wheel alike (no reliance
+    on ``__file__`` layout). Task 0.3's external data-package discovery replaces
+    the body of this function only — the ``_load_*`` callers below are unchanged.
+    """
+    return resources.files(_DATA_PACKAGE).joinpath(name)
 
 
 def _norm_icd(code: str) -> str:
@@ -207,14 +222,8 @@ CMS_HCC_V24 = CoefficientTable(
 # diabetes HCCs except HCC35 Pancreas Transplant Status share one coefficient
 # per segment (CNA = 0.166 for HCC36/37/38).
 # ---------------------------------------------------------------------------
-_V28_ICD_CSV = (
-    Path(__file__).resolve().parent.parent
-    / "references" / "cms_hcc_v28_icd10_map.csv"
-)
-_V28_COEF_CSV = (
-    Path(__file__).resolve().parent.parent
-    / "references" / "cms_hcc_v28_py2026_coefficients.csv"
-)
+_V28_ICD_CSV = _data_file("cms_hcc_v28_icd10_map.csv")
+_V28_COEF_CSV = _data_file("cms_hcc_v28_py2026_coefficients.csv")
 
 #: Module-level flag set True when EITHER committed V28 reference CSV is absent and
 #: the loader fell back to the sparse in-code seed. ``score_member`` reads it so a
@@ -262,13 +271,13 @@ def _load_v28_icd_to_hccs() -> dict[str, list[str]]:
     so the fallback is surfaced, not silent.
     """
     global _V28_USING_FALLBACK
-    if not _V28_ICD_CSV.exists():
+    if not _V28_ICD_CSV.is_file():
         _V28_USING_FALLBACK = True
         return {
             _norm_icd(k): [v] for k, v in _V28_ICD_TO_HCC_FALLBACK.items()
         }
     mapping: dict[str, list[str]] = {}
-    with open(_V28_ICD_CSV, newline="", encoding="utf-8") as f:
+    with _V28_ICD_CSV.open(newline="", encoding="utf-8") as f:
         for r in csv.DictReader(f):
             code = _norm_icd(r["icd10_code"])
             hcc = r["v28_hcc"].strip()
@@ -295,11 +304,11 @@ def _load_v28_cna_hcc_coefs() -> dict[str, float]:
     ``_V28_USING_FALLBACK`` so the fallback is surfaced, not silent.
     """
     global _V28_USING_FALLBACK
-    if not _V28_COEF_CSV.exists():
+    if not _V28_COEF_CSV.is_file():
         _V28_USING_FALLBACK = True
         return dict(_V28_HCC_COEF_FALLBACK)
     coefs: dict[str, float] = {}
-    with open(_V28_COEF_CSV, newline="", encoding="utf-8") as f:
+    with _V28_COEF_CSV.open(newline="", encoding="utf-8") as f:
         for r in csv.DictReader(f):
             if r["segment"] != "CNA" or r["factor_type"] != "hcc":
                 continue
@@ -445,10 +454,7 @@ CMS_HCC_V28 = CoefficientTable(
 # (Septicemia/Sepsis/SIRS/Shock), E11.22 -> HHS HCC020 (Diabetes with Chronic
 # Complications), I50.9 -> HHS HCC130 (Heart Failure), per DIY Table 3.
 # ---------------------------------------------------------------------------
-_HHS_2026_CSV = (
-    Path(__file__).resolve().parent.parent
-    / "references" / "hhs_hcc_2026_coefficients.csv"
-)
+_HHS_2026_CSV = _data_file("hhs_hcc_2026_coefficients.csv")
 _HHS_SEX = {"Male": "M", "Female": "F"}
 
 
@@ -463,7 +469,7 @@ def _load_hhs_2026_adult():
     """
     demographics: dict[tuple[str, str, str], float] = {}
     by_metal: dict[str, dict[str, float]] = {}
-    with open(_HHS_2026_CSV, newline="", encoding="utf-8") as f:
+    with _HHS_2026_CSV.open(newline="", encoding="utf-8") as f:
         for r in csv.DictReader(f):
             if r["model"] != "adult":
                 continue

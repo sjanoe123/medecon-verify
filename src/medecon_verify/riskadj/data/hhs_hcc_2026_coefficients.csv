@@ -1,0 +1,1841 @@
+model,metal_level,factor_type,factor_key,factor_label,coefficient
+adult,platinum,demographic,"Age 21-24, Male","Age 21-24, Male",0.189
+adult,gold,demographic,"Age 21-24, Male","Age 21-24, Male",0.130
+adult,silver,demographic,"Age 21-24, Male","Age 21-24, Male",0.090
+adult,bronze,demographic,"Age 21-24, Male","Age 21-24, Male",0.062
+adult,catastrophic,demographic,"Age 21-24, Male","Age 21-24, Male",0.056
+adult,platinum,demographic,"Age 25-29, Male","Age 25-29, Male",0.194
+adult,gold,demographic,"Age 25-29, Male","Age 25-29, Male",0.130
+adult,silver,demographic,"Age 25-29, Male","Age 25-29, Male",0.087
+adult,bronze,demographic,"Age 25-29, Male","Age 25-29, Male",0.057
+adult,catastrophic,demographic,"Age 25-29, Male","Age 25-29, Male",0.051
+adult,platinum,demographic,"Age 30-34, Male","Age 30-34, Male",0.223
+adult,gold,demographic,"Age 30-34, Male","Age 30-34, Male",0.155
+adult,silver,demographic,"Age 30-34, Male","Age 30-34, Male",0.106
+adult,bronze,demographic,"Age 30-34, Male","Age 30-34, Male",0.070
+adult,catastrophic,demographic,"Age 30-34, Male","Age 30-34, Male",0.063
+adult,platinum,demographic,"Age 35-39, Male","Age 35-39, Male",0.244
+adult,gold,demographic,"Age 35-39, Male","Age 35-39, Male",0.171
+adult,silver,demographic,"Age 35-39, Male","Age 35-39, Male",0.118
+adult,bronze,demographic,"Age 35-39, Male","Age 35-39, Male",0.078
+adult,catastrophic,demographic,"Age 35-39, Male","Age 35-39, Male",0.070
+adult,platinum,demographic,"Age 40-44, Male","Age 40-44, Male",0.277
+adult,gold,demographic,"Age 40-44, Male","Age 40-44, Male",0.200
+adult,silver,demographic,"Age 40-44, Male","Age 40-44, Male",0.142
+adult,bronze,demographic,"Age 40-44, Male","Age 40-44, Male",0.097
+adult,catastrophic,demographic,"Age 40-44, Male","Age 40-44, Male",0.088
+adult,platinum,demographic,"Age 45-49, Male","Age 45-49, Male",0.314
+adult,gold,demographic,"Age 45-49, Male","Age 45-49, Male",0.233
+adult,silver,demographic,"Age 45-49, Male","Age 45-49, Male",0.171
+adult,bronze,demographic,"Age 45-49, Male","Age 45-49, Male",0.123
+adult,catastrophic,demographic,"Age 45-49, Male","Age 45-49, Male",0.114
+adult,platinum,demographic,"Age 50-54, Male","Age 50-54, Male",0.374
+adult,gold,demographic,"Age 50-54, Male","Age 50-54, Male",0.286
+adult,silver,demographic,"Age 50-54, Male","Age 50-54, Male",0.218
+adult,bronze,demographic,"Age 50-54, Male","Age 50-54, Male",0.165
+adult,catastrophic,demographic,"Age 50-54, Male","Age 50-54, Male",0.154
+adult,platinum,demographic,"Age 55-59, Male","Age 55-59, Male",0.416
+adult,gold,demographic,"Age 55-59, Male","Age 55-59, Male",0.321
+adult,silver,demographic,"Age 55-59, Male","Age 55-59, Male",0.249
+adult,bronze,demographic,"Age 55-59, Male","Age 55-59, Male",0.190
+adult,catastrophic,demographic,"Age 55-59, Male","Age 55-59, Male",0.178
+adult,platinum,demographic,"Age 60-64, Male","Age 60-64, Male",0.462
+adult,gold,demographic,"Age 60-64, Male","Age 60-64, Male",0.359
+adult,silver,demographic,"Age 60-64, Male","Age 60-64, Male",0.279
+adult,bronze,demographic,"Age 60-64, Male","Age 60-64, Male",0.214
+adult,catastrophic,demographic,"Age 60-64, Male","Age 60-64, Male",0.201
+adult,platinum,demographic,"Age 21-24, Female","Age 21-24, Female",0.285
+adult,gold,demographic,"Age 21-24, Female","Age 21-24, Female",0.199
+adult,silver,demographic,"Age 21-24, Female","Age 21-24, Female",0.131
+adult,bronze,demographic,"Age 21-24, Female","Age 21-24, Female",0.083
+adult,catastrophic,demographic,"Age 21-24, Female","Age 21-24, Female",0.073
+adult,platinum,demographic,"Age 25-29, Female","Age 25-29, Female",0.312
+adult,gold,demographic,"Age 25-29, Female","Age 25-29, Female",0.218
+adult,silver,demographic,"Age 25-29, Female","Age 25-29, Female",0.143
+adult,bronze,demographic,"Age 25-29, Female","Age 25-29, Female",0.089
+adult,catastrophic,demographic,"Age 25-29, Female","Age 25-29, Female",0.078
+adult,platinum,demographic,"Age 30-34, Female","Age 30-34, Female",0.377
+adult,gold,demographic,"Age 30-34, Female","Age 30-34, Female",0.277
+adult,silver,demographic,"Age 30-34, Female","Age 30-34, Female",0.198
+adult,bronze,demographic,"Age 30-34, Female","Age 30-34, Female",0.139
+adult,catastrophic,demographic,"Age 30-34, Female","Age 30-34, Female",0.126
+adult,platinum,demographic,"Age 35-39, Female","Age 35-39, Female",0.428
+adult,gold,demographic,"Age 35-39, Female","Age 35-39, Female",0.325
+adult,silver,demographic,"Age 35-39, Female","Age 35-39, Female",0.245
+adult,bronze,demographic,"Age 35-39, Female","Age 35-39, Female",0.181
+adult,catastrophic,demographic,"Age 35-39, Female","Age 35-39, Female",0.169
+adult,platinum,demographic,"Age 40-44, Female","Age 40-44, Female",0.478
+adult,gold,demographic,"Age 40-44, Female","Age 40-44, Female",0.372
+adult,silver,demographic,"Age 40-44, Female","Age 40-44, Female",0.287
+adult,bronze,demographic,"Age 40-44, Female","Age 40-44, Female",0.217
+adult,catastrophic,demographic,"Age 40-44, Female","Age 40-44, Female",0.203
+adult,platinum,demographic,"Age 45-49, Female","Age 45-49, Female",0.484
+adult,gold,demographic,"Age 45-49, Female","Age 45-49, Female",0.375
+adult,silver,demographic,"Age 45-49, Female","Age 45-49, Female",0.287
+adult,bronze,demographic,"Age 45-49, Female","Age 45-49, Female",0.213
+adult,catastrophic,demographic,"Age 45-49, Female","Age 45-49, Female",0.199
+adult,platinum,demographic,"Age 50-54, Female","Age 50-54, Female",0.509
+adult,gold,demographic,"Age 50-54, Female","Age 50-54, Female",0.398
+adult,silver,demographic,"Age 50-54, Female","Age 50-54, Female",0.305
+adult,bronze,demographic,"Age 50-54, Female","Age 50-54, Female",0.228
+adult,catastrophic,demographic,"Age 50-54, Female","Age 50-54, Female",0.212
+adult,platinum,demographic,"Age 55-59, Female","Age 55-59, Female",0.469
+adult,gold,demographic,"Age 55-59, Female","Age 55-59, Female",0.359
+adult,silver,demographic,"Age 55-59, Female","Age 55-59, Female",0.268
+adult,bronze,demographic,"Age 55-59, Female","Age 55-59, Female",0.192
+adult,catastrophic,demographic,"Age 55-59, Female","Age 55-59, Female",0.176
+adult,platinum,demographic,"Age 60-64, Female","Age 60-64, Female",0.459
+adult,gold,demographic,"Age 60-64, Female","Age 60-64, Female",0.347
+adult,silver,demographic,"Age 60-64, Female","Age 60-64, Female",0.254
+adult,bronze,demographic,"Age 60-64, Female","Age 60-64, Female",0.177
+adult,catastrophic,demographic,"Age 60-64, Female","Age 60-64, Female",0.161
+adult,platinum,diagnosis,HCC001,HIV/AIDS,0.099
+adult,gold,diagnosis,HCC001,HIV/AIDS,0.068
+adult,silver,diagnosis,HCC001,HIV/AIDS,0.054
+adult,bronze,diagnosis,HCC001,HIV/AIDS,0.036
+adult,catastrophic,diagnosis,HCC001,HIV/AIDS,0.034
+adult,platinum,diagnosis,HCC002,"Septicemia, Sepsis, Systemic Inflammatory Response Syndrome/Shock",8.766
+adult,gold,diagnosis,HCC002,"Septicemia, Sepsis, Systemic Inflammatory Response Syndrome/Shock",8.566
+adult,silver,diagnosis,HCC002,"Septicemia, Sepsis, Systemic Inflammatory Response Syndrome/Shock",8.518
+adult,bronze,diagnosis,HCC002,"Septicemia, Sepsis, Systemic Inflammatory Response Syndrome/Shock",8.426
+adult,catastrophic,diagnosis,HCC002,"Septicemia, Sepsis, Systemic Inflammatory Response Syndrome/Shock",8.424
+adult,platinum,diagnosis,HCC003,"Central Nervous System Infections, Except Viral Meningitis",7.893
+adult,gold,diagnosis,HCC003,"Central Nervous System Infections, Except Viral Meningitis",7.795
+adult,silver,diagnosis,HCC003,"Central Nervous System Infections, Except Viral Meningitis",7.749
+adult,bronze,diagnosis,HCC003,"Central Nervous System Infections, Except Viral Meningitis",7.676
+adult,catastrophic,diagnosis,HCC003,"Central Nervous System Infections, Except Viral Meningitis",7.664
+adult,platinum,diagnosis,HCC004,Viral or Unspecified Meningitis,7.677
+adult,gold,diagnosis,HCC004,Viral or Unspecified Meningitis,7.574
+adult,silver,diagnosis,HCC004,Viral or Unspecified Meningitis,7.524
+adult,bronze,diagnosis,HCC004,Viral or Unspecified Meningitis,7.445
+adult,catastrophic,diagnosis,HCC004,Viral or Unspecified Meningitis,7.432
+adult,platinum,diagnosis,HCC006,Opportunistic Infections,8.503
+adult,gold,diagnosis,HCC006,Opportunistic Infections,8.454
+adult,silver,diagnosis,HCC006,Opportunistic Infections,8.401
+adult,bronze,diagnosis,HCC006,Opportunistic Infections,8.325
+adult,catastrophic,diagnosis,HCC006,Opportunistic Infections,8.307
+adult,platinum,diagnosis,HCC008,Metastatic Cancer,22.556
+adult,gold,diagnosis,HCC008,Metastatic Cancer,22.166
+adult,silver,diagnosis,HCC008,Metastatic Cancer,22.140
+adult,bronze,diagnosis,HCC008,Metastatic Cancer,22.021
+adult,catastrophic,diagnosis,HCC008,Metastatic Cancer,22.026
+adult,platinum,diagnosis,HCC009,"Lung, Brain, and Other Severe Cancers, Including Pediatric Acute Lymphoid Leukemia",12.533
+adult,gold,diagnosis,HCC009,"Lung, Brain, and Other Severe Cancers, Including Pediatric Acute Lymphoid Leukemia",12.261
+adult,silver,diagnosis,HCC009,"Lung, Brain, and Other Severe Cancers, Including Pediatric Acute Lymphoid Leukemia",12.214
+adult,bronze,diagnosis,HCC009,"Lung, Brain, and Other Severe Cancers, Including Pediatric Acute Lymphoid Leukemia",12.096
+adult,catastrophic,diagnosis,HCC009,"Lung, Brain, and Other Severe Cancers, Including Pediatric Acute Lymphoid Leukemia",12.090
+adult,platinum,diagnosis,HCC010,Non-Hodgkin Lymphomas and Other Cancers and Tumors,5.518
+adult,gold,diagnosis,HCC010,Non-Hodgkin Lymphomas and Other Cancers and Tumors,5.344
+adult,silver,diagnosis,HCC010,Non-Hodgkin Lymphomas and Other Cancers and Tumors,5.279
+adult,bronze,diagnosis,HCC010,Non-Hodgkin Lymphomas and Other Cancers and Tumors,5.166
+adult,catastrophic,diagnosis,HCC010,Non-Hodgkin Lymphomas and Other Cancers and Tumors,5.153
+adult,platinum,diagnosis,HCC011,"Colorectal, Breast (Age < 50), Kidney, and Other Cancers",3.718
+adult,gold,diagnosis,HCC011,"Colorectal, Breast (Age < 50), Kidney, and Other Cancers",3.537
+adult,silver,diagnosis,HCC011,"Colorectal, Breast (Age < 50), Kidney, and Other Cancers",3.464
+adult,bronze,diagnosis,HCC011,"Colorectal, Breast (Age < 50), Kidney, and Other Cancers",3.342
+adult,catastrophic,diagnosis,HCC011,"Colorectal, Breast (Age < 50), Kidney, and Other Cancers",3.327
+adult,platinum,diagnosis,HCC012,"Breast (Age 50+) and Prostate Cancer, Benign/Uncertain Brain Tumors, and Other Cancers and Tumors",2.398
+adult,gold,diagnosis,HCC012,"Breast (Age 50+) and Prostate Cancer, Benign/Uncertain Brain Tumors, and Other Cancers and Tumors",2.267
+adult,silver,diagnosis,HCC012,"Breast (Age 50+) and Prostate Cancer, Benign/Uncertain Brain Tumors, and Other Cancers and Tumors",2.201
+adult,bronze,diagnosis,HCC012,"Breast (Age 50+) and Prostate Cancer, Benign/Uncertain Brain Tumors, and Other Cancers and Tumors",2.101
+adult,catastrophic,diagnosis,HCC012,"Breast (Age 50+) and Prostate Cancer, Benign/Uncertain Brain Tumors, and Other Cancers and Tumors",2.087
+adult,platinum,diagnosis,HCC013,"Thyroid Cancer, Melanoma, Neurofibromatosis, and Other Cancers and Tumors",0.970
+adult,gold,diagnosis,HCC013,"Thyroid Cancer, Melanoma, Neurofibromatosis, and Other Cancers and Tumors",0.880
+adult,silver,diagnosis,HCC013,"Thyroid Cancer, Melanoma, Neurofibromatosis, and Other Cancers and Tumors",0.794
+adult,bronze,diagnosis,HCC013,"Thyroid Cancer, Melanoma, Neurofibromatosis, and Other Cancers and Tumors",0.688
+adult,catastrophic,diagnosis,HCC013,"Thyroid Cancer, Melanoma, Neurofibromatosis, and Other Cancers and Tumors",0.669
+adult,platinum,diagnosis,HCC018,Pancreas Transplant Status,6.005
+adult,gold,diagnosis,HCC018,Pancreas Transplant Status,6.004
+adult,silver,diagnosis,HCC018,Pancreas Transplant Status,6.016
+adult,bronze,diagnosis,HCC018,Pancreas Transplant Status,6.019
+adult,catastrophic,diagnosis,HCC018,Pancreas Transplant Status,6.011
+adult,platinum,diagnosis,HCC019,Diabetes with Acute Complications,0.225
+adult,gold,diagnosis,HCC019,Diabetes with Acute Complications,0.183
+adult,silver,diagnosis,HCC019,Diabetes with Acute Complications,0.142
+adult,bronze,diagnosis,HCC019,Diabetes with Acute Complications,0.102
+adult,catastrophic,diagnosis,HCC019,Diabetes with Acute Complications,0.094
+adult,platinum,diagnosis,HCC020,Diabetes with Chronic Complications,0.225
+adult,gold,diagnosis,HCC020,Diabetes with Chronic Complications,0.183
+adult,silver,diagnosis,HCC020,Diabetes with Chronic Complications,0.142
+adult,bronze,diagnosis,HCC020,Diabetes with Chronic Complications,0.102
+adult,catastrophic,diagnosis,HCC020,Diabetes with Chronic Complications,0.094
+adult,platinum,diagnosis,HCC021,Diabetes without Complication,0.225
+adult,gold,diagnosis,HCC021,Diabetes without Complication,0.183
+adult,silver,diagnosis,HCC021,Diabetes without Complication,0.142
+adult,bronze,diagnosis,HCC021,Diabetes without Complication,0.102
+adult,catastrophic,diagnosis,HCC021,Diabetes without Complication,0.094
+adult,platinum,diagnosis,HCC022,"Type 1 Diabetes Mellitus, add-on to Diabetes HCCs 19-21",0.224
+adult,gold,diagnosis,HCC022,"Type 1 Diabetes Mellitus, add-on to Diabetes HCCs 19-21",0.200
+adult,silver,diagnosis,HCC022,"Type 1 Diabetes Mellitus, add-on to Diabetes HCCs 19-21",0.163
+adult,bronze,diagnosis,HCC022,"Type 1 Diabetes Mellitus, add-on to Diabetes HCCs 19-21",0.098
+adult,catastrophic,diagnosis,HCC022,"Type 1 Diabetes Mellitus, add-on to Diabetes HCCs 19-21",0.083
+adult,platinum,diagnosis,HCC023,Protein-Calorie Malnutrition,10.679
+adult,gold,diagnosis,HCC023,Protein-Calorie Malnutrition,10.560
+adult,silver,diagnosis,HCC023,Protein-Calorie Malnutrition,10.519
+adult,bronze,diagnosis,HCC023,Protein-Calorie Malnutrition,10.450
+adult,catastrophic,diagnosis,HCC023,Protein-Calorie Malnutrition,10.442
+adult,platinum,diagnosis,HCC026,Mucopolysaccharidosis,21.504
+adult,gold,diagnosis,HCC026,Mucopolysaccharidosis,21.326
+adult,silver,diagnosis,HCC026,Mucopolysaccharidosis,21.297
+adult,bronze,diagnosis,HCC026,Mucopolysaccharidosis,21.231
+adult,catastrophic,diagnosis,HCC026,Mucopolysaccharidosis,21.230
+adult,platinum,diagnosis,HCC027,Lipidoses and Glycogenosis,21.504
+adult,gold,diagnosis,HCC027,Lipidoses and Glycogenosis,21.326
+adult,silver,diagnosis,HCC027,Lipidoses and Glycogenosis,21.297
+adult,bronze,diagnosis,HCC027,Lipidoses and Glycogenosis,21.231
+adult,catastrophic,diagnosis,HCC027,Lipidoses and Glycogenosis,21.230
+adult,platinum,diagnosis,HCC029,"Amyloidosis, Porphyria, and Other Metabolic Disorders",6.052
+adult,gold,diagnosis,HCC029,"Amyloidosis, Porphyria, and Other Metabolic Disorders",5.952
+adult,silver,diagnosis,HCC029,"Amyloidosis, Porphyria, and Other Metabolic Disorders",5.913
+adult,bronze,diagnosis,HCC029,"Amyloidosis, Porphyria, and Other Metabolic Disorders",5.847
+adult,catastrophic,diagnosis,HCC029,"Amyloidosis, Porphyria, and Other Metabolic Disorders",5.839
+adult,platinum,diagnosis,HCC030,"Adrenal, Pituitary, and Other Significant Endocrine Disorders",1.275
+adult,gold,diagnosis,HCC030,"Adrenal, Pituitary, and Other Significant Endocrine Disorders",1.202
+adult,silver,diagnosis,HCC030,"Adrenal, Pituitary, and Other Significant Endocrine Disorders",1.151
+adult,bronze,diagnosis,HCC030,"Adrenal, Pituitary, and Other Significant Endocrine Disorders",1.078
+adult,catastrophic,diagnosis,HCC030,"Adrenal, Pituitary, and Other Significant Endocrine Disorders",1.064
+adult,platinum,diagnosis,HCC034,Liver Transplant Status/Complications,5.773
+adult,gold,diagnosis,HCC034,Liver Transplant Status/Complications,5.835
+adult,silver,diagnosis,HCC034,Liver Transplant Status/Complications,5.893
+adult,bronze,diagnosis,HCC034,Liver Transplant Status/Complications,5.974
+adult,catastrophic,diagnosis,HCC034,Liver Transplant Status/Complications,5.987
+adult,platinum,diagnosis,HCC035_1,"Acute Liver Failure/Disease, Including Neonatal Hepatitis",6.999
+adult,gold,diagnosis,HCC035_1,"Acute Liver Failure/Disease, Including Neonatal Hepatitis",6.814
+adult,silver,diagnosis,HCC035_1,"Acute Liver Failure/Disease, Including Neonatal Hepatitis",6.775
+adult,bronze,diagnosis,HCC035_1,"Acute Liver Failure/Disease, Including Neonatal Hepatitis",6.698
+adult,catastrophic,diagnosis,HCC035_1,"Acute Liver Failure/Disease, Including Neonatal Hepatitis",6.699
+adult,platinum,diagnosis,HCC035_2,Chronic Liver Failure/End-Stage Liver Disorders,2.216
+adult,gold,diagnosis,HCC035_2,Chronic Liver Failure/End-Stage Liver Disorders,2.054
+adult,silver,diagnosis,HCC035_2,Chronic Liver Failure/End-Stage Liver Disorders,2.014
+adult,bronze,diagnosis,HCC035_2,Chronic Liver Failure/End-Stage Liver Disorders,1.929
+adult,catastrophic,diagnosis,HCC035_2,Chronic Liver Failure/End-Stage Liver Disorders,1.923
+adult,platinum,diagnosis,HCC036,Cirrhosis of Liver,0.668
+adult,gold,diagnosis,HCC036,Cirrhosis of Liver,0.588
+adult,silver,diagnosis,HCC036,Cirrhosis of Liver,0.545
+adult,bronze,diagnosis,HCC036,Cirrhosis of Liver,0.477
+adult,catastrophic,diagnosis,HCC036,Cirrhosis of Liver,0.467
+adult,platinum,diagnosis,HCC037_1,Chronic Viral Hepatitis C,0.532
+adult,gold,diagnosis,HCC037_1,Chronic Viral Hepatitis C,0.472
+adult,silver,diagnosis,HCC037_1,Chronic Viral Hepatitis C,0.424
+adult,bronze,diagnosis,HCC037_1,Chronic Viral Hepatitis C,0.371
+adult,catastrophic,diagnosis,HCC037_1,Chronic Viral Hepatitis C,0.364
+adult,platinum,diagnosis,HCC037_2,"Chronic Hepatitis, Except Chronic Viral Hepatitis C",0.532
+adult,gold,diagnosis,HCC037_2,"Chronic Hepatitis, Except Chronic Viral Hepatitis C",0.472
+adult,silver,diagnosis,HCC037_2,"Chronic Hepatitis, Except Chronic Viral Hepatitis C",0.424
+adult,bronze,diagnosis,HCC037_2,"Chronic Hepatitis, Except Chronic Viral Hepatitis C",0.371
+adult,catastrophic,diagnosis,HCC037_2,"Chronic Hepatitis, Except Chronic Viral Hepatitis C",0.364
+adult,platinum,diagnosis,HCC041,Intestine Transplant Status/Complications,5.773
+adult,gold,diagnosis,HCC041,Intestine Transplant Status/Complications,5.835
+adult,silver,diagnosis,HCC041,Intestine Transplant Status/Complications,5.893
+adult,bronze,diagnosis,HCC041,Intestine Transplant Status/Complications,5.974
+adult,catastrophic,diagnosis,HCC041,Intestine Transplant Status/Complications,5.987
+adult,platinum,diagnosis,HCC042,Peritonitis/Gastrointestinal Perforation/Necrotizing Enterocolitis,10.678
+adult,gold,diagnosis,HCC042,Peritonitis/Gastrointestinal Perforation/Necrotizing Enterocolitis,10.534
+adult,silver,diagnosis,HCC042,Peritonitis/Gastrointestinal Perforation/Necrotizing Enterocolitis,10.530
+adult,bronze,diagnosis,HCC042,Peritonitis/Gastrointestinal Perforation/Necrotizing Enterocolitis,10.490
+adult,catastrophic,diagnosis,HCC042,Peritonitis/Gastrointestinal Perforation/Necrotizing Enterocolitis,10.492
+adult,platinum,diagnosis,HCC045,Intestinal Obstruction,4.905
+adult,gold,diagnosis,HCC045,Intestinal Obstruction,4.700
+adult,silver,diagnosis,HCC045,Intestinal Obstruction,4.637
+adult,bronze,diagnosis,HCC045,Intestinal Obstruction,4.515
+adult,catastrophic,diagnosis,HCC045,Intestinal Obstruction,4.505
+adult,platinum,diagnosis,HCC046,Chronic Pancreatitis,2.257
+adult,gold,diagnosis,HCC046,Chronic Pancreatitis,2.089
+adult,silver,diagnosis,HCC046,Chronic Pancreatitis,2.039
+adult,bronze,diagnosis,HCC046,Chronic Pancreatitis,1.946
+adult,catastrophic,diagnosis,HCC046,Chronic Pancreatitis,1.940
+adult,platinum,diagnosis,HCC047,Acute Pancreatitis,2.257
+adult,gold,diagnosis,HCC047,Acute Pancreatitis,2.089
+adult,silver,diagnosis,HCC047,Acute Pancreatitis,2.034
+adult,bronze,diagnosis,HCC047,Acute Pancreatitis,1.924
+adult,catastrophic,diagnosis,HCC047,Acute Pancreatitis,1.915
+adult,platinum,diagnosis,HCC048,Inflammatory Bowel Disease,1.984
+adult,gold,diagnosis,HCC048,Inflammatory Bowel Disease,1.889
+adult,silver,diagnosis,HCC048,Inflammatory Bowel Disease,1.810
+adult,bronze,diagnosis,HCC048,Inflammatory Bowel Disease,1.686
+adult,catastrophic,diagnosis,HCC048,Inflammatory Bowel Disease,1.659
+adult,platinum,diagnosis,HCC054,Necrotizing Fasciitis,7.353
+adult,gold,diagnosis,HCC054,Necrotizing Fasciitis,7.203
+adult,silver,diagnosis,HCC054,Necrotizing Fasciitis,7.177
+adult,bronze,diagnosis,HCC054,Necrotizing Fasciitis,7.118
+adult,catastrophic,diagnosis,HCC054,Necrotizing Fasciitis,7.115
+adult,platinum,diagnosis,HCC055,Bone/Joint/Muscle Infections/Necrosis,4.336
+adult,gold,diagnosis,HCC055,Bone/Joint/Muscle Infections/Necrosis,4.166
+adult,silver,diagnosis,HCC055,Bone/Joint/Muscle Infections/Necrosis,4.139
+adult,bronze,diagnosis,HCC055,Bone/Joint/Muscle Infections/Necrosis,4.076
+adult,catastrophic,diagnosis,HCC055,Bone/Joint/Muscle Infections/Necrosis,4.076
+adult,platinum,diagnosis,HCC056,Rheumatoid Arthritis and Specified Autoimmune Disorders,1.220
+adult,gold,diagnosis,HCC056,Rheumatoid Arthritis and Specified Autoimmune Disorders,1.126
+adult,silver,diagnosis,HCC056,Rheumatoid Arthritis and Specified Autoimmune Disorders,1.066
+adult,bronze,diagnosis,HCC056,Rheumatoid Arthritis and Specified Autoimmune Disorders,0.987
+adult,catastrophic,diagnosis,HCC056,Rheumatoid Arthritis and Specified Autoimmune Disorders,0.974
+adult,platinum,diagnosis,HCC057,Systemic Lupus Erythematosus and Other Autoimmune Disorders,0.360
+adult,gold,diagnosis,HCC057,Systemic Lupus Erythematosus and Other Autoimmune Disorders,0.294
+adult,silver,diagnosis,HCC057,Systemic Lupus Erythematosus and Other Autoimmune Disorders,0.219
+adult,bronze,diagnosis,HCC057,Systemic Lupus Erythematosus and Other Autoimmune Disorders,0.123
+adult,catastrophic,diagnosis,HCC057,Systemic Lupus Erythematosus and Other Autoimmune Disorders,0.103
+adult,platinum,diagnosis,HCC061,Osteogenesis Imperfecta and Other Osteodystrophy's,1.742
+adult,gold,diagnosis,HCC061,Osteogenesis Imperfecta and Other Osteodystrophy's,1.622
+adult,silver,diagnosis,HCC061,Osteogenesis Imperfecta and Other Osteodystrophy's,1.559
+adult,bronze,diagnosis,HCC061,Osteogenesis Imperfecta and Other Osteodystrophy's,1.459
+adult,catastrophic,diagnosis,HCC061,Osteogenesis Imperfecta and Other Osteodystrophy's,1.445
+adult,platinum,diagnosis,HCC062,Congenital/Developmental Skeletal and Connective Tissue Disorders,1.742
+adult,gold,diagnosis,HCC062,Congenital/Developmental Skeletal and Connective Tissue Disorders,1.622
+adult,silver,diagnosis,HCC062,Congenital/Developmental Skeletal and Connective Tissue Disorders,1.559
+adult,bronze,diagnosis,HCC062,Congenital/Developmental Skeletal and Connective Tissue Disorders,1.459
+adult,catastrophic,diagnosis,HCC062,Congenital/Developmental Skeletal and Connective Tissue Disorders,1.445
+adult,platinum,diagnosis,HCC063,Cleft Lip/Cleft Palate,0.719
+adult,gold,diagnosis,HCC063,Cleft Lip/Cleft Palate,0.618
+adult,silver,diagnosis,HCC063,Cleft Lip/Cleft Palate,0.554
+adult,bronze,diagnosis,HCC063,Cleft Lip/Cleft Palate,0.469
+adult,catastrophic,diagnosis,HCC063,Cleft Lip/Cleft Palate,0.457
+adult,platinum,diagnosis,HCC066,Hemophilia,73.946
+adult,gold,diagnosis,HCC066,Hemophilia,73.657
+adult,silver,diagnosis,HCC066,Hemophilia,73.627
+adult,bronze,diagnosis,HCC066,Hemophilia,73.535
+adult,catastrophic,diagnosis,HCC066,Hemophilia,73.539
+adult,platinum,diagnosis,HCC067,Myelodysplastic Syndromes and Myelofibrosis,10.803
+adult,gold,diagnosis,HCC067,Myelodysplastic Syndromes and Myelofibrosis,10.679
+adult,silver,diagnosis,HCC067,Myelodysplastic Syndromes and Myelofibrosis,10.651
+adult,bronze,diagnosis,HCC067,Myelodysplastic Syndromes and Myelofibrosis,10.586
+adult,catastrophic,diagnosis,HCC067,Myelodysplastic Syndromes and Myelofibrosis,10.578
+adult,platinum,diagnosis,HCC068,Aplastic Anemia,10.803
+adult,gold,diagnosis,HCC068,Aplastic Anemia,10.679
+adult,silver,diagnosis,HCC068,Aplastic Anemia,10.651
+adult,bronze,diagnosis,HCC068,Aplastic Anemia,10.586
+adult,catastrophic,diagnosis,HCC068,Aplastic Anemia,10.578
+adult,platinum,diagnosis,HCC069,"Acquired Hemolytic Anemia, Including Hemolytic Disease of Newborn",10.803
+adult,gold,diagnosis,HCC069,"Acquired Hemolytic Anemia, Including Hemolytic Disease of Newborn",10.679
+adult,silver,diagnosis,HCC069,"Acquired Hemolytic Anemia, Including Hemolytic Disease of Newborn",10.651
+adult,bronze,diagnosis,HCC069,"Acquired Hemolytic Anemia, Including Hemolytic Disease of Newborn",10.586
+adult,catastrophic,diagnosis,HCC069,"Acquired Hemolytic Anemia, Including Hemolytic Disease of Newborn",10.578
+adult,platinum,diagnosis,HCC070,Sickle Cell Anemia (Hb-SS) and Thalassemia Beta Zero,1.694
+adult,gold,diagnosis,HCC070,Sickle Cell Anemia (Hb-SS) and Thalassemia Beta Zero,1.605
+adult,silver,diagnosis,HCC070,Sickle Cell Anemia (Hb-SS) and Thalassemia Beta Zero,1.548
+adult,bronze,diagnosis,HCC070,Sickle Cell Anemia (Hb-SS) and Thalassemia Beta Zero,1.475
+adult,catastrophic,diagnosis,HCC070,Sickle Cell Anemia (Hb-SS) and Thalassemia Beta Zero,1.464
+adult,platinum,diagnosis,HCC071,"Sickle-Cell Disorders, Except Sickle- Cell Anemia (Hb-SS) and Thalassemia Beta Zero; Beta Thalassemia Major",1.653
+adult,gold,diagnosis,HCC071,"Sickle-Cell Disorders, Except Sickle- Cell Anemia (Hb-SS) and Thalassemia Beta Zero; Beta Thalassemia Major",1.584
+adult,silver,diagnosis,HCC071,"Sickle-Cell Disorders, Except Sickle- Cell Anemia (Hb-SS) and Thalassemia Beta Zero; Beta Thalassemia Major",1.537
+adult,bronze,diagnosis,HCC071,"Sickle-Cell Disorders, Except Sickle- Cell Anemia (Hb-SS) and Thalassemia Beta Zero; Beta Thalassemia Major",1.475
+adult,catastrophic,diagnosis,HCC071,"Sickle-Cell Disorders, Except Sickle- Cell Anemia (Hb-SS) and Thalassemia Beta Zero; Beta Thalassemia Major",1.464
+adult,platinum,diagnosis,HCC073,Combined and Other Severe Immunodeficiencies,4.303
+adult,gold,diagnosis,HCC073,Combined and Other Severe Immunodeficiencies,4.214
+adult,silver,diagnosis,HCC073,Combined and Other Severe Immunodeficiencies,4.187
+adult,bronze,diagnosis,HCC073,Combined and Other Severe Immunodeficiencies,4.133
+adult,catastrophic,diagnosis,HCC073,Combined and Other Severe Immunodeficiencies,4.127
+adult,platinum,diagnosis,HCC074,Disorders of the Immune Mechanism,4.303
+adult,gold,diagnosis,HCC074,Disorders of the Immune Mechanism,4.214
+adult,silver,diagnosis,HCC074,Disorders of the Immune Mechanism,4.187
+adult,bronze,diagnosis,HCC074,Disorders of the Immune Mechanism,4.133
+adult,catastrophic,diagnosis,HCC074,Disorders of the Immune Mechanism,4.127
+adult,platinum,diagnosis,HCC075,Coagulation Defects and Other Specified Hematological Disorders,2.132
+adult,gold,diagnosis,HCC075,Coagulation Defects and Other Specified Hematological Disorders,2.052
+adult,silver,diagnosis,HCC075,Coagulation Defects and Other Specified Hematological Disorders,2.004
+adult,bronze,diagnosis,HCC075,Coagulation Defects and Other Specified Hematological Disorders,1.932
+adult,catastrophic,diagnosis,HCC075,Coagulation Defects and Other Specified Hematological Disorders,1.921
+adult,platinum,diagnosis,HCC081,Drug Use with Psychotic Complications,1.499
+adult,gold,diagnosis,HCC081,Drug Use with Psychotic Complications,1.373
+adult,silver,diagnosis,HCC081,Drug Use with Psychotic Complications,1.281
+adult,bronze,diagnosis,HCC081,Drug Use with Psychotic Complications,1.147
+adult,catastrophic,diagnosis,HCC081,Drug Use with Psychotic Complications,1.122
+adult,platinum,diagnosis,HCC082,"Drug Use Disorder, Moderate/Severe, or Drug Use with Non-Psychotic Complications",1.499
+adult,gold,diagnosis,HCC082,"Drug Use Disorder, Moderate/Severe, or Drug Use with Non-Psychotic Complications",1.373
+adult,silver,diagnosis,HCC082,"Drug Use Disorder, Moderate/Severe, or Drug Use with Non-Psychotic Complications",1.281
+adult,bronze,diagnosis,HCC082,"Drug Use Disorder, Moderate/Severe, or Drug Use with Non-Psychotic Complications",1.147
+adult,catastrophic,diagnosis,HCC082,"Drug Use Disorder, Moderate/Severe, or Drug Use with Non-Psychotic Complications",1.122
+adult,platinum,diagnosis,HCC083,Alcohol Use with Psychotic Complications,0.861
+adult,gold,diagnosis,HCC083,Alcohol Use with Psychotic Complications,0.749
+adult,silver,diagnosis,HCC083,Alcohol Use with Psychotic Complications,0.677
+adult,bronze,diagnosis,HCC083,Alcohol Use with Psychotic Complications,0.573
+adult,catastrophic,diagnosis,HCC083,Alcohol Use with Psychotic Complications,0.557
+adult,platinum,diagnosis,HCC084,"Alcohol Use Disorder, Moderate/Severe, or Alcohol Use with Specified Non-Psychotic Complications",0.861
+adult,gold,diagnosis,HCC084,"Alcohol Use Disorder, Moderate/Severe, or Alcohol Use with Specified Non-Psychotic Complications",0.749
+adult,silver,diagnosis,HCC084,"Alcohol Use Disorder, Moderate/Severe, or Alcohol Use with Specified Non-Psychotic Complications",0.677
+adult,bronze,diagnosis,HCC084,"Alcohol Use Disorder, Moderate/Severe, or Alcohol Use with Specified Non-Psychotic Complications",0.573
+adult,catastrophic,diagnosis,HCC084,"Alcohol Use Disorder, Moderate/Severe, or Alcohol Use with Specified Non-Psychotic Complications",0.557
+adult,platinum,diagnosis,HCC087_1,Schizophrenia,2.216
+adult,gold,diagnosis,HCC087_1,Schizophrenia,2.050
+adult,silver,diagnosis,HCC087_1,Schizophrenia,1.969
+adult,bronze,diagnosis,HCC087_1,Schizophrenia,1.845
+adult,catastrophic,diagnosis,HCC087_1,Schizophrenia,1.829
+adult,platinum,diagnosis,HCC087_2,"Delusional and Other Specified Psychotic Disorders, Unspecified Psychosis",2.101
+adult,gold,diagnosis,HCC087_2,"Delusional and Other Specified Psychotic Disorders, Unspecified Psychosis",1.942
+adult,silver,diagnosis,HCC087_2,"Delusional and Other Specified Psychotic Disorders, Unspecified Psychosis",1.857
+adult,bronze,diagnosis,HCC087_2,"Delusional and Other Specified Psychotic Disorders, Unspecified Psychosis",1.719
+adult,catastrophic,diagnosis,HCC087_2,"Delusional and Other Specified Psychotic Disorders, Unspecified Psychosis",1.700
+adult,platinum,diagnosis,HCC088,"Major Depressive Disorder, Severe, and bipolar disorders",0.920
+adult,gold,diagnosis,HCC088,"Major Depressive Disorder, Severe, and bipolar disorders",0.826
+adult,silver,diagnosis,HCC088,"Major Depressive Disorder, Severe, and bipolar disorders",0.742
+adult,bronze,diagnosis,HCC088,"Major Depressive Disorder, Severe, and bipolar disorders",0.632
+adult,catastrophic,diagnosis,HCC088,"Major Depressive Disorder, Severe, and bipolar disorders",0.611
+adult,platinum,diagnosis,HCC090,Personality Disorders,0.636
+adult,gold,diagnosis,HCC090,Personality Disorders,0.563
+adult,silver,diagnosis,HCC090,Personality Disorders,0.473
+adult,bronze,diagnosis,HCC090,Personality Disorders,0.366
+adult,catastrophic,diagnosis,HCC090,Personality Disorders,0.342
+adult,platinum,diagnosis,HCC094,Anorexia/Bulimia Nervosa,1.899
+adult,gold,diagnosis,HCC094,Anorexia/Bulimia Nervosa,1.795
+adult,silver,diagnosis,HCC094,Anorexia/Bulimia Nervosa,1.727
+adult,bronze,diagnosis,HCC094,Anorexia/Bulimia Nervosa,1.625
+adult,catastrophic,diagnosis,HCC094,Anorexia/Bulimia Nervosa,1.607
+adult,platinum,diagnosis,HCC096,"Prader-Willi, Patau, Edwards, and Autosomal Deletion Syndromes",9.089
+adult,gold,diagnosis,HCC096,"Prader-Willi, Patau, Edwards, and Autosomal Deletion Syndromes",9.062
+adult,silver,diagnosis,HCC096,"Prader-Willi, Patau, Edwards, and Autosomal Deletion Syndromes",9.032
+adult,bronze,diagnosis,HCC096,"Prader-Willi, Patau, Edwards, and Autosomal Deletion Syndromes",8.996
+adult,catastrophic,diagnosis,HCC096,"Prader-Willi, Patau, Edwards, and Autosomal Deletion Syndromes",8.984
+adult,platinum,diagnosis,HCC097,"Down Syndrome, Fragile X, Other Chromosomal Anomalies, and Congenital Malformation Syndromes",0.818
+adult,gold,diagnosis,HCC097,"Down Syndrome, Fragile X, Other Chromosomal Anomalies, and Congenital Malformation Syndromes",0.757
+adult,silver,diagnosis,HCC097,"Down Syndrome, Fragile X, Other Chromosomal Anomalies, and Congenital Malformation Syndromes",0.711
+adult,bronze,diagnosis,HCC097,"Down Syndrome, Fragile X, Other Chromosomal Anomalies, and Congenital Malformation Syndromes",0.654
+adult,catastrophic,diagnosis,HCC097,"Down Syndrome, Fragile X, Other Chromosomal Anomalies, and Congenital Malformation Syndromes",0.644
+adult,platinum,diagnosis,HCC102,Autistic Disorder,0.683
+adult,gold,diagnosis,HCC102,Autistic Disorder,0.609
+adult,silver,diagnosis,HCC102,Autistic Disorder,0.525
+adult,bronze,diagnosis,HCC102,Autistic Disorder,0.431
+adult,catastrophic,diagnosis,HCC102,Autistic Disorder,0.411
+adult,platinum,diagnosis,HCC103,"Pervasive Developmental Disorders, Except Autistic Disorder",0.636
+adult,gold,diagnosis,HCC103,"Pervasive Developmental Disorders, Except Autistic Disorder",0.563
+adult,silver,diagnosis,HCC103,"Pervasive Developmental Disorders, Except Autistic Disorder",0.473
+adult,bronze,diagnosis,HCC103,"Pervasive Developmental Disorders, Except Autistic Disorder",0.366
+adult,catastrophic,diagnosis,HCC103,"Pervasive Developmental Disorders, Except Autistic Disorder",0.342
+adult,platinum,diagnosis,HCC106,Traumatic Complete Lesion Cervical Spinal Cord,9.269
+adult,gold,diagnosis,HCC106,Traumatic Complete Lesion Cervical Spinal Cord,9.111
+adult,silver,diagnosis,HCC106,Traumatic Complete Lesion Cervical Spinal Cord,9.058
+adult,bronze,diagnosis,HCC106,Traumatic Complete Lesion Cervical Spinal Cord,8.961
+adult,catastrophic,diagnosis,HCC106,Traumatic Complete Lesion Cervical Spinal Cord,8.951
+adult,platinum,diagnosis,HCC107,Quadriplegia,9.269
+adult,gold,diagnosis,HCC107,Quadriplegia,9.111
+adult,silver,diagnosis,HCC107,Quadriplegia,9.058
+adult,bronze,diagnosis,HCC107,Quadriplegia,8.961
+adult,catastrophic,diagnosis,HCC107,Quadriplegia,8.951
+adult,platinum,diagnosis,HCC108,Traumatic Complete Lesion Dorsal Spinal Cord,6.187
+adult,gold,diagnosis,HCC108,Traumatic Complete Lesion Dorsal Spinal Cord,6.045
+adult,silver,diagnosis,HCC108,Traumatic Complete Lesion Dorsal Spinal Cord,5.988
+adult,bronze,diagnosis,HCC108,Traumatic Complete Lesion Dorsal Spinal Cord,5.890
+adult,catastrophic,diagnosis,HCC108,Traumatic Complete Lesion Dorsal Spinal Cord,5.878
+adult,platinum,diagnosis,HCC109,Paraplegia,6.187
+adult,gold,diagnosis,HCC109,Paraplegia,6.045
+adult,silver,diagnosis,HCC109,Paraplegia,5.988
+adult,bronze,diagnosis,HCC109,Paraplegia,5.890
+adult,catastrophic,diagnosis,HCC109,Paraplegia,5.878
+adult,platinum,diagnosis,HCC110,Spinal Cord Disorders/Injuries,4.884
+adult,gold,diagnosis,HCC110,Spinal Cord Disorders/Injuries,4.706
+adult,silver,diagnosis,HCC110,Spinal Cord Disorders/Injuries,4.655
+adult,bronze,diagnosis,HCC110,Spinal Cord Disorders/Injuries,4.552
+adult,catastrophic,diagnosis,HCC110,Spinal Cord Disorders/Injuries,4.543
+adult,platinum,diagnosis,HCC111,Amyotrophic Lateral Sclerosis and Other Anterior Horn Cell Disease,4.963
+adult,gold,diagnosis,HCC111,Amyotrophic Lateral Sclerosis and Other Anterior Horn Cell Disease,4.820
+adult,silver,diagnosis,HCC111,Amyotrophic Lateral Sclerosis and Other Anterior Horn Cell Disease,4.753
+adult,bronze,diagnosis,HCC111,Amyotrophic Lateral Sclerosis and Other Anterior Horn Cell Disease,4.640
+adult,catastrophic,diagnosis,HCC111,Amyotrophic Lateral Sclerosis and Other Anterior Horn Cell Disease,4.624
+adult,platinum,diagnosis,HCC112,Quadriplegic Cerebral Palsy,0.615
+adult,gold,diagnosis,HCC112,Quadriplegic Cerebral Palsy,0.527
+adult,silver,diagnosis,HCC112,Quadriplegic Cerebral Palsy,0.462
+adult,bronze,diagnosis,HCC112,Quadriplegic Cerebral Palsy,0.366
+adult,catastrophic,diagnosis,HCC112,Quadriplegic Cerebral Palsy,0.350
+adult,platinum,diagnosis,HCC113,"Cerebral Palsy, Except Quadriplegic",0.339
+adult,gold,diagnosis,HCC113,"Cerebral Palsy, Except Quadriplegic",0.274
+adult,silver,diagnosis,HCC113,"Cerebral Palsy, Except Quadriplegic",0.221
+adult,bronze,diagnosis,HCC113,"Cerebral Palsy, Except Quadriplegic",0.149
+adult,catastrophic,diagnosis,HCC113,"Cerebral Palsy, Except Quadriplegic",0.135
+adult,platinum,diagnosis,HCC114,Spina Bifida and Other Brain/Spinal/Nervous System Congenital Anomalies,1.165
+adult,gold,diagnosis,HCC114,Spina Bifida and Other Brain/Spinal/Nervous System Congenital Anomalies,1.083
+adult,silver,diagnosis,HCC114,Spina Bifida and Other Brain/Spinal/Nervous System Congenital Anomalies,1.027
+adult,bronze,diagnosis,HCC114,Spina Bifida and Other Brain/Spinal/Nervous System Congenital Anomalies,0.937
+adult,catastrophic,diagnosis,HCC114,Spina Bifida and Other Brain/Spinal/Nervous System Congenital Anomalies,0.921
+adult,platinum,diagnosis,HCC115,Myasthenia Gravis/Myoneural Disorders and Guillain-Barre Syndrome/Inflammatory and Toxic Neuropathy,5.056
+adult,gold,diagnosis,HCC115,Myasthenia Gravis/Myoneural Disorders and Guillain-Barre Syndrome/Inflammatory and Toxic Neuropathy,4.973
+adult,silver,diagnosis,HCC115,Myasthenia Gravis/Myoneural Disorders and Guillain-Barre Syndrome/Inflammatory and Toxic Neuropathy,4.956
+adult,bronze,diagnosis,HCC115,Myasthenia Gravis/Myoneural Disorders and Guillain-Barre Syndrome/Inflammatory and Toxic Neuropathy,4.917
+adult,catastrophic,diagnosis,HCC115,Myasthenia Gravis/Myoneural Disorders and Guillain-Barre Syndrome/Inflammatory and Toxic Neuropathy,4.915
+adult,platinum,diagnosis,HCC117,Muscular Dystrophy,1.326
+adult,gold,diagnosis,HCC117,Muscular Dystrophy,1.238
+adult,silver,diagnosis,HCC117,Muscular Dystrophy,1.172
+adult,bronze,diagnosis,HCC117,Muscular Dystrophy,1.078
+adult,catastrophic,diagnosis,HCC117,Muscular Dystrophy,1.060
+adult,platinum,diagnosis,HCC118,Multiple Sclerosis,2.667
+adult,gold,diagnosis,HCC118,Multiple Sclerosis,2.537
+adult,silver,diagnosis,HCC118,Multiple Sclerosis,2.480
+adult,bronze,diagnosis,HCC118,Multiple Sclerosis,2.384
+adult,catastrophic,diagnosis,HCC118,Multiple Sclerosis,2.371
+adult,platinum,diagnosis,HCC119,"Parkinson's, Huntington's, and Spinocerebellar Disease, and Other Neurodegenerative Disorders",1.326
+adult,gold,diagnosis,HCC119,"Parkinson's, Huntington's, and Spinocerebellar Disease, and Other Neurodegenerative Disorders",1.238
+adult,silver,diagnosis,HCC119,"Parkinson's, Huntington's, and Spinocerebellar Disease, and Other Neurodegenerative Disorders",1.172
+adult,bronze,diagnosis,HCC119,"Parkinson's, Huntington's, and Spinocerebellar Disease, and Other Neurodegenerative Disorders",1.078
+adult,catastrophic,diagnosis,HCC119,"Parkinson's, Huntington's, and Spinocerebellar Disease, and Other Neurodegenerative Disorders",1.060
+adult,platinum,diagnosis,HCC120,Seizure Disorders and Convulsions,0.940
+adult,gold,diagnosis,HCC120,Seizure Disorders and Convulsions,0.851
+adult,silver,diagnosis,HCC120,Seizure Disorders and Convulsions,0.787
+adult,bronze,diagnosis,HCC120,Seizure Disorders and Convulsions,0.697
+adult,catastrophic,diagnosis,HCC120,Seizure Disorders and Convulsions,0.682
+adult,platinum,diagnosis,HCC121,Hydrocephalus,9.455
+adult,gold,diagnosis,HCC121,Hydrocephalus,9.363
+adult,silver,diagnosis,HCC121,Hydrocephalus,9.316
+adult,bronze,diagnosis,HCC121,Hydrocephalus,9.245
+adult,catastrophic,diagnosis,HCC121,Hydrocephalus,9.234
+adult,platinum,diagnosis,HCC122,"Nontraumatic Coma, Except Diabetic, Hepatic, or Hypoglycemic; Nontraumatic Brain Compression/Anoxic Damage",9.882
+adult,gold,diagnosis,HCC122,"Nontraumatic Coma, Except Diabetic, Hepatic, or Hypoglycemic; Nontraumatic Brain Compression/Anoxic Damage",9.748
+adult,silver,diagnosis,HCC122,"Nontraumatic Coma, Except Diabetic, Hepatic, or Hypoglycemic; Nontraumatic Brain Compression/Anoxic Damage",9.694
+adult,bronze,diagnosis,HCC122,"Nontraumatic Coma, Except Diabetic, Hepatic, or Hypoglycemic; Nontraumatic Brain Compression/Anoxic Damage",9.603
+adult,catastrophic,diagnosis,HCC122,"Nontraumatic Coma, Except Diabetic, Hepatic, or Hypoglycemic; Nontraumatic Brain Compression/Anoxic Damage",9.590
+adult,platinum,diagnosis,HCC123,Narcolepsy and Cataplexy,4.525
+adult,gold,diagnosis,HCC123,Narcolepsy and Cataplexy,4.398
+adult,silver,diagnosis,HCC123,Narcolepsy and Cataplexy,4.338
+adult,bronze,diagnosis,HCC123,Narcolepsy and Cataplexy,4.242
+adult,catastrophic,diagnosis,HCC123,Narcolepsy and Cataplexy,4.228
+adult,platinum,diagnosis,HCC125,Respirator Dependence/Tracheostomy Status,21.609
+adult,gold,diagnosis,HCC125,Respirator Dependence/Tracheostomy Status,21.402
+adult,silver,diagnosis,HCC125,Respirator Dependence/Tracheostomy Status,21.361
+adult,bronze,diagnosis,HCC125,Respirator Dependence/Tracheostomy Status,21.274
+adult,catastrophic,diagnosis,HCC125,Respirator Dependence/Tracheostomy Status,21.272
+adult,platinum,diagnosis,HCC126,Respiratory Arrest,8.173
+adult,gold,diagnosis,HCC126,Respiratory Arrest,7.958
+adult,silver,diagnosis,HCC126,Respiratory Arrest,7.914
+adult,bronze,diagnosis,HCC126,Respiratory Arrest,7.824
+adult,catastrophic,diagnosis,HCC126,Respiratory Arrest,7.822
+adult,platinum,diagnosis,HCC127,"Cardio-Respiratory Failure and Shock, Including Respiratory Distress Syndromes",8.173
+adult,gold,diagnosis,HCC127,"Cardio-Respiratory Failure and Shock, Including Respiratory Distress Syndromes",7.958
+adult,silver,diagnosis,HCC127,"Cardio-Respiratory Failure and Shock, Including Respiratory Distress Syndromes",7.914
+adult,bronze,diagnosis,HCC127,"Cardio-Respiratory Failure and Shock, Including Respiratory Distress Syndromes",7.824
+adult,catastrophic,diagnosis,HCC127,"Cardio-Respiratory Failure and Shock, Including Respiratory Distress Syndromes",7.822
+adult,platinum,diagnosis,HCC128,Heart Assistive Device/Artificial Heart,15.142
+adult,gold,diagnosis,HCC128,Heart Assistive Device/Artificial Heart,15.048
+adult,silver,diagnosis,HCC128,Heart Assistive Device/Artificial Heart,15.018
+adult,bronze,diagnosis,HCC128,Heart Assistive Device/Artificial Heart,14.981
+adult,catastrophic,diagnosis,HCC128,Heart Assistive Device/Artificial Heart,14.985
+adult,platinum,diagnosis,HCC129,Heart Transplant Status/Complications,15.142
+adult,gold,diagnosis,HCC129,Heart Transplant Status/Complications,15.048
+adult,silver,diagnosis,HCC129,Heart Transplant Status/Complications,15.018
+adult,bronze,diagnosis,HCC129,Heart Transplant Status/Complications,14.981
+adult,catastrophic,diagnosis,HCC129,Heart Transplant Status/Complications,14.985
+adult,platinum,diagnosis,HCC130,Heart Failure,1.769
+adult,gold,diagnosis,HCC130,Heart Failure,1.684
+adult,silver,diagnosis,HCC130,Heart Failure,1.647
+adult,bronze,diagnosis,HCC130,Heart Failure,1.582
+adult,catastrophic,diagnosis,HCC130,Heart Failure,1.572
+adult,platinum,diagnosis,HCC131,Acute Myocardial Infarction,4.649
+adult,gold,diagnosis,HCC131,Acute Myocardial Infarction,4.429
+adult,silver,diagnosis,HCC131,Acute Myocardial Infarction,4.403
+adult,bronze,diagnosis,HCC131,Acute Myocardial Infarction,4.329
+adult,catastrophic,diagnosis,HCC131,Acute Myocardial Infarction,4.332
+adult,platinum,diagnosis,HCC132,Unstable Angina and Other Acute Ischemic Heart Disease,3.381
+adult,gold,diagnosis,HCC132,Unstable Angina and Other Acute Ischemic Heart Disease,3.185
+adult,silver,diagnosis,HCC132,Unstable Angina and Other Acute Ischemic Heart Disease,3.139
+adult,bronze,diagnosis,HCC132,Unstable Angina and Other Acute Ischemic Heart Disease,3.036
+adult,catastrophic,diagnosis,HCC132,Unstable Angina and Other Acute Ischemic Heart Disease,3.030
+adult,platinum,diagnosis,HCC135,"Heart Infection/Inflammation, Except Rheumatic",8.375
+adult,gold,diagnosis,HCC135,"Heart Infection/Inflammation, Except Rheumatic",8.290
+adult,silver,diagnosis,HCC135,"Heart Infection/Inflammation, Except Rheumatic",8.235
+adult,bronze,diagnosis,HCC135,"Heart Infection/Inflammation, Except Rheumatic",8.152
+adult,catastrophic,diagnosis,HCC135,"Heart Infection/Inflammation, Except Rheumatic",8.135
+adult,platinum,diagnosis,HCC137,Hypoplastic Left Heart Syndrome and Other Severe Congenital Heart Disorders,2.030
+adult,gold,diagnosis,HCC137,Hypoplastic Left Heart Syndrome and Other Severe Congenital Heart Disorders,1.942
+adult,silver,diagnosis,HCC137,Hypoplastic Left Heart Syndrome and Other Severe Congenital Heart Disorders,1.885
+adult,bronze,diagnosis,HCC137,Hypoplastic Left Heart Syndrome and Other Severe Congenital Heart Disorders,1.810
+adult,catastrophic,diagnosis,HCC137,Hypoplastic Left Heart Syndrome and Other Severe Congenital Heart Disorders,1.798
+adult,platinum,diagnosis,HCC138,Major Congenital Heart/Circulatory Disorders,2.030
+adult,gold,diagnosis,HCC138,Major Congenital Heart/Circulatory Disorders,1.942
+adult,silver,diagnosis,HCC138,Major Congenital Heart/Circulatory Disorders,1.885
+adult,bronze,diagnosis,HCC138,Major Congenital Heart/Circulatory Disorders,1.810
+adult,catastrophic,diagnosis,HCC138,Major Congenital Heart/Circulatory Disorders,1.798
+adult,platinum,diagnosis,HCC139,"Atrial and Ventricular Septal Defects, Patent Ductus Arteriosus, and Other Congenital Heart/Circulatory Disorders",2.030
+adult,gold,diagnosis,HCC139,"Atrial and Ventricular Septal Defects, Patent Ductus Arteriosus, and Other Congenital Heart/Circulatory Disorders",1.942
+adult,silver,diagnosis,HCC139,"Atrial and Ventricular Septal Defects, Patent Ductus Arteriosus, and Other Congenital Heart/Circulatory Disorders",1.885
+adult,bronze,diagnosis,HCC139,"Atrial and Ventricular Septal Defects, Patent Ductus Arteriosus, and Other Congenital Heart/Circulatory Disorders",1.810
+adult,catastrophic,diagnosis,HCC139,"Atrial and Ventricular Septal Defects, Patent Ductus Arteriosus, and Other Congenital Heart/Circulatory Disorders",1.798
+adult,platinum,diagnosis,HCC142,Specified Heart Arrhythmias,1.828
+adult,gold,diagnosis,HCC142,Specified Heart Arrhythmias,1.726
+adult,silver,diagnosis,HCC142,Specified Heart Arrhythmias,1.660
+adult,bronze,diagnosis,HCC142,Specified Heart Arrhythmias,1.556
+adult,catastrophic,diagnosis,HCC142,Specified Heart Arrhythmias,1.536
+adult,platinum,diagnosis,HCC145,Intracranial Hemorrhage,10.182
+adult,gold,diagnosis,HCC145,Intracranial Hemorrhage,10.021
+adult,silver,diagnosis,HCC145,Intracranial Hemorrhage,9.975
+adult,bronze,diagnosis,HCC145,Intracranial Hemorrhage,9.888
+adult,catastrophic,diagnosis,HCC145,Intracranial Hemorrhage,9.881
+adult,platinum,diagnosis,HCC146,Ischemic or Unspecified Stroke,1.383
+adult,gold,diagnosis,HCC146,Ischemic or Unspecified Stroke,1.270
+adult,silver,diagnosis,HCC146,Ischemic or Unspecified Stroke,1.233
+adult,bronze,diagnosis,HCC146,Ischemic or Unspecified Stroke,1.160
+adult,catastrophic,diagnosis,HCC146,Ischemic or Unspecified Stroke,1.154
+adult,platinum,diagnosis,HCC149,Cerebral Aneurysm and Arteriovenous Malformation,2.097
+adult,gold,diagnosis,HCC149,Cerebral Aneurysm and Arteriovenous Malformation,1.980
+adult,silver,diagnosis,HCC149,Cerebral Aneurysm and Arteriovenous Malformation,1.920
+adult,bronze,diagnosis,HCC149,Cerebral Aneurysm and Arteriovenous Malformation,1.819
+adult,catastrophic,diagnosis,HCC149,Cerebral Aneurysm and Arteriovenous Malformation,1.804
+adult,platinum,diagnosis,HCC150,Hemiplegia/Hemiparesis,2.953
+adult,gold,diagnosis,HCC150,Hemiplegia/Hemiparesis,2.832
+adult,silver,diagnosis,HCC150,Hemiplegia/Hemiparesis,2.814
+adult,bronze,diagnosis,HCC150,Hemiplegia/Hemiparesis,2.766
+adult,catastrophic,diagnosis,HCC150,Hemiplegia/Hemiparesis,2.766
+adult,platinum,diagnosis,HCC151,"Monoplegia, Other Paralytic Syndromes",2.464
+adult,gold,diagnosis,HCC151,"Monoplegia, Other Paralytic Syndromes",2.353
+adult,silver,diagnosis,HCC151,"Monoplegia, Other Paralytic Syndromes",2.305
+adult,bronze,diagnosis,HCC151,"Monoplegia, Other Paralytic Syndromes",2.226
+adult,catastrophic,diagnosis,HCC151,"Monoplegia, Other Paralytic Syndromes",2.217
+adult,platinum,diagnosis,HCC153,Atherosclerosis of the Extremities with Ulceration or Gangrene,7.863
+adult,gold,diagnosis,HCC153,Atherosclerosis of the Extremities with Ulceration or Gangrene,7.702
+adult,silver,diagnosis,HCC153,Atherosclerosis of the Extremities with Ulceration or Gangrene,7.709
+adult,bronze,diagnosis,HCC153,Atherosclerosis of the Extremities with Ulceration or Gangrene,7.683
+adult,catastrophic,diagnosis,HCC153,Atherosclerosis of the Extremities with Ulceration or Gangrene,7.691
+adult,platinum,diagnosis,HCC154,Vascular Disease with Complications,4.945
+adult,gold,diagnosis,HCC154,Vascular Disease with Complications,4.802
+adult,silver,diagnosis,HCC154,Vascular Disease with Complications,4.759
+adult,bronze,diagnosis,HCC154,Vascular Disease with Complications,4.677
+adult,catastrophic,diagnosis,HCC154,Vascular Disease with Complications,4.669
+adult,platinum,diagnosis,HCC156,Pulmonary Embolism and Deep Vein Thrombosis,7.348
+adult,gold,diagnosis,HCC156,Pulmonary Embolism and Deep Vein Thrombosis,7.269
+adult,silver,diagnosis,HCC156,Pulmonary Embolism and Deep Vein Thrombosis,7.201
+adult,bronze,diagnosis,HCC156,Pulmonary Embolism and Deep Vein Thrombosis,7.096
+adult,catastrophic,diagnosis,HCC156,Pulmonary Embolism and Deep Vein Thrombosis,7.072
+adult,platinum,diagnosis,HCC158,Lung Transplant Status/Complications,11.135
+adult,gold,diagnosis,HCC158,Lung Transplant Status/Complications,11.055
+adult,silver,diagnosis,HCC158,Lung Transplant Status/Complications,11.028
+adult,bronze,diagnosis,HCC158,Lung Transplant Status/Complications,10.997
+adult,catastrophic,diagnosis,HCC158,Lung Transplant Status/Complications,11.001
+adult,platinum,diagnosis,HCC159,Cystic Fibrosis,3.817
+adult,gold,diagnosis,HCC159,Cystic Fibrosis,3.696
+adult,silver,diagnosis,HCC159,Cystic Fibrosis,3.643
+adult,bronze,diagnosis,HCC159,Cystic Fibrosis,3.564
+adult,catastrophic,diagnosis,HCC159,Cystic Fibrosis,3.554
+adult,platinum,diagnosis,HCC160,"Chronic Obstructive Pulmonary Disease, Including Bronchiectasis",0.617
+adult,gold,diagnosis,HCC160,"Chronic Obstructive Pulmonary Disease, Including Bronchiectasis",0.543
+adult,silver,diagnosis,HCC160,"Chronic Obstructive Pulmonary Disease, Including Bronchiectasis",0.470
+adult,bronze,diagnosis,HCC160,"Chronic Obstructive Pulmonary Disease, Including Bronchiectasis",0.379
+adult,catastrophic,diagnosis,HCC160,"Chronic Obstructive Pulmonary Disease, Including Bronchiectasis",0.361
+adult,platinum,diagnosis,HCC161_1,Severe Asthma,0.617
+adult,gold,diagnosis,HCC161_1,Severe Asthma,0.543
+adult,silver,diagnosis,HCC161_1,Severe Asthma,0.470
+adult,bronze,diagnosis,HCC161_1,Severe Asthma,0.379
+adult,catastrophic,diagnosis,HCC161_1,Severe Asthma,0.361
+adult,platinum,diagnosis,HCC161_2,"Asthma, Except Severe",0.617
+adult,gold,diagnosis,HCC161_2,"Asthma, Except Severe",0.543
+adult,silver,diagnosis,HCC161_2,"Asthma, Except Severe",0.470
+adult,bronze,diagnosis,HCC161_2,"Asthma, Except Severe",0.379
+adult,catastrophic,diagnosis,HCC161_2,"Asthma, Except Severe",0.361
+adult,platinum,diagnosis,HCC162,Fibrosis of Lung and Other Lung Disorders,1.545
+adult,gold,diagnosis,HCC162,Fibrosis of Lung and Other Lung Disorders,1.465
+adult,silver,diagnosis,HCC162,Fibrosis of Lung and Other Lung Disorders,1.411
+adult,bronze,diagnosis,HCC162,Fibrosis of Lung and Other Lung Disorders,1.329
+adult,catastrophic,diagnosis,HCC162,Fibrosis of Lung and Other Lung Disorders,1.314
+adult,platinum,diagnosis,HCC163,Aspiration and Specified Bacterial Pneumonias and Other Severe Lung Infections,7.234
+adult,gold,diagnosis,HCC163,Aspiration and Specified Bacterial Pneumonias and Other Severe Lung Infections,7.127
+adult,silver,diagnosis,HCC163,Aspiration and Specified Bacterial Pneumonias and Other Severe Lung Infections,7.083
+adult,bronze,diagnosis,HCC163,Aspiration and Specified Bacterial Pneumonias and Other Severe Lung Infections,7.012
+adult,catastrophic,diagnosis,HCC163,Aspiration and Specified Bacterial Pneumonias and Other Severe Lung Infections,7.002
+adult,platinum,diagnosis,HCC174,Exudative Macular Degeneration,1.163
+adult,gold,diagnosis,HCC174,Exudative Macular Degeneration,1.040
+adult,silver,diagnosis,HCC174,Exudative Macular Degeneration,0.950
+adult,bronze,diagnosis,HCC174,Exudative Macular Degeneration,0.816
+adult,catastrophic,diagnosis,HCC174,Exudative Macular Degeneration,0.795
+adult,platinum,diagnosis,HCC183,Kidney Transplant Status/Complications,6.005
+adult,gold,diagnosis,HCC183,Kidney Transplant Status/Complications,6.004
+adult,silver,diagnosis,HCC183,Kidney Transplant Status/Complications,6.016
+adult,bronze,diagnosis,HCC183,Kidney Transplant Status/Complications,6.019
+adult,catastrophic,diagnosis,HCC183,Kidney Transplant Status/Complications,6.011
+adult,platinum,diagnosis,HCC184,End Stage Renal Disease,19.254
+adult,gold,diagnosis,HCC184,End Stage Renal Disease,18.858
+adult,silver,diagnosis,HCC184,End Stage Renal Disease,18.971
+adult,bronze,diagnosis,HCC184,End Stage Renal Disease,18.812
+adult,catastrophic,diagnosis,HCC184,End Stage Renal Disease,18.725
+adult,platinum,diagnosis,HCC187,"Chronic Kidney Disease, Stage 5",0.726
+adult,gold,diagnosis,HCC187,"Chronic Kidney Disease, Stage 5",0.652
+adult,silver,diagnosis,HCC187,"Chronic Kidney Disease, Stage 5",0.645
+adult,bronze,diagnosis,HCC187,"Chronic Kidney Disease, Stage 5",0.607
+adult,catastrophic,diagnosis,HCC187,"Chronic Kidney Disease, Stage 5",0.597
+adult,platinum,diagnosis,HCC188,"Chronic Kidney Disease, Severe (Stage 4)",0.726
+adult,gold,diagnosis,HCC188,"Chronic Kidney Disease, Severe (Stage 4)",0.652
+adult,silver,diagnosis,HCC188,"Chronic Kidney Disease, Severe (Stage 4)",0.645
+adult,bronze,diagnosis,HCC188,"Chronic Kidney Disease, Severe (Stage 4)",0.607
+adult,catastrophic,diagnosis,HCC188,"Chronic Kidney Disease, Severe (Stage 4)",0.597
+adult,platinum,diagnosis,HCC203,Ectopic and Molar Pregnancy,1.579
+adult,gold,diagnosis,HCC203,Ectopic and Molar Pregnancy,1.424
+adult,silver,diagnosis,HCC203,Ectopic and Molar Pregnancy,1.295
+adult,bronze,diagnosis,HCC203,Ectopic and Molar Pregnancy,1.098
+adult,catastrophic,diagnosis,HCC203,Ectopic and Molar Pregnancy,1.066
+adult,platinum,diagnosis,HCC204,Miscarriage with Complications,0.605
+adult,gold,diagnosis,HCC204,Miscarriage with Complications,0.530
+adult,silver,diagnosis,HCC204,Miscarriage with Complications,0.413
+adult,bronze,diagnosis,HCC204,Miscarriage with Complications,0.252
+adult,catastrophic,diagnosis,HCC204,Miscarriage with Complications,0.210
+adult,platinum,diagnosis,HCC205,Miscarriage with No or Minor Complications,0.605
+adult,gold,diagnosis,HCC205,Miscarriage with No or Minor Complications,0.530
+adult,silver,diagnosis,HCC205,Miscarriage with No or Minor Complications,0.413
+adult,bronze,diagnosis,HCC205,Miscarriage with No or Minor Complications,0.252
+adult,catastrophic,diagnosis,HCC205,Miscarriage with No or Minor Complications,0.210
+adult,platinum,diagnosis,HCC207,Pregnancy with Delivery with Major Complications,3.612
+adult,gold,diagnosis,HCC207,Pregnancy with Delivery with Major Complications,3.338
+adult,silver,diagnosis,HCC207,Pregnancy with Delivery with Major Complications,3.147
+adult,bronze,diagnosis,HCC207,Pregnancy with Delivery with Major Complications,2.825
+adult,catastrophic,diagnosis,HCC207,Pregnancy with Delivery with Major Complications,2.783
+adult,platinum,diagnosis,HCC208,Pregnancy with Delivery with Complications,3.612
+adult,gold,diagnosis,HCC208,Pregnancy with Delivery with Complications,3.338
+adult,silver,diagnosis,HCC208,Pregnancy with Delivery with Complications,3.147
+adult,bronze,diagnosis,HCC208,Pregnancy with Delivery with Complications,2.825
+adult,catastrophic,diagnosis,HCC208,Pregnancy with Delivery with Complications,2.783
+adult,platinum,diagnosis,HCC209,Pregnancy with Delivery with No or Minor Complications,2.666
+adult,gold,diagnosis,HCC209,Pregnancy with Delivery with No or Minor Complications,2.465
+adult,silver,diagnosis,HCC209,Pregnancy with Delivery with No or Minor Complications,2.249
+adult,bronze,diagnosis,HCC209,Pregnancy with Delivery with No or Minor Complications,1.883
+adult,catastrophic,diagnosis,HCC209,Pregnancy with Delivery with No or Minor Complications,1.811
+adult,platinum,diagnosis,HCC210,(Ongoing) Pregnancy without Delivery with Major Complications,0.696
+adult,gold,diagnosis,HCC210,(Ongoing) Pregnancy without Delivery with Major Complications,0.606
+adult,silver,diagnosis,HCC210,(Ongoing) Pregnancy without Delivery with Major Complications,0.465
+adult,bronze,diagnosis,HCC210,(Ongoing) Pregnancy without Delivery with Major Complications,0.293
+adult,catastrophic,diagnosis,HCC210,(Ongoing) Pregnancy without Delivery with Major Complications,0.253
+adult,platinum,diagnosis,HCC211,(Ongoing) Pregnancy without Delivery with Complications,0.464
+adult,gold,diagnosis,HCC211,(Ongoing) Pregnancy without Delivery with Complications,0.395
+adult,silver,diagnosis,HCC211,(Ongoing) Pregnancy without Delivery with Complications,0.270
+adult,bronze,diagnosis,HCC211,(Ongoing) Pregnancy without Delivery with Complications,0.138
+adult,catastrophic,diagnosis,HCC211,(Ongoing) Pregnancy without Delivery with Complications,0.108
+adult,platinum,diagnosis,HCC212,(Ongoing) Pregnancy without Delivery with No or Minor Complications,0.012
+adult,gold,diagnosis,HCC212,(Ongoing) Pregnancy without Delivery with No or Minor Complications,0.000
+adult,silver,diagnosis,HCC212,(Ongoing) Pregnancy without Delivery with No or Minor Complications,0.000
+adult,bronze,diagnosis,HCC212,(Ongoing) Pregnancy without Delivery with No or Minor Complications,0.000
+adult,catastrophic,diagnosis,HCC212,(Ongoing) Pregnancy without Delivery with No or Minor Complications,0.000
+adult,platinum,diagnosis,HCC217,"Chronic Ulcer of Skin, Except Pressure",1.441
+adult,gold,diagnosis,HCC217,"Chronic Ulcer of Skin, Except Pressure",1.348
+adult,silver,diagnosis,HCC217,"Chronic Ulcer of Skin, Except Pressure",1.314
+adult,bronze,diagnosis,HCC217,"Chronic Ulcer of Skin, Except Pressure",1.256
+adult,catastrophic,diagnosis,HCC217,"Chronic Ulcer of Skin, Except Pressure",1.250
+adult,platinum,diagnosis,HCC218,Extensive Third-Degree Burns,25.023
+adult,gold,diagnosis,HCC218,Extensive Third-Degree Burns,24.827
+adult,silver,diagnosis,HCC218,Extensive Third-Degree Burns,24.785
+adult,bronze,diagnosis,HCC218,Extensive Third-Degree Burns,24.703
+adult,catastrophic,diagnosis,HCC218,Extensive Third-Degree Burns,24.698
+adult,platinum,diagnosis,HCC219,Major Skin Burn or Condition,2.496
+adult,gold,diagnosis,HCC219,Major Skin Burn or Condition,2.375
+adult,silver,diagnosis,HCC219,Major Skin Burn or Condition,2.316
+adult,bronze,diagnosis,HCC219,Major Skin Burn or Condition,2.231
+adult,catastrophic,diagnosis,HCC219,Major Skin Burn or Condition,2.220
+adult,platinum,diagnosis,HCC223,Severe Head Injury,17.515
+adult,gold,diagnosis,HCC223,Severe Head Injury,17.368
+adult,silver,diagnosis,HCC223,Severe Head Injury,17.304
+adult,bronze,diagnosis,HCC223,Severe Head Injury,17.197
+adult,catastrophic,diagnosis,HCC223,Severe Head Injury,17.182
+adult,platinum,diagnosis,HCC226,Hip and Pelvic Fractures,7.705
+adult,gold,diagnosis,HCC226,Hip and Pelvic Fractures,7.460
+adult,silver,diagnosis,HCC226,Hip and Pelvic Fractures,7.432
+adult,bronze,diagnosis,HCC226,Hip and Pelvic Fractures,7.349
+adult,catastrophic,diagnosis,HCC226,Hip and Pelvic Fractures,7.351
+adult,platinum,diagnosis,HCC228,Vertebral Fractures without Spinal Cord Injury,4.016
+adult,gold,diagnosis,HCC228,Vertebral Fractures without Spinal Cord Injury,3.857
+adult,silver,diagnosis,HCC228,Vertebral Fractures without Spinal Cord Injury,3.785
+adult,bronze,diagnosis,HCC228,Vertebral Fractures without Spinal Cord Injury,3.663
+adult,catastrophic,diagnosis,HCC228,Vertebral Fractures without Spinal Cord Injury,3.647
+adult,platinum,diagnosis,HCC234,Traumatic Amputations and Amputation Complications,4.458
+adult,gold,diagnosis,HCC234,Traumatic Amputations and Amputation Complications,4.303
+adult,silver,diagnosis,HCC234,Traumatic Amputations and Amputation Complications,4.277
+adult,bronze,diagnosis,HCC234,Traumatic Amputations and Amputation Complications,4.213
+adult,catastrophic,diagnosis,HCC234,Traumatic Amputations and Amputation Complications,4.212
+adult,platinum,diagnosis,HCC251,"Stem Cell, Including Bone Marrow, Transplant Status/Complications",18.845
+adult,gold,diagnosis,HCC251,"Stem Cell, Including Bone Marrow, Transplant Status/Complications",18.875
+adult,silver,diagnosis,HCC251,"Stem Cell, Including Bone Marrow, Transplant Status/Complications",18.852
+adult,bronze,diagnosis,HCC251,"Stem Cell, Including Bone Marrow, Transplant Status/Complications",18.849
+adult,catastrophic,diagnosis,HCC251,"Stem Cell, Including Bone Marrow, Transplant Status/Complications",18.844
+adult,platinum,diagnosis,HCC253,Artificial Openings for Feeding or Elimination,5.487
+adult,gold,diagnosis,HCC253,Artificial Openings for Feeding or Elimination,5.367
+adult,silver,diagnosis,HCC253,Artificial Openings for Feeding or Elimination,5.343
+adult,bronze,diagnosis,HCC253,Artificial Openings for Feeding or Elimination,5.288
+adult,catastrophic,diagnosis,HCC253,Artificial Openings for Feeding or Elimination,5.285
+adult,platinum,diagnosis,HCC254,"Amputation Status, Upper Limb or Lower Limb",0.864
+adult,gold,diagnosis,HCC254,"Amputation Status, Upper Limb or Lower Limb",0.768
+adult,silver,diagnosis,HCC254,"Amputation Status, Upper Limb or Lower Limb",0.732
+adult,bronze,diagnosis,HCC254,"Amputation Status, Upper Limb or Lower Limb",0.671
+adult,catastrophic,diagnosis,HCC254,"Amputation Status, Upper Limb or Lower Limb",0.665
+adult,platinum,hcc_counts,"Severe illness, 1 payment HCC","Severe illness, 1 payment HCC",-5.773
+adult,gold,hcc_counts,"Severe illness, 1 payment HCC","Severe illness, 1 payment HCC",-5.835
+adult,silver,hcc_counts,"Severe illness, 1 payment HCC","Severe illness, 1 payment HCC",-5.893
+adult,bronze,hcc_counts,"Severe illness, 1 payment HCC","Severe illness, 1 payment HCC",-5.974
+adult,catastrophic,hcc_counts,"Severe illness, 1 payment HCC","Severe illness, 1 payment HCC",-5.987
+adult,platinum,hcc_counts,"Severe illness, 2 payment HCCs","Severe illness, 2 payment HCCs",-5.615
+adult,gold,hcc_counts,"Severe illness, 2 payment HCCs","Severe illness, 2 payment HCCs",-5.693
+adult,silver,hcc_counts,"Severe illness, 2 payment HCCs","Severe illness, 2 payment HCCs",-5.729
+adult,bronze,hcc_counts,"Severe illness, 2 payment HCCs","Severe illness, 2 payment HCCs",-5.792
+adult,catastrophic,hcc_counts,"Severe illness, 2 payment HCCs","Severe illness, 2 payment HCCs",-5.798
+adult,platinum,hcc_counts,"Severe illness, 3 payment HCCs","Severe illness, 3 payment HCCs",-4.802
+adult,gold,hcc_counts,"Severe illness, 3 payment HCCs","Severe illness, 3 payment HCCs",-4.862
+adult,silver,hcc_counts,"Severe illness, 3 payment HCCs","Severe illness, 3 payment HCCs",-4.817
+adult,bronze,hcc_counts,"Severe illness, 3 payment HCCs","Severe illness, 3 payment HCCs",-4.790
+adult,catastrophic,hcc_counts,"Severe illness, 3 payment HCCs","Severe illness, 3 payment HCCs",-4.773
+adult,platinum,hcc_counts,"Severe illness, 4 payment HCCs","Severe illness, 4 payment HCCs",-4.153
+adult,gold,hcc_counts,"Severe illness, 4 payment HCCs","Severe illness, 4 payment HCCs",-4.156
+adult,silver,hcc_counts,"Severe illness, 4 payment HCCs","Severe illness, 4 payment HCCs",-4.028
+adult,bronze,hcc_counts,"Severe illness, 4 payment HCCs","Severe illness, 4 payment HCCs",-3.888
+adult,catastrophic,hcc_counts,"Severe illness, 4 payment HCCs","Severe illness, 4 payment HCCs",-3.846
+adult,platinum,hcc_counts,"Severe illness, 5 payment HCCs","Severe illness, 5 payment HCCs",-3.516
+adult,gold,hcc_counts,"Severe illness, 5 payment HCCs","Severe illness, 5 payment HCCs",-3.449
+adult,silver,hcc_counts,"Severe illness, 5 payment HCCs","Severe illness, 5 payment HCCs",-3.249
+adult,bronze,hcc_counts,"Severe illness, 5 payment HCCs","Severe illness, 5 payment HCCs",-3.009
+adult,catastrophic,hcc_counts,"Severe illness, 5 payment HCCs","Severe illness, 5 payment HCCs",-2.950
+adult,platinum,hcc_counts,"Severe illness, 6 payment HCCs","Severe illness, 6 payment HCCs",-3.156
+adult,gold,hcc_counts,"Severe illness, 6 payment HCCs","Severe illness, 6 payment HCCs",-2.994
+adult,silver,hcc_counts,"Severe illness, 6 payment HCCs","Severe illness, 6 payment HCCs",-2.730
+adult,bronze,hcc_counts,"Severe illness, 6 payment HCCs","Severe illness, 6 payment HCCs",-2.397
+adult,catastrophic,hcc_counts,"Severe illness, 6 payment HCCs","Severe illness, 6 payment HCCs",-2.324
+adult,platinum,hcc_counts,"Severe illness, 7 payment HCCs","Severe illness, 7 payment HCCs",-2.530
+adult,gold,hcc_counts,"Severe illness, 7 payment HCCs","Severe illness, 7 payment HCCs",-2.245
+adult,silver,hcc_counts,"Severe illness, 7 payment HCCs","Severe illness, 7 payment HCCs",-1.919
+adult,bronze,hcc_counts,"Severe illness, 7 payment HCCs","Severe illness, 7 payment HCCs",-1.500
+adult,catastrophic,hcc_counts,"Severe illness, 7 payment HCCs","Severe illness, 7 payment HCCs",-1.416
+adult,platinum,hcc_counts,"Severe illness, 8 payment HCCs","Severe illness, 8 payment HCCs",-2.256
+adult,gold,hcc_counts,"Severe illness, 8 payment HCCs","Severe illness, 8 payment HCCs",-1.892
+adult,silver,hcc_counts,"Severe illness, 8 payment HCCs","Severe illness, 8 payment HCCs",-1.533
+adult,bronze,hcc_counts,"Severe illness, 8 payment HCCs","Severe illness, 8 payment HCCs",-1.032
+adult,catastrophic,hcc_counts,"Severe illness, 8 payment HCCs","Severe illness, 8 payment HCCs",-0.937
+adult,platinum,hcc_counts,"Severe illness, 9 payment HCCs","Severe illness, 9 payment HCCs",-0.340
+adult,gold,hcc_counts,"Severe illness, 9 payment HCCs","Severe illness, 9 payment HCCs",0.167
+adult,silver,hcc_counts,"Severe illness, 9 payment HCCs","Severe illness, 9 payment HCCs",0.584
+adult,bronze,hcc_counts,"Severe illness, 9 payment HCCs","Severe illness, 9 payment HCCs",1.168
+adult,catastrophic,hcc_counts,"Severe illness, 9 payment HCCs","Severe illness, 9 payment HCCs",1.272
+adult,platinum,hcc_counts,"Severe illness, 10 or more payment HCCs","Severe illness, 10 or more payment HCCs",6.502
+adult,gold,hcc_counts,"Severe illness, 10 or more payment HCCs","Severe illness, 10 or more payment HCCs",7.375
+adult,silver,hcc_counts,"Severe illness, 10 or more payment HCCs","Severe illness, 10 or more payment HCCs",7.911
+adult,bronze,hcc_counts,"Severe illness, 10 or more payment HCCs","Severe illness, 10 or more payment HCCs",8.712
+adult,catastrophic,hcc_counts,"Severe illness, 10 or more payment HCCs","Severe illness, 10 or more payment HCCs",8.843
+adult,platinum,hcc_counts,"Transplant severe illness, 4 payment HCCs","Transplant severe illness, 4 payment HCCs",3.477
+adult,gold,hcc_counts,"Transplant severe illness, 4 payment HCCs","Transplant severe illness, 4 payment HCCs",3.361
+adult,silver,hcc_counts,"Transplant severe illness, 4 payment HCCs","Transplant severe illness, 4 payment HCCs",3.294
+adult,bronze,hcc_counts,"Transplant severe illness, 4 payment HCCs","Transplant severe illness, 4 payment HCCs",3.166
+adult,catastrophic,hcc_counts,"Transplant severe illness, 4 payment HCCs","Transplant severe illness, 4 payment HCCs",3.135
+adult,platinum,hcc_counts,"Transplant severe illness, 5 payment HCCs","Transplant severe illness, 5 payment HCCs",6.562
+adult,gold,hcc_counts,"Transplant severe illness, 5 payment HCCs","Transplant severe illness, 5 payment HCCs",6.432
+adult,silver,hcc_counts,"Transplant severe illness, 5 payment HCCs","Transplant severe illness, 5 payment HCCs",6.377
+adult,bronze,hcc_counts,"Transplant severe illness, 5 payment HCCs","Transplant severe illness, 5 payment HCCs",6.257
+adult,catastrophic,hcc_counts,"Transplant severe illness, 5 payment HCCs","Transplant severe illness, 5 payment HCCs",6.230
+adult,platinum,hcc_counts,"Transplant severe illness, 6 payment HCCs","Transplant severe illness, 6 payment HCCs",10.719
+adult,gold,hcc_counts,"Transplant severe illness, 6 payment HCCs","Transplant severe illness, 6 payment HCCs",10.577
+adult,silver,hcc_counts,"Transplant severe illness, 6 payment HCCs","Transplant severe illness, 6 payment HCCs",10.528
+adult,bronze,hcc_counts,"Transplant severe illness, 6 payment HCCs","Transplant severe illness, 6 payment HCCs",10.406
+adult,catastrophic,hcc_counts,"Transplant severe illness, 6 payment HCCs","Transplant severe illness, 6 payment HCCs",10.378
+adult,platinum,hcc_counts,"Transplant severe illness, 7 payment HCCs","Transplant severe illness, 7 payment HCCs",14.795
+adult,gold,hcc_counts,"Transplant severe illness, 7 payment HCCs","Transplant severe illness, 7 payment HCCs",14.638
+adult,silver,hcc_counts,"Transplant severe illness, 7 payment HCCs","Transplant severe illness, 7 payment HCCs",14.587
+adult,bronze,hcc_counts,"Transplant severe illness, 7 payment HCCs","Transplant severe illness, 7 payment HCCs",14.470
+adult,catastrophic,hcc_counts,"Transplant severe illness, 7 payment HCCs","Transplant severe illness, 7 payment HCCs",14.446
+adult,platinum,hcc_counts,"Transplant severe illness, 8 or more payment HCCs","Transplant severe illness, 8 or more payment HCCs",30.299
+adult,gold,hcc_counts,"Transplant severe illness, 8 or more payment HCCs","Transplant severe illness, 8 or more payment HCCs",30.239
+adult,silver,hcc_counts,"Transplant severe illness, 8 or more payment HCCs","Transplant severe illness, 8 or more payment HCCs",30.216
+adult,bronze,hcc_counts,"Transplant severe illness, 8 or more payment HCCs","Transplant severe illness, 8 or more payment HCCs",30.134
+adult,catastrophic,hcc_counts,"Transplant severe illness, 8 or more payment HCCs","Transplant severe illness, 8 or more payment HCCs",30.108
+adult,platinum,enrollment_duration,"Enrolled for 1 month, at least one payment HCC","Enrolled for 1 month, at least one payment HCC",11.555
+adult,gold,enrollment_duration,"Enrolled for 1 month, at least one payment HCC","Enrolled for 1 month, at least one payment HCC",10.113
+adult,silver,enrollment_duration,"Enrolled for 1 month, at least one payment HCC","Enrolled for 1 month, at least one payment HCC",9.204
+adult,bronze,enrollment_duration,"Enrolled for 1 month, at least one payment HCC","Enrolled for 1 month, at least one payment HCC",8.283
+adult,catastrophic,enrollment_duration,"Enrolled for 1 month, at least one payment HCC","Enrolled for 1 month, at least one payment HCC",8.115
+adult,platinum,enrollment_duration,"Enrolled for 2 months, at least one payment HCC","Enrolled for 2 months, at least one payment HCC",5.273
+adult,gold,enrollment_duration,"Enrolled for 2 months, at least one payment HCC","Enrolled for 2 months, at least one payment HCC",4.546
+adult,silver,enrollment_duration,"Enrolled for 2 months, at least one payment HCC","Enrolled for 2 months, at least one payment HCC",4.057
+adult,bronze,enrollment_duration,"Enrolled for 2 months, at least one payment HCC","Enrolled for 2 months, at least one payment HCC",3.590
+adult,catastrophic,enrollment_duration,"Enrolled for 2 months, at least one payment HCC","Enrolled for 2 months, at least one payment HCC",3.506
+adult,platinum,enrollment_duration,"Enrolled for 3 months, at least one payment HCC","Enrolled for 3 months, at least one payment HCC",3.356
+adult,gold,enrollment_duration,"Enrolled for 3 months, at least one payment HCC","Enrolled for 3 months, at least one payment HCC",2.884
+adult,silver,enrollment_duration,"Enrolled for 3 months, at least one payment HCC","Enrolled for 3 months, at least one payment HCC",2.543
+adult,bronze,enrollment_duration,"Enrolled for 3 months, at least one payment HCC","Enrolled for 3 months, at least one payment HCC",2.224
+adult,catastrophic,enrollment_duration,"Enrolled for 3 months, at least one payment HCC","Enrolled for 3 months, at least one payment HCC",2.169
+adult,platinum,enrollment_duration,"Enrolled for 4 months, at least one payment HCC","Enrolled for 4 months, at least one payment HCC",2.109
+adult,gold,enrollment_duration,"Enrolled for 4 months, at least one payment HCC","Enrolled for 4 months, at least one payment HCC",1.785
+adult,silver,enrollment_duration,"Enrolled for 4 months, at least one payment HCC","Enrolled for 4 months, at least one payment HCC",1.538
+adult,bronze,enrollment_duration,"Enrolled for 4 months, at least one payment HCC","Enrolled for 4 months, at least one payment HCC",1.312
+adult,catastrophic,enrollment_duration,"Enrolled for 4 months, at least one payment HCC","Enrolled for 4 months, at least one payment HCC",1.272
+adult,platinum,enrollment_duration,"Enrolled for 5 months, at least one payment HCC","Enrolled for 5 months, at least one payment HCC",1.584
+adult,gold,enrollment_duration,"Enrolled for 5 months, at least one payment HCC","Enrolled for 5 months, at least one payment HCC",1.343
+adult,silver,enrollment_duration,"Enrolled for 5 months, at least one payment HCC","Enrolled for 5 months, at least one payment HCC",1.152
+adult,bronze,enrollment_duration,"Enrolled for 5 months, at least one payment HCC","Enrolled for 5 months, at least one payment HCC",0.975
+adult,catastrophic,enrollment_duration,"Enrolled for 5 months, at least one payment HCC","Enrolled for 5 months, at least one payment HCC",0.942
+adult,platinum,enrollment_duration,"Enrolled for 6 months, at least one payment HCC","Enrolled for 6 months, at least one payment HCC",1.014
+adult,gold,enrollment_duration,"Enrolled for 6 months, at least one payment HCC","Enrolled for 6 months, at least one payment HCC",0.837
+adult,silver,enrollment_duration,"Enrolled for 6 months, at least one payment HCC","Enrolled for 6 months, at least one payment HCC",0.689
+adult,bronze,enrollment_duration,"Enrolled for 6 months, at least one payment HCC","Enrolled for 6 months, at least one payment HCC",0.548
+adult,catastrophic,enrollment_duration,"Enrolled for 6 months, at least one payment HCC","Enrolled for 6 months, at least one payment HCC",0.521
+adult,platinum,acf,ACF01,HIV Pre-Exposure Prophylaxis (PrEP),3.740
+adult,gold,acf,ACF01,HIV Pre-Exposure Prophylaxis (PrEP),3.671
+adult,silver,acf,ACF01,HIV Pre-Exposure Prophylaxis (PrEP),3.609
+adult,bronze,acf,ACF01,HIV Pre-Exposure Prophylaxis (PrEP),3.511
+adult,catastrophic,acf,ACF01,HIV Pre-Exposure Prophylaxis (PrEP),3.490
+adult,platinum,rxc,RXC01,Anti-HIV Agents,5.089
+adult,gold,rxc,RXC01,Anti-HIV Agents,4.598
+adult,silver,rxc,RXC01,Anti-HIV Agents,4.309
+adult,bronze,rxc,RXC01,Anti-HIV Agents,3.922
+adult,catastrophic,rxc,RXC01,Anti-HIV Agents,3.866
+adult,platinum,rxc,RXC02,"Anti-Hepatitis C (HCV) Agents, Direct Acting Agents",8.246
+adult,gold,rxc,RXC02,"Anti-Hepatitis C (HCV) Agents, Direct Acting Agents",7.771
+adult,silver,rxc,RXC02,"Anti-Hepatitis C (HCV) Agents, Direct Acting Agents",7.736
+adult,bronze,rxc,RXC02,"Anti-Hepatitis C (HCV) Agents, Direct Acting Agents",7.618
+adult,catastrophic,rxc,RXC02,"Anti-Hepatitis C (HCV) Agents, Direct Acting Agents",7.637
+adult,platinum,rxc,RXC03,Antiarrhythmics,0.070
+adult,gold,rxc,RXC03,Antiarrhythmics,0.063
+adult,silver,rxc,RXC03,Antiarrhythmics,0.056
+adult,bronze,rxc,RXC03,Antiarrhythmics,0.046
+adult,catastrophic,rxc,RXC03,Antiarrhythmics,0.046
+adult,platinum,rxc,RXC04,Phosphate Binders,0.920
+adult,gold,rxc,RXC04,Phosphate Binders,1.051
+adult,silver,rxc,RXC04,Phosphate Binders,0.885
+adult,bronze,rxc,RXC04,Phosphate Binders,1.053
+adult,catastrophic,rxc,RXC04,Phosphate Binders,1.217
+adult,platinum,rxc,RXC05,Inflammatory Bowel Disease Agents,1.208
+adult,gold,rxc,RXC05,Inflammatory Bowel Disease Agents,1.145
+adult,silver,rxc,RXC05,Inflammatory Bowel Disease Agents,1.058
+adult,bronze,rxc,RXC05,Inflammatory Bowel Disease Agents,0.954
+adult,catastrophic,rxc,RXC05,Inflammatory Bowel Disease Agents,0.929
+adult,platinum,rxc,RXC06,Insulin,1.346
+adult,gold,rxc,RXC06,Insulin,1.183
+adult,silver,rxc,RXC06,Insulin,1.022
+adult,bronze,rxc,RXC06,Insulin,0.861
+adult,catastrophic,rxc,RXC06,Insulin,0.828
+adult,platinum,rxc,RXC07,"Anti-Diabetic Agents, Except Insulin and Metformin Only",0.861
+adult,gold,rxc,RXC07,"Anti-Diabetic Agents, Except Insulin and Metformin Only",0.760
+adult,silver,rxc,RXC07,"Anti-Diabetic Agents, Except Insulin and Metformin Only",0.636
+adult,bronze,rxc,RXC07,"Anti-Diabetic Agents, Except Insulin and Metformin Only",0.456
+adult,catastrophic,rxc,RXC07,"Anti-Diabetic Agents, Except Insulin and Metformin Only",0.417
+adult,platinum,rxc,RXC08,Multiple Sclerosis Agents,14.246
+adult,gold,rxc,RXC08,Multiple Sclerosis Agents,13.514
+adult,silver,rxc,RXC08,Multiple Sclerosis Agents,13.325
+adult,bronze,rxc,RXC08,Multiple Sclerosis Agents,12.956
+adult,catastrophic,rxc,RXC08,Multiple Sclerosis Agents,12.906
+adult,platinum,rxc,RXC09,Immune Suppressants and Immunomodulators,11.919
+adult,gold,rxc,RXC09,Immune Suppressants and Immunomodulators,11.393
+adult,silver,rxc,RXC09,Immune Suppressants and Immunomodulators,11.362
+adult,bronze,rxc,RXC09,Immune Suppressants and Immunomodulators,11.213
+adult,catastrophic,rxc,RXC09,Immune Suppressants and Immunomodulators,11.226
+adult,platinum,rxc,RXC10,Cystic Fibrosis Agents,20.797
+adult,gold,rxc,RXC10,Cystic Fibrosis Agents,20.325
+adult,silver,rxc,RXC10,Cystic Fibrosis Agents,20.299
+adult,bronze,rxc,RXC10,Cystic Fibrosis Agents,20.171
+adult,catastrophic,rxc,RXC10,Cystic Fibrosis Agents,20.180
+adult,platinum,rxc,RXC01xHCC001,Additional effect for enrollees with RXC 01 and HCC 001,2.562
+adult,gold,rxc,RXC01xHCC001,Additional effect for enrollees with RXC 01 and HCC 001,2.555
+adult,silver,rxc,RXC01xHCC001,Additional effect for enrollees with RXC 01 and HCC 001,2.810
+adult,bronze,rxc,RXC01xHCC001,Additional effect for enrollees with RXC 01 and HCC 001,3.049
+adult,catastrophic,rxc,RXC01xHCC001,Additional effect for enrollees with RXC 01 and HCC 001,3.115
+adult,platinum,rxc,"RXC02xHCC037_1,036,035_2,035_1,034",Additional effect for enrollees with RXC 02 and (HCC 037_1 or 036 or 035_2 or 035_1 or 034),-0.532
+adult,gold,rxc,"RXC02xHCC037_1,036,035_2,035_1,034",Additional effect for enrollees with RXC 02 and (HCC 037_1 or 036 or 035_2 or 035_1 or 034),-0.472
+adult,silver,rxc,"RXC02xHCC037_1,036,035_2,035_1,034",Additional effect for enrollees with RXC 02 and (HCC 037_1 or 036 or 035_2 or 035_1 or 034),-0.424
+adult,bronze,rxc,"RXC02xHCC037_1,036,035_2,035_1,034",Additional effect for enrollees with RXC 02 and (HCC 037_1 or 036 or 035_2 or 035_1 or 034),-0.371
+adult,catastrophic,rxc,"RXC02xHCC037_1,036,035_2,035_1,034",Additional effect for enrollees with RXC 02 and (HCC 037_1 or 036 or 035_2 or 035_1 or 034),-0.364
+adult,platinum,rxc,RXC03xHCC142,Additional effect for enrollees with RXC 03 and HCC 142,0.000
+adult,gold,rxc,RXC03xHCC142,Additional effect for enrollees with RXC 03 and HCC 142,0.000
+adult,silver,rxc,RXC03xHCC142,Additional effect for enrollees with RXC 03 and HCC 142,0.000
+adult,bronze,rxc,RXC03xHCC142,Additional effect for enrollees with RXC 03 and HCC 142,0.000
+adult,catastrophic,rxc,RXC03xHCC142,Additional effect for enrollees with RXC 03 and HCC 142,0.000
+adult,platinum,rxc,"RXC04xHCC184,183,187,188",Additional effect for enrollees with RXC 04 and (HCC 184 or 183 or 187 or 188),0.000
+adult,gold,rxc,"RXC04xHCC184,183,187,188",Additional effect for enrollees with RXC 04 and (HCC 184 or 183 or 187 or 188),0.000
+adult,silver,rxc,"RXC04xHCC184,183,187,188",Additional effect for enrollees with RXC 04 and (HCC 184 or 183 or 187 or 188),0.000
+adult,bronze,rxc,"RXC04xHCC184,183,187,188",Additional effect for enrollees with RXC 04 and (HCC 184 or 183 or 187 or 188),0.000
+adult,catastrophic,rxc,"RXC04xHCC184,183,187,188",Additional effect for enrollees with RXC 04 and (HCC 184 or 183 or 187 or 188),0.000
+adult,platinum,rxc,"RXC05xHCC048,041",Additional effect for enrollees with RXC 05 and (HCC 048 or 041),-0.865
+adult,gold,rxc,"RXC05xHCC048,041",Additional effect for enrollees with RXC 05 and (HCC 048 or 041),-0.827
+adult,silver,rxc,"RXC05xHCC048,041",Additional effect for enrollees with RXC 05 and (HCC 048 or 041),-0.778
+adult,bronze,rxc,"RXC05xHCC048,041",Additional effect for enrollees with RXC 05 and (HCC 048 or 041),-0.704
+adult,catastrophic,rxc,"RXC05xHCC048,041",Additional effect for enrollees with RXC 05 and (HCC 048 or 041),-0.687
+adult,platinum,rxc,"RXC06xHCC018,019,020,021",Additional effect for enrollees with RXC 06 and (HCC 018 or 019 or 020 or 021),0.397
+adult,gold,rxc,"RXC06xHCC018,019,020,021",Additional effect for enrollees with RXC 06 and (HCC 018 or 019 or 020 or 021),0.428
+adult,silver,rxc,"RXC06xHCC018,019,020,021",Additional effect for enrollees with RXC 06 and (HCC 018 or 019 or 020 or 021),0.499
+adult,bronze,rxc,"RXC06xHCC018,019,020,021",Additional effect for enrollees with RXC 06 and (HCC 018 or 019 or 020 or 021),0.496
+adult,catastrophic,rxc,"RXC06xHCC018,019,020,021",Additional effect for enrollees with RXC 06 and (HCC 018 or 019 or 020 or 021),0.502
+adult,platinum,rxc,"RXC07xHCC018,019,020,021",Additional effect for enrollees with RXC 07 and (HCC 018 or 019 or 020 or 021),-0.224
+adult,gold,rxc,"RXC07xHCC018,019,020,021",Additional effect for enrollees with RXC 07 and (HCC 018 or 019 or 020 or 021),-0.182
+adult,silver,rxc,"RXC07xHCC018,019,020,021",Additional effect for enrollees with RXC 07 and (HCC 018 or 019 or 020 or 021),-0.142
+adult,bronze,rxc,"RXC07xHCC018,019,020,021",Additional effect for enrollees with RXC 07 and (HCC 018 or 019 or 020 or 021),-0.102
+adult,catastrophic,rxc,"RXC07xHCC018,019,020,021",Additional effect for enrollees with RXC 07 and (HCC 018 or 019 or 020 or 021),-0.094
+adult,platinum,rxc,RXC08xHCC118,Additional effect for enrollees with RXC 08 and HCC 118,-0.690
+adult,gold,rxc,RXC08xHCC118,Additional effect for enrollees with RXC 08 and HCC 118,-0.371
+adult,silver,rxc,RXC08xHCC118,Additional effect for enrollees with RXC 08 and HCC 118,-0.137
+adult,bronze,rxc,RXC08xHCC118,Additional effect for enrollees with RXC 08 and HCC 118,0.193
+adult,catastrophic,rxc,RXC08xHCC118,Additional effect for enrollees with RXC 08 and HCC 118,0.271
+adult,platinum,rxc,RXC09xHCC056or057and048or041,Additional effect for enrollees with RXC 09 and (HCC 048 or 041) and (HCC 056 or 057),0.444
+adult,gold,rxc,RXC09xHCC056or057and048or041,Additional effect for enrollees with RXC 09 and (HCC 048 or 041) and (HCC 056 or 057),0.504
+adult,silver,rxc,RXC09xHCC056or057and048or041,Additional effect for enrollees with RXC 09 and (HCC 048 or 041) and (HCC 056 or 057),0.555
+adult,bronze,rxc,RXC09xHCC056or057and048or041,Additional effect for enrollees with RXC 09 and (HCC 048 or 041) and (HCC 056 or 057),0.632
+adult,catastrophic,rxc,RXC09xHCC056or057and048or041,Additional effect for enrollees with RXC 09 and (HCC 048 or 041) and (HCC 056 or 057),0.647
+adult,platinum,rxc,RXC09xHCC056,Additional effect for enrollees with RXC 09 and HCC 056,-1.220
+adult,gold,rxc,RXC09xHCC056,Additional effect for enrollees with RXC 09 and HCC 056,-1.126
+adult,silver,rxc,RXC09xHCC056,Additional effect for enrollees with RXC 09 and HCC 056,-1.066
+adult,bronze,rxc,RXC09xHCC056,Additional effect for enrollees with RXC 09 and HCC 056,-0.987
+adult,catastrophic,rxc,RXC09xHCC056,Additional effect for enrollees with RXC 09 and HCC 056,-0.974
+adult,platinum,rxc,RXC09xHCC057,Additional effect for enrollees with RXC 09 and HCC 057,-0.360
+adult,gold,rxc,RXC09xHCC057,Additional effect for enrollees with RXC 09 and HCC 057,-0.294
+adult,silver,rxc,RXC09xHCC057,Additional effect for enrollees with RXC 09 and HCC 057,-0.219
+adult,bronze,rxc,RXC09xHCC057,Additional effect for enrollees with RXC 09 and HCC 057,-0.123
+adult,catastrophic,rxc,RXC09xHCC057,Additional effect for enrollees with RXC 09 and HCC 057,-0.103
+adult,platinum,rxc,"RXC09xHCC048,041",Additional effect for enrollees with RXC 09 and (HCC 048 or 041),-0.102
+adult,gold,rxc,"RXC09xHCC048,041",Additional effect for enrollees with RXC 09 and (HCC 048 or 041),-0.013
+adult,silver,rxc,"RXC09xHCC048,041",Additional effect for enrollees with RXC 09 and (HCC 048 or 041),0.053
+adult,bronze,rxc,"RXC09xHCC048,041",Additional effect for enrollees with RXC 09 and (HCC 048 or 041),0.153
+adult,catastrophic,rxc,"RXC09xHCC048,041",Additional effect for enrollees with RXC 09 and (HCC 048 or 041),0.174
+adult,platinum,rxc,"RXC10xHCC159,158",Additional effect for enrollees with RXC 10 and (HCC 159 or 158),42.845
+adult,gold,rxc,"RXC10xHCC159,158",Additional effect for enrollees with RXC 10 and (HCC 159 or 158),42.904
+adult,silver,rxc,"RXC10xHCC159,158",Additional effect for enrollees with RXC 10 and (HCC 159 or 158),42.990
+adult,bronze,rxc,"RXC10xHCC159,158",Additional effect for enrollees with RXC 10 and (HCC 159 or 158),43.099
+adult,catastrophic,rxc,"RXC10xHCC159,158",Additional effect for enrollees with RXC 10 and (HCC 159 or 158),43.122
+child,platinum,demographic,"Age 2-4, Male","Age 2-4, Male",0.275
+child,gold,demographic,"Age 2-4, Male","Age 2-4, Male",0.197
+child,silver,demographic,"Age 2-4, Male","Age 2-4, Male",0.147
+child,bronze,demographic,"Age 2-4, Male","Age 2-4, Male",0.110
+child,catastrophic,demographic,"Age 2-4, Male","Age 2-4, Male",0.103
+child,platinum,demographic,"Age 5-9, Male","Age 5-9, Male",0.206
+child,gold,demographic,"Age 5-9, Male","Age 5-9, Male",0.139
+child,silver,demographic,"Age 5-9, Male","Age 5-9, Male",0.100
+child,bronze,demographic,"Age 5-9, Male","Age 5-9, Male",0.076
+child,catastrophic,demographic,"Age 5-9, Male","Age 5-9, Male",0.071
+child,platinum,demographic,"Age 10-14, Male","Age 10-14, Male",0.218
+child,gold,demographic,"Age 10-14, Male","Age 10-14, Male",0.153
+child,silver,demographic,"Age 10-14, Male","Age 10-14, Male",0.113
+child,bronze,demographic,"Age 10-14, Male","Age 10-14, Male",0.089
+child,catastrophic,demographic,"Age 10-14, Male","Age 10-14, Male",0.085
+child,platinum,demographic,"Age 15-20, Male","Age 15-20, Male",0.253
+child,gold,demographic,"Age 15-20, Male","Age 15-20, Male",0.182
+child,silver,demographic,"Age 15-20, Male","Age 15-20, Male",0.135
+child,bronze,demographic,"Age 15-20, Male","Age 15-20, Male",0.101
+child,catastrophic,demographic,"Age 15-20, Male","Age 15-20, Male",0.095
+child,platinum,demographic,"Age 2-4, Female","Age 2-4, Female",0.222
+child,gold,demographic,"Age 2-4, Female","Age 2-4, Female",0.152
+child,silver,demographic,"Age 2-4, Female","Age 2-4, Female",0.112
+child,bronze,demographic,"Age 2-4, Female","Age 2-4, Female",0.087
+child,catastrophic,demographic,"Age 2-4, Female","Age 2-4, Female",0.081
+child,platinum,demographic,"Age 5-9, Female","Age 5-9, Female",0.153
+child,gold,demographic,"Age 5-9, Female","Age 5-9, Female",0.090
+child,silver,demographic,"Age 5-9, Female","Age 5-9, Female",0.058
+child,bronze,demographic,"Age 5-9, Female","Age 5-9, Female",0.040
+child,catastrophic,demographic,"Age 5-9, Female","Age 5-9, Female",0.036
+child,platinum,demographic,"Age 10-14, Female","Age 10-14, Female",0.221
+child,gold,demographic,"Age 10-14, Female","Age 10-14, Female",0.155
+child,silver,demographic,"Age 10-14, Female","Age 10-14, Female",0.115
+child,bronze,demographic,"Age 10-14, Female","Age 10-14, Female",0.091
+child,catastrophic,demographic,"Age 10-14, Female","Age 10-14, Female",0.088
+child,platinum,demographic,"Age 15-20, Female","Age 15-20, Female",0.286
+child,gold,demographic,"Age 15-20, Female","Age 15-20, Female",0.200
+child,silver,demographic,"Age 15-20, Female","Age 15-20, Female",0.136
+child,bronze,demographic,"Age 15-20, Female","Age 15-20, Female",0.090
+child,catastrophic,demographic,"Age 15-20, Female","Age 15-20, Female",0.081
+child,platinum,diagnosis,HCC001,HIV/AIDS,4.433
+child,gold,diagnosis,HCC001,HIV/AIDS,4.021
+child,silver,diagnosis,HCC001,HIV/AIDS,3.934
+child,bronze,diagnosis,HCC001,HIV/AIDS,3.745
+child,catastrophic,diagnosis,HCC001,HIV/AIDS,3.738
+child,platinum,diagnosis,HCC002,"Septicemia, Sepsis, Systemic Inflammatory Response Syndrome/Shock",15.157
+child,gold,diagnosis,HCC002,"Septicemia, Sepsis, Systemic Inflammatory Response Syndrome/Shock",14.968
+child,silver,diagnosis,HCC002,"Septicemia, Sepsis, Systemic Inflammatory Response Syndrome/Shock",14.893
+child,bronze,diagnosis,HCC002,"Septicemia, Sepsis, Systemic Inflammatory Response Syndrome/Shock",14.776
+child,catastrophic,diagnosis,HCC002,"Septicemia, Sepsis, Systemic Inflammatory Response Syndrome/Shock",14.765
+child,platinum,diagnosis,HCC003,"Central Nervous System Infections, Except Viral Meningitis",14.259
+child,gold,diagnosis,HCC003,"Central Nervous System Infections, Except Viral Meningitis",14.125
+child,silver,diagnosis,HCC003,"Central Nervous System Infections, Except Viral Meningitis",14.066
+child,bronze,diagnosis,HCC003,"Central Nervous System Infections, Except Viral Meningitis",13.984
+child,catastrophic,diagnosis,HCC003,"Central Nervous System Infections, Except Viral Meningitis",13.973
+child,platinum,diagnosis,HCC004,Viral or Unspecified Meningitis,13.862
+child,gold,diagnosis,HCC004,Viral or Unspecified Meningitis,13.735
+child,silver,diagnosis,HCC004,Viral or Unspecified Meningitis,13.668
+child,bronze,diagnosis,HCC004,Viral or Unspecified Meningitis,13.575
+child,catastrophic,diagnosis,HCC004,Viral or Unspecified Meningitis,13.559
+child,platinum,diagnosis,HCC006,Opportunistic Infections,19.550
+child,gold,diagnosis,HCC006,Opportunistic Infections,19.503
+child,silver,diagnosis,HCC006,Opportunistic Infections,19.430
+child,bronze,diagnosis,HCC006,Opportunistic Infections,19.350
+child,catastrophic,diagnosis,HCC006,Opportunistic Infections,19.334
+child,platinum,diagnosis,HCC008,Metastatic Cancer,31.113
+child,gold,diagnosis,HCC008,Metastatic Cancer,30.879
+child,silver,diagnosis,HCC008,Metastatic Cancer,30.818
+child,bronze,diagnosis,HCC008,Metastatic Cancer,30.711
+child,catastrophic,diagnosis,HCC008,Metastatic Cancer,30.705
+child,platinum,diagnosis,HCC009,"Lung, Brain, and Other Severe Cancers, Including Pediatric Acute Lymphoid Leukemia",9.342
+child,gold,diagnosis,HCC009,"Lung, Brain, and Other Severe Cancers, Including Pediatric Acute Lymphoid Leukemia",9.119
+child,silver,diagnosis,HCC009,"Lung, Brain, and Other Severe Cancers, Including Pediatric Acute Lymphoid Leukemia",9.022
+child,bronze,diagnosis,HCC009,"Lung, Brain, and Other Severe Cancers, Including Pediatric Acute Lymphoid Leukemia",8.874
+child,catastrophic,diagnosis,HCC009,"Lung, Brain, and Other Severe Cancers, Including Pediatric Acute Lymphoid Leukemia",8.855
+child,platinum,diagnosis,HCC010,Non-Hodgkin Lymphomas and Other Cancers and Tumors,8.439
+child,gold,diagnosis,HCC010,Non-Hodgkin Lymphomas and Other Cancers and Tumors,8.247
+child,silver,diagnosis,HCC010,Non-Hodgkin Lymphomas and Other Cancers and Tumors,8.142
+child,bronze,diagnosis,HCC010,Non-Hodgkin Lymphomas and Other Cancers and Tumors,7.988
+child,catastrophic,diagnosis,HCC010,Non-Hodgkin Lymphomas and Other Cancers and Tumors,7.962
+child,platinum,diagnosis,HCC011,"Colorectal, Breast (Age < 50), Kidney, and Other Cancers",4.085
+child,gold,diagnosis,HCC011,"Colorectal, Breast (Age < 50), Kidney, and Other Cancers",3.945
+child,silver,diagnosis,HCC011,"Colorectal, Breast (Age < 50), Kidney, and Other Cancers",3.863
+child,bronze,diagnosis,HCC011,"Colorectal, Breast (Age < 50), Kidney, and Other Cancers",3.739
+child,catastrophic,diagnosis,HCC011,"Colorectal, Breast (Age < 50), Kidney, and Other Cancers",3.715
+child,platinum,diagnosis,HCC012,"Breast (Age 50+) and Prostate Cancer, Benign/Uncertain Brain Tumors, and Other Cancers and Tumors",4.085
+child,gold,diagnosis,HCC012,"Breast (Age 50+) and Prostate Cancer, Benign/Uncertain Brain Tumors, and Other Cancers and Tumors",3.945
+child,silver,diagnosis,HCC012,"Breast (Age 50+) and Prostate Cancer, Benign/Uncertain Brain Tumors, and Other Cancers and Tumors",3.863
+child,bronze,diagnosis,HCC012,"Breast (Age 50+) and Prostate Cancer, Benign/Uncertain Brain Tumors, and Other Cancers and Tumors",3.739
+child,catastrophic,diagnosis,HCC012,"Breast (Age 50+) and Prostate Cancer, Benign/Uncertain Brain Tumors, and Other Cancers and Tumors",3.715
+child,platinum,diagnosis,HCC013,"Thyroid Cancer, Melanoma, Neurofibromatosis, and Other Cancers and Tumors",1.309
+child,gold,diagnosis,HCC013,"Thyroid Cancer, Melanoma, Neurofibromatosis, and Other Cancers and Tumors",1.199
+child,silver,diagnosis,HCC013,"Thyroid Cancer, Melanoma, Neurofibromatosis, and Other Cancers and Tumors",1.105
+child,bronze,diagnosis,HCC013,"Thyroid Cancer, Melanoma, Neurofibromatosis, and Other Cancers and Tumors",0.987
+child,catastrophic,diagnosis,HCC013,"Thyroid Cancer, Melanoma, Neurofibromatosis, and Other Cancers and Tumors",0.963
+child,platinum,diagnosis,HCC018,Pancreas Transplant Status,12.113
+child,gold,diagnosis,HCC018,Pancreas Transplant Status,12.102
+child,silver,diagnosis,HCC018,Pancreas Transplant Status,12.086
+child,bronze,diagnosis,HCC018,Pancreas Transplant Status,12.073
+child,catastrophic,diagnosis,HCC018,Pancreas Transplant Status,12.068
+child,platinum,diagnosis,HCC019,Diabetes with Acute Complications,2.221
+child,gold,diagnosis,HCC019,Diabetes with Acute Complications,1.995
+child,silver,diagnosis,HCC019,Diabetes with Acute Complications,1.784
+child,bronze,diagnosis,HCC019,Diabetes with Acute Complications,1.480
+child,catastrophic,diagnosis,HCC019,Diabetes with Acute Complications,1.431
+child,platinum,diagnosis,HCC020,Diabetes with Chronic Complications,2.221
+child,gold,diagnosis,HCC020,Diabetes with Chronic Complications,1.995
+child,silver,diagnosis,HCC020,Diabetes with Chronic Complications,1.784
+child,bronze,diagnosis,HCC020,Diabetes with Chronic Complications,1.480
+child,catastrophic,diagnosis,HCC020,Diabetes with Chronic Complications,1.431
+child,platinum,diagnosis,HCC021,Diabetes without Complication,2.221
+child,gold,diagnosis,HCC021,Diabetes without Complication,1.995
+child,silver,diagnosis,HCC021,Diabetes without Complication,1.784
+child,bronze,diagnosis,HCC021,Diabetes without Complication,1.480
+child,catastrophic,diagnosis,HCC021,Diabetes without Complication,1.431
+child,platinum,diagnosis,HCC023,Protein-Calorie Malnutrition,19.116
+child,gold,diagnosis,HCC023,Protein-Calorie Malnutrition,19.000
+child,silver,diagnosis,HCC023,Protein-Calorie Malnutrition,18.960
+child,bronze,diagnosis,HCC023,Protein-Calorie Malnutrition,18.905
+child,catastrophic,diagnosis,HCC023,Protein-Calorie Malnutrition,18.897
+child,platinum,diagnosis,HCC026,Mucopolysaccharidosis,30.869
+child,gold,diagnosis,HCC026,Mucopolysaccharidosis,30.640
+child,silver,diagnosis,HCC026,Mucopolysaccharidosis,30.595
+child,bronze,diagnosis,HCC026,Mucopolysaccharidosis,30.494
+child,catastrophic,diagnosis,HCC026,Mucopolysaccharidosis,30.492
+child,platinum,diagnosis,HCC027,Lipidoses and Glycogenosis,30.869
+child,gold,diagnosis,HCC027,Lipidoses and Glycogenosis,30.640
+child,silver,diagnosis,HCC027,Lipidoses and Glycogenosis,30.595
+child,bronze,diagnosis,HCC027,Lipidoses and Glycogenosis,30.494
+child,catastrophic,diagnosis,HCC027,Lipidoses and Glycogenosis,30.492
+child,platinum,diagnosis,HCC028,"Congenital Metabolic Disorders, Not Elsewhere Classified",4.743
+child,gold,diagnosis,HCC028,"Congenital Metabolic Disorders, Not Elsewhere Classified",4.634
+child,silver,diagnosis,HCC028,"Congenital Metabolic Disorders, Not Elsewhere Classified",4.577
+child,bronze,diagnosis,HCC028,"Congenital Metabolic Disorders, Not Elsewhere Classified",4.501
+child,catastrophic,diagnosis,HCC028,"Congenital Metabolic Disorders, Not Elsewhere Classified",4.489
+child,platinum,diagnosis,HCC029,"Amyloidosis, Porphyria, and Other Metabolic Disorders",4.743
+child,gold,diagnosis,HCC029,"Amyloidosis, Porphyria, and Other Metabolic Disorders",4.634
+child,silver,diagnosis,HCC029,"Amyloidosis, Porphyria, and Other Metabolic Disorders",4.577
+child,bronze,diagnosis,HCC029,"Amyloidosis, Porphyria, and Other Metabolic Disorders",4.501
+child,catastrophic,diagnosis,HCC029,"Amyloidosis, Porphyria, and Other Metabolic Disorders",4.489
+child,platinum,diagnosis,HCC030,"Adrenal, Pituitary, and Other Significant Endocrine Disorders",5.040
+child,gold,diagnosis,HCC030,"Adrenal, Pituitary, and Other Significant Endocrine Disorders",4.820
+child,silver,diagnosis,HCC030,"Adrenal, Pituitary, and Other Significant Endocrine Disorders",4.751
+child,bronze,diagnosis,HCC030,"Adrenal, Pituitary, and Other Significant Endocrine Disorders",4.645
+child,catastrophic,diagnosis,HCC030,"Adrenal, Pituitary, and Other Significant Endocrine Disorders",4.637
+child,platinum,diagnosis,HCC034,Liver Transplant Status/Complications,12.113
+child,gold,diagnosis,HCC034,Liver Transplant Status/Complications,12.102
+child,silver,diagnosis,HCC034,Liver Transplant Status/Complications,12.086
+child,bronze,diagnosis,HCC034,Liver Transplant Status/Complications,12.073
+child,catastrophic,diagnosis,HCC034,Liver Transplant Status/Complications,12.068
+child,platinum,diagnosis,HCC035_1,"Acute Liver Failure/Disease, Including Neonatal Hepatitis",9.375
+child,gold,diagnosis,HCC035_1,"Acute Liver Failure/Disease, Including Neonatal Hepatitis",9.241
+child,silver,diagnosis,HCC035_1,"Acute Liver Failure/Disease, Including Neonatal Hepatitis",9.204
+child,bronze,diagnosis,HCC035_1,"Acute Liver Failure/Disease, Including Neonatal Hepatitis",9.133
+child,catastrophic,diagnosis,HCC035_1,"Acute Liver Failure/Disease, Including Neonatal Hepatitis",9.122
+child,platinum,diagnosis,HCC035_2,Chronic Liver Failure/End-Stage Liver Disorders,7.833
+child,gold,diagnosis,HCC035_2,Chronic Liver Failure/End-Stage Liver Disorders,7.687
+child,silver,diagnosis,HCC035_2,Chronic Liver Failure/End-Stage Liver Disorders,7.638
+child,bronze,diagnosis,HCC035_2,Chronic Liver Failure/End-Stage Liver Disorders,7.550
+child,catastrophic,diagnosis,HCC035_2,Chronic Liver Failure/End-Stage Liver Disorders,7.537
+child,platinum,diagnosis,HCC036,Cirrhosis of Liver,3.898
+child,gold,diagnosis,HCC036,Cirrhosis of Liver,3.779
+child,silver,diagnosis,HCC036,Cirrhosis of Liver,3.717
+child,bronze,diagnosis,HCC036,Cirrhosis of Liver,3.629
+child,catastrophic,diagnosis,HCC036,Cirrhosis of Liver,3.615
+child,platinum,diagnosis,HCC037_1,Chronic Viral Hepatitis C,1.171
+child,gold,diagnosis,HCC037_1,Chronic Viral Hepatitis C,1.067
+child,silver,diagnosis,HCC037_1,Chronic Viral Hepatitis C,0.995
+child,bronze,diagnosis,HCC037_1,Chronic Viral Hepatitis C,0.910
+child,catastrophic,diagnosis,HCC037_1,Chronic Viral Hepatitis C,0.895
+child,platinum,diagnosis,HCC037_2,"Chronic Hepatitis, Except Chronic Viral Hepatitis C",0.473
+child,gold,diagnosis,HCC037_2,"Chronic Hepatitis, Except Chronic Viral Hepatitis C",0.401
+child,silver,diagnosis,HCC037_2,"Chronic Hepatitis, Except Chronic Viral Hepatitis C",0.326
+child,bronze,diagnosis,HCC037_2,"Chronic Hepatitis, Except Chronic Viral Hepatitis C",0.239
+child,catastrophic,diagnosis,HCC037_2,"Chronic Hepatitis, Except Chronic Viral Hepatitis C",0.218
+child,platinum,diagnosis,HCC041,Intestine Transplant Status/Complications,14.936
+child,gold,diagnosis,HCC041,Intestine Transplant Status/Complications,14.859
+child,silver,diagnosis,HCC041,Intestine Transplant Status/Complications,14.793
+child,bronze,diagnosis,HCC041,Intestine Transplant Status/Complications,14.709
+child,catastrophic,diagnosis,HCC041,Intestine Transplant Status/Complications,14.693
+child,platinum,diagnosis,HCC042,Peritonitis/Gastrointestinal Perforation/Necrotizing Enterocolitis,18.317
+child,gold,diagnosis,HCC042,Peritonitis/Gastrointestinal Perforation/Necrotizing Enterocolitis,18.056
+child,silver,diagnosis,HCC042,Peritonitis/Gastrointestinal Perforation/Necrotizing Enterocolitis,18.005
+child,bronze,diagnosis,HCC042,Peritonitis/Gastrointestinal Perforation/Necrotizing Enterocolitis,17.906
+child,catastrophic,diagnosis,HCC042,Peritonitis/Gastrointestinal Perforation/Necrotizing Enterocolitis,17.903
+child,platinum,diagnosis,HCC045,Intestinal Obstruction,4.522
+child,gold,diagnosis,HCC045,Intestinal Obstruction,4.352
+child,silver,diagnosis,HCC045,Intestinal Obstruction,4.262
+child,bronze,diagnosis,HCC045,Intestinal Obstruction,4.128
+child,catastrophic,diagnosis,HCC045,Intestinal Obstruction,4.109
+child,platinum,diagnosis,HCC046,Chronic Pancreatitis,8.308
+child,gold,diagnosis,HCC046,Chronic Pancreatitis,8.160
+child,silver,diagnosis,HCC046,Chronic Pancreatitis,8.109
+child,bronze,diagnosis,HCC046,Chronic Pancreatitis,8.012
+child,catastrophic,diagnosis,HCC046,Chronic Pancreatitis,7.998
+child,platinum,diagnosis,HCC047,Acute Pancreatitis,6.026
+child,gold,diagnosis,HCC047,Acute Pancreatitis,5.806
+child,silver,diagnosis,HCC047,Acute Pancreatitis,5.717
+child,bronze,diagnosis,HCC047,Acute Pancreatitis,5.565
+child,catastrophic,diagnosis,HCC047,Acute Pancreatitis,5.547
+child,platinum,diagnosis,HCC048,Inflammatory Bowel Disease,10.352
+child,gold,diagnosis,HCC048,Inflammatory Bowel Disease,9.970
+child,silver,diagnosis,HCC048,Inflammatory Bowel Disease,9.879
+child,bronze,diagnosis,HCC048,Inflammatory Bowel Disease,9.691
+child,catastrophic,diagnosis,HCC048,Inflammatory Bowel Disease,9.676
+child,platinum,diagnosis,HCC054,Necrotizing Fasciitis,4.288
+child,gold,diagnosis,HCC054,Necrotizing Fasciitis,4.095
+child,silver,diagnosis,HCC054,Necrotizing Fasciitis,4.002
+child,bronze,diagnosis,HCC054,Necrotizing Fasciitis,3.869
+child,catastrophic,diagnosis,HCC054,Necrotizing Fasciitis,3.852
+child,platinum,diagnosis,HCC055,Bone/Joint/Muscle Infections/Necrosis,4.288
+child,gold,diagnosis,HCC055,Bone/Joint/Muscle Infections/Necrosis,4.095
+child,silver,diagnosis,HCC055,Bone/Joint/Muscle Infections/Necrosis,4.002
+child,bronze,diagnosis,HCC055,Bone/Joint/Muscle Infections/Necrosis,3.869
+child,catastrophic,diagnosis,HCC055,Bone/Joint/Muscle Infections/Necrosis,3.852
+child,platinum,diagnosis,HCC056,Rheumatoid Arthritis and Specified Autoimmune Disorders,4.773
+child,gold,diagnosis,HCC056,Rheumatoid Arthritis and Specified Autoimmune Disorders,4.527
+child,silver,diagnosis,HCC056,Rheumatoid Arthritis and Specified Autoimmune Disorders,4.447
+child,bronze,diagnosis,HCC056,Rheumatoid Arthritis and Specified Autoimmune Disorders,4.318
+child,catastrophic,diagnosis,HCC056,Rheumatoid Arthritis and Specified Autoimmune Disorders,4.307
+child,platinum,diagnosis,HCC057,Systemic Lupus Erythematosus and Other Autoimmune Disorders,0.975
+child,gold,diagnosis,HCC057,Systemic Lupus Erythematosus and Other Autoimmune Disorders,0.876
+child,silver,diagnosis,HCC057,Systemic Lupus Erythematosus and Other Autoimmune Disorders,0.784
+child,bronze,diagnosis,HCC057,Systemic Lupus Erythematosus and Other Autoimmune Disorders,0.671
+child,catastrophic,diagnosis,HCC057,Systemic Lupus Erythematosus and Other Autoimmune Disorders,0.650
+child,platinum,diagnosis,HCC061,Osteogenesis Imperfecta and Other Osteodystrophy's,1.213
+child,gold,diagnosis,HCC061,Osteogenesis Imperfecta and Other Osteodystrophy's,1.112
+child,silver,diagnosis,HCC061,Osteogenesis Imperfecta and Other Osteodystrophy's,1.041
+child,bronze,diagnosis,HCC061,Osteogenesis Imperfecta and Other Osteodystrophy's,0.953
+child,catastrophic,diagnosis,HCC061,Osteogenesis Imperfecta and Other Osteodystrophy's,0.939
+child,platinum,diagnosis,HCC062,Congenital/Developmental Skeletal and Connective Tissue Disorders,1.213
+child,gold,diagnosis,HCC062,Congenital/Developmental Skeletal and Connective Tissue Disorders,1.112
+child,silver,diagnosis,HCC062,Congenital/Developmental Skeletal and Connective Tissue Disorders,1.041
+child,bronze,diagnosis,HCC062,Congenital/Developmental Skeletal and Connective Tissue Disorders,0.953
+child,catastrophic,diagnosis,HCC062,Congenital/Developmental Skeletal and Connective Tissue Disorders,0.939
+child,platinum,diagnosis,HCC063,Cleft Lip/Cleft Palate,0.884
+child,gold,diagnosis,HCC063,Cleft Lip/Cleft Palate,0.762
+child,silver,diagnosis,HCC063,Cleft Lip/Cleft Palate,0.665
+child,bronze,diagnosis,HCC063,Cleft Lip/Cleft Palate,0.541
+child,catastrophic,diagnosis,HCC063,Cleft Lip/Cleft Palate,0.519
+child,platinum,diagnosis,HCC066,Hemophilia,62.038
+child,gold,diagnosis,HCC066,Hemophilia,61.611
+child,silver,diagnosis,HCC066,Hemophilia,61.536
+child,bronze,diagnosis,HCC066,Hemophilia,61.362
+child,catastrophic,diagnosis,HCC066,Hemophilia,61.352
+child,platinum,diagnosis,HCC067,Myelodysplastic Syndromes and Myelofibrosis,12.776
+child,gold,diagnosis,HCC067,Myelodysplastic Syndromes and Myelofibrosis,12.621
+child,silver,diagnosis,HCC067,Myelodysplastic Syndromes and Myelofibrosis,12.565
+child,bronze,diagnosis,HCC067,Myelodysplastic Syndromes and Myelofibrosis,12.478
+child,catastrophic,diagnosis,HCC067,Myelodysplastic Syndromes and Myelofibrosis,12.468
+child,platinum,diagnosis,HCC068,Aplastic Anemia,12.776
+child,gold,diagnosis,HCC068,Aplastic Anemia,12.621
+child,silver,diagnosis,HCC068,Aplastic Anemia,12.565
+child,bronze,diagnosis,HCC068,Aplastic Anemia,12.478
+child,catastrophic,diagnosis,HCC068,Aplastic Anemia,12.468
+child,platinum,diagnosis,HCC069,"Acquired Hemolytic Anemia, Including Hemolytic Disease of Newborn",12.776
+child,gold,diagnosis,HCC069,"Acquired Hemolytic Anemia, Including Hemolytic Disease of Newborn",12.621
+child,silver,diagnosis,HCC069,"Acquired Hemolytic Anemia, Including Hemolytic Disease of Newborn",12.565
+child,bronze,diagnosis,HCC069,"Acquired Hemolytic Anemia, Including Hemolytic Disease of Newborn",12.478
+child,catastrophic,diagnosis,HCC069,"Acquired Hemolytic Anemia, Including Hemolytic Disease of Newborn",12.468
+child,platinum,diagnosis,HCC070,Sickle Cell Anemia (Hb-SS) and Thalassemia Beta Zero,3.334
+child,gold,diagnosis,HCC070,Sickle Cell Anemia (Hb-SS) and Thalassemia Beta Zero,3.185
+child,silver,diagnosis,HCC070,Sickle Cell Anemia (Hb-SS) and Thalassemia Beta Zero,3.102
+child,bronze,diagnosis,HCC070,Sickle Cell Anemia (Hb-SS) and Thalassemia Beta Zero,2.993
+child,catastrophic,diagnosis,HCC070,Sickle Cell Anemia (Hb-SS) and Thalassemia Beta Zero,2.975
+child,platinum,diagnosis,HCC071,"Sickle-Cell Disorders, Except Sickle-Cell Anemia (Hb-SS) and Thalassemia Beta Zero; Beta Thalassemia Major",3.334
+child,gold,diagnosis,HCC071,"Sickle-Cell Disorders, Except Sickle-Cell Anemia (Hb-SS) and Thalassemia Beta Zero; Beta Thalassemia Major",3.185
+child,silver,diagnosis,HCC071,"Sickle-Cell Disorders, Except Sickle-Cell Anemia (Hb-SS) and Thalassemia Beta Zero; Beta Thalassemia Major",3.102
+child,bronze,diagnosis,HCC071,"Sickle-Cell Disorders, Except Sickle-Cell Anemia (Hb-SS) and Thalassemia Beta Zero; Beta Thalassemia Major",2.993
+child,catastrophic,diagnosis,HCC071,"Sickle-Cell Disorders, Except Sickle-Cell Anemia (Hb-SS) and Thalassemia Beta Zero; Beta Thalassemia Major",2.975
+child,platinum,diagnosis,HCC073,Combined and Other Severe Immunodeficiencies,5.418
+child,gold,diagnosis,HCC073,Combined and Other Severe Immunodeficiencies,5.282
+child,silver,diagnosis,HCC073,Combined and Other Severe Immunodeficiencies,5.226
+child,bronze,diagnosis,HCC073,Combined and Other Severe Immunodeficiencies,5.136
+child,catastrophic,diagnosis,HCC073,Combined and Other Severe Immunodeficiencies,5.125
+child,platinum,diagnosis,HCC074,Disorders of the Immune Mechanism,5.418
+child,gold,diagnosis,HCC074,Disorders of the Immune Mechanism,5.282
+child,silver,diagnosis,HCC074,Disorders of the Immune Mechanism,5.226
+child,bronze,diagnosis,HCC074,Disorders of the Immune Mechanism,5.136
+child,catastrophic,diagnosis,HCC074,Disorders of the Immune Mechanism,5.125
+child,platinum,diagnosis,HCC075,Coagulation Defects and Other Specified Hematological Disorders,3.928
+child,gold,diagnosis,HCC075,Coagulation Defects and Other Specified Hematological Disorders,3.823
+child,silver,diagnosis,HCC075,Coagulation Defects and Other Specified Hematological Disorders,3.755
+child,bronze,diagnosis,HCC075,Coagulation Defects and Other Specified Hematological Disorders,3.667
+child,catastrophic,diagnosis,HCC075,Coagulation Defects and Other Specified Hematological Disorders,3.652
+child,platinum,diagnosis,HCC081,Drug Use with Psychotic Complications,2.335
+child,gold,diagnosis,HCC081,Drug Use with Psychotic Complications,2.193
+child,silver,diagnosis,HCC081,Drug Use with Psychotic Complications,2.103
+child,bronze,diagnosis,HCC081,Drug Use with Psychotic Complications,1.970
+child,catastrophic,diagnosis,HCC081,Drug Use with Psychotic Complications,1.948
+child,platinum,diagnosis,HCC082,"Drug Use Disorder, Moderate/Severe, or Drug Use with Non-Psychotic Complications",2.335
+child,gold,diagnosis,HCC082,"Drug Use Disorder, Moderate/Severe, or Drug Use with Non-Psychotic Complications",2.193
+child,silver,diagnosis,HCC082,"Drug Use Disorder, Moderate/Severe, or Drug Use with Non-Psychotic Complications",2.103
+child,bronze,diagnosis,HCC082,"Drug Use Disorder, Moderate/Severe, or Drug Use with Non-Psychotic Complications",1.970
+child,catastrophic,diagnosis,HCC082,"Drug Use Disorder, Moderate/Severe, or Drug Use with Non-Psychotic Complications",1.948
+child,platinum,diagnosis,HCC083,Alcohol Use with Psychotic Complications,0.772
+child,gold,diagnosis,HCC083,Alcohol Use with Psychotic Complications,0.645
+child,silver,diagnosis,HCC083,Alcohol Use with Psychotic Complications,0.540
+child,bronze,diagnosis,HCC083,Alcohol Use with Psychotic Complications,0.392
+child,catastrophic,diagnosis,HCC083,Alcohol Use with Psychotic Complications,0.368
+child,platinum,diagnosis,HCC084,"Alcohol Use Disorder, Moderate/Severe, or Alcohol Use with Specified Non-Psychotic Complications",0.772
+child,gold,diagnosis,HCC084,"Alcohol Use Disorder, Moderate/Severe, or Alcohol Use with Specified Non-Psychotic Complications",0.645
+child,silver,diagnosis,HCC084,"Alcohol Use Disorder, Moderate/Severe, or Alcohol Use with Specified Non-Psychotic Complications",0.540
+child,bronze,diagnosis,HCC084,"Alcohol Use Disorder, Moderate/Severe, or Alcohol Use with Specified Non-Psychotic Complications",0.392
+child,catastrophic,diagnosis,HCC084,"Alcohol Use Disorder, Moderate/Severe, or Alcohol Use with Specified Non-Psychotic Complications",0.368
+child,platinum,diagnosis,HCC087_1,Schizophrenia,3.539
+child,gold,diagnosis,HCC087_1,Schizophrenia,3.296
+child,silver,diagnosis,HCC087_1,Schizophrenia,3.176
+child,bronze,diagnosis,HCC087_1,Schizophrenia,2.994
+child,catastrophic,diagnosis,HCC087_1,Schizophrenia,2.970
+child,platinum,diagnosis,HCC087_2,"Delusional and Other Specified Psychotic Disorders, Unspecified Psychosis",3.132
+child,gold,diagnosis,HCC087_2,"Delusional and Other Specified Psychotic Disorders, Unspecified Psychosis",2.909
+child,silver,diagnosis,HCC087_2,"Delusional and Other Specified Psychotic Disorders, Unspecified Psychosis",2.777
+child,bronze,diagnosis,HCC087_2,"Delusional and Other Specified Psychotic Disorders, Unspecified Psychosis",2.582
+child,catastrophic,diagnosis,HCC087_2,"Delusional and Other Specified Psychotic Disorders, Unspecified Psychosis",2.552
+child,platinum,diagnosis,HCC088,"Major Depressive Disorder, Severe, and bipolar disorders",2.588
+child,gold,diagnosis,HCC088,"Major Depressive Disorder, Severe, and bipolar disorders",2.398
+child,silver,diagnosis,HCC088,"Major Depressive Disorder, Severe, and bipolar disorders",2.271
+child,bronze,diagnosis,HCC088,"Major Depressive Disorder, Severe, and bipolar disorders",2.101
+child,catastrophic,diagnosis,HCC088,"Major Depressive Disorder, Severe, and bipolar disorders",2.073
+child,platinum,diagnosis,HCC090,Personality Disorders,0.457
+child,gold,diagnosis,HCC090,Personality Disorders,0.373
+child,silver,diagnosis,HCC090,Personality Disorders,0.272
+child,bronze,diagnosis,HCC090,Personality Disorders,0.157
+child,catastrophic,diagnosis,HCC090,Personality Disorders,0.132
+child,platinum,diagnosis,HCC094,Anorexia/Bulimia Nervosa,2.173
+child,gold,diagnosis,HCC094,Anorexia/Bulimia Nervosa,2.038
+child,silver,diagnosis,HCC094,Anorexia/Bulimia Nervosa,1.947
+child,bronze,diagnosis,HCC094,Anorexia/Bulimia Nervosa,1.820
+child,catastrophic,diagnosis,HCC094,Anorexia/Bulimia Nervosa,1.798
+child,platinum,diagnosis,HCC096,"Prader-Willi, Patau, Edwards, and Autosomal Deletion Syndromes",12.591
+child,gold,diagnosis,HCC096,"Prader-Willi, Patau, Edwards, and Autosomal Deletion Syndromes",12.534
+child,silver,diagnosis,HCC096,"Prader-Willi, Patau, Edwards, and Autosomal Deletion Syndromes",12.493
+child,bronze,diagnosis,HCC096,"Prader-Willi, Patau, Edwards, and Autosomal Deletion Syndromes",12.442
+child,catastrophic,diagnosis,HCC096,"Prader-Willi, Patau, Edwards, and Autosomal Deletion Syndromes",12.430
+child,platinum,diagnosis,HCC097,"Down Syndrome, Fragile X, Other Chromosomal Anomalies, and Congenital Malformation Syndromes",0.870
+child,gold,diagnosis,HCC097,"Down Syndrome, Fragile X, Other Chromosomal Anomalies, and Congenital Malformation Syndromes",0.763
+child,silver,diagnosis,HCC097,"Down Syndrome, Fragile X, Other Chromosomal Anomalies, and Congenital Malformation Syndromes",0.692
+child,bronze,diagnosis,HCC097,"Down Syndrome, Fragile X, Other Chromosomal Anomalies, and Congenital Malformation Syndromes",0.590
+child,catastrophic,diagnosis,HCC097,"Down Syndrome, Fragile X, Other Chromosomal Anomalies, and Congenital Malformation Syndromes",0.572
+child,platinum,diagnosis,HCC102,Autistic Disorder,2.588
+child,gold,diagnosis,HCC102,Autistic Disorder,2.398
+child,silver,diagnosis,HCC102,Autistic Disorder,2.271
+child,bronze,diagnosis,HCC102,Autistic Disorder,2.101
+child,catastrophic,diagnosis,HCC102,Autistic Disorder,2.073
+child,platinum,diagnosis,HCC103,"Pervasive Developmental Disorders, Except Autistic Disorder",0.484
+child,gold,diagnosis,HCC103,"Pervasive Developmental Disorders, Except Autistic Disorder",0.414
+child,silver,diagnosis,HCC103,"Pervasive Developmental Disorders, Except Autistic Disorder",0.333
+child,bronze,diagnosis,HCC103,"Pervasive Developmental Disorders, Except Autistic Disorder",0.251
+child,catastrophic,diagnosis,HCC103,"Pervasive Developmental Disorders, Except Autistic Disorder",0.234
+child,platinum,diagnosis,HCC106,Traumatic Complete Lesion Cervical Spinal Cord,10.809
+child,gold,diagnosis,HCC106,Traumatic Complete Lesion Cervical Spinal Cord,10.632
+child,silver,diagnosis,HCC106,Traumatic Complete Lesion Cervical Spinal Cord,10.574
+child,bronze,diagnosis,HCC106,Traumatic Complete Lesion Cervical Spinal Cord,10.475
+child,catastrophic,diagnosis,HCC106,Traumatic Complete Lesion Cervical Spinal Cord,10.467
+child,platinum,diagnosis,HCC107,Quadriplegia,10.809
+child,gold,diagnosis,HCC107,Quadriplegia,10.632
+child,silver,diagnosis,HCC107,Quadriplegia,10.574
+child,bronze,diagnosis,HCC107,Quadriplegia,10.475
+child,catastrophic,diagnosis,HCC107,Quadriplegia,10.467
+child,platinum,diagnosis,HCC108,Traumatic Complete Lesion Dorsal Spinal Cord,9.869
+child,gold,diagnosis,HCC108,Traumatic Complete Lesion Dorsal Spinal Cord,9.651
+child,silver,diagnosis,HCC108,Traumatic Complete Lesion Dorsal Spinal Cord,9.591
+child,bronze,diagnosis,HCC108,Traumatic Complete Lesion Dorsal Spinal Cord,9.476
+child,catastrophic,diagnosis,HCC108,Traumatic Complete Lesion Dorsal Spinal Cord,9.466
+child,platinum,diagnosis,HCC109,Paraplegia,9.869
+child,gold,diagnosis,HCC109,Paraplegia,9.651
+child,silver,diagnosis,HCC109,Paraplegia,9.591
+child,bronze,diagnosis,HCC109,Paraplegia,9.476
+child,catastrophic,diagnosis,HCC109,Paraplegia,9.466
+child,platinum,diagnosis,HCC110,Spinal Cord Disorders/Injuries,4.587
+child,gold,diagnosis,HCC110,Spinal Cord Disorders/Injuries,4.409
+child,silver,diagnosis,HCC110,Spinal Cord Disorders/Injuries,4.305
+child,bronze,diagnosis,HCC110,Spinal Cord Disorders/Injuries,4.145
+child,catastrophic,diagnosis,HCC110,Spinal Cord Disorders/Injuries,4.117
+child,platinum,diagnosis,HCC111,Amyotrophic Lateral Sclerosis and Other Anterior Horn Cell Disease,45.490
+child,gold,diagnosis,HCC111,Amyotrophic Lateral Sclerosis and Other Anterior Horn Cell Disease,45.226
+child,silver,diagnosis,HCC111,Amyotrophic Lateral Sclerosis and Other Anterior Horn Cell Disease,45.175
+child,bronze,diagnosis,HCC111,Amyotrophic Lateral Sclerosis and Other Anterior Horn Cell Disease,45.069
+child,catastrophic,diagnosis,HCC111,Amyotrophic Lateral Sclerosis and Other Anterior Horn Cell Disease,45.058
+child,platinum,diagnosis,HCC112,Quadriplegic Cerebral Palsy,0.832
+child,gold,diagnosis,HCC112,Quadriplegic Cerebral Palsy,0.651
+child,silver,diagnosis,HCC112,Quadriplegic Cerebral Palsy,0.580
+child,bronze,diagnosis,HCC112,Quadriplegic Cerebral Palsy,0.461
+child,catastrophic,diagnosis,HCC112,Quadriplegic Cerebral Palsy,0.449
+child,platinum,diagnosis,HCC113,"Cerebral Palsy, Except Quadriplegic",0.381
+child,gold,diagnosis,HCC113,"Cerebral Palsy, Except Quadriplegic",0.266
+child,silver,diagnosis,HCC113,"Cerebral Palsy, Except Quadriplegic",0.205
+child,bronze,diagnosis,HCC113,"Cerebral Palsy, Except Quadriplegic",0.124
+child,catastrophic,diagnosis,HCC113,"Cerebral Palsy, Except Quadriplegic",0.109
+child,platinum,diagnosis,HCC114,Spina Bifida and Other Brain/Spinal/Nervous System Congenital Anomalies,1.523
+child,gold,diagnosis,HCC114,Spina Bifida and Other Brain/Spinal/Nervous System Congenital Anomalies,1.414
+child,silver,diagnosis,HCC114,Spina Bifida and Other Brain/Spinal/Nervous System Congenital Anomalies,1.350
+child,bronze,diagnosis,HCC114,Spina Bifida and Other Brain/Spinal/Nervous System Congenital Anomalies,1.252
+child,catastrophic,diagnosis,HCC114,Spina Bifida and Other Brain/Spinal/Nervous System Congenital Anomalies,1.237
+child,platinum,diagnosis,HCC115,Myasthenia Gravis/Myoneural Disorders and Guillain-Barre Syndrome/Inflammatory and Toxic Neuropathy,10.844
+child,gold,diagnosis,HCC115,Myasthenia Gravis/Myoneural Disorders and Guillain-Barre Syndrome/Inflammatory and Toxic Neuropathy,10.707
+child,silver,diagnosis,HCC115,Myasthenia Gravis/Myoneural Disorders and Guillain-Barre Syndrome/Inflammatory and Toxic Neuropathy,10.684
+child,bronze,diagnosis,HCC115,Myasthenia Gravis/Myoneural Disorders and Guillain-Barre Syndrome/Inflammatory and Toxic Neuropathy,10.631
+child,catastrophic,diagnosis,HCC115,Myasthenia Gravis/Myoneural Disorders and Guillain-Barre Syndrome/Inflammatory and Toxic Neuropathy,10.631
+child,platinum,diagnosis,HCC117,Muscular Dystrophy,5.690
+child,gold,diagnosis,HCC117,Muscular Dystrophy,5.547
+child,silver,diagnosis,HCC117,Muscular Dystrophy,5.476
+child,bronze,diagnosis,HCC117,Muscular Dystrophy,5.366
+child,catastrophic,diagnosis,HCC117,Muscular Dystrophy,5.350
+child,platinum,diagnosis,HCC118,Multiple Sclerosis,7.658
+child,gold,diagnosis,HCC118,Multiple Sclerosis,7.323
+child,silver,diagnosis,HCC118,Multiple Sclerosis,7.253
+child,bronze,diagnosis,HCC118,Multiple Sclerosis,7.109
+child,catastrophic,diagnosis,HCC118,Multiple Sclerosis,7.104
+child,platinum,diagnosis,HCC119,"Parkinson's, Huntington's, and Spinocerebellar Disease, and Other Neurodegenerative Disorders",5.690
+child,gold,diagnosis,HCC119,"Parkinson's, Huntington's, and Spinocerebellar Disease, and Other Neurodegenerative Disorders",5.547
+child,silver,diagnosis,HCC119,"Parkinson's, Huntington's, and Spinocerebellar Disease, and Other Neurodegenerative Disorders",5.476
+child,bronze,diagnosis,HCC119,"Parkinson's, Huntington's, and Spinocerebellar Disease, and Other Neurodegenerative Disorders",5.366
+child,catastrophic,diagnosis,HCC119,"Parkinson's, Huntington's, and Spinocerebellar Disease, and Other Neurodegenerative Disorders",5.350
+child,platinum,diagnosis,HCC120,Seizure Disorders and Convulsions,1.475
+child,gold,diagnosis,HCC120,Seizure Disorders and Convulsions,1.352
+child,silver,diagnosis,HCC120,Seizure Disorders and Convulsions,1.242
+child,bronze,diagnosis,HCC120,Seizure Disorders and Convulsions,1.102
+child,catastrophic,diagnosis,HCC120,Seizure Disorders and Convulsions,1.074
+child,platinum,diagnosis,HCC121,Hydrocephalus,12.443
+child,gold,diagnosis,HCC121,Hydrocephalus,12.383
+child,silver,diagnosis,HCC121,Hydrocephalus,12.338
+child,bronze,diagnosis,HCC121,Hydrocephalus,12.292
+child,catastrophic,diagnosis,HCC121,Hydrocephalus,12.280
+child,platinum,diagnosis,HCC122,"Nontraumatic Coma, Except Diabetic, Hepatic, or Hypoglycemic; Nontraumatic, Brain Compression/Anoxic Damage",11.881
+child,gold,diagnosis,HCC122,"Nontraumatic Coma, Except Diabetic, Hepatic, or Hypoglycemic; Nontraumatic, Brain Compression/Anoxic Damage",11.883
+child,silver,diagnosis,HCC122,"Nontraumatic Coma, Except Diabetic, Hepatic, or Hypoglycemic; Nontraumatic, Brain Compression/Anoxic Damage",11.874
+child,bronze,diagnosis,HCC122,"Nontraumatic Coma, Except Diabetic, Hepatic, or Hypoglycemic; Nontraumatic, Brain Compression/Anoxic Damage",11.873
+child,catastrophic,diagnosis,HCC122,"Nontraumatic Coma, Except Diabetic, Hepatic, or Hypoglycemic; Nontraumatic, Brain Compression/Anoxic Damage",11.870
+child,platinum,diagnosis,HCC123,Narcolepsy and Cataplexy,4.156
+child,gold,diagnosis,HCC123,Narcolepsy and Cataplexy,4.013
+child,silver,diagnosis,HCC123,Narcolepsy and Cataplexy,3.917
+child,bronze,diagnosis,HCC123,Narcolepsy and Cataplexy,3.781
+child,catastrophic,diagnosis,HCC123,Narcolepsy and Cataplexy,3.750
+child,platinum,diagnosis,HCC125,Respirator Dependence/Tracheostomy Status,25.819
+child,gold,diagnosis,HCC125,Respirator Dependence/Tracheostomy Status,25.590
+child,silver,diagnosis,HCC125,Respirator Dependence/Tracheostomy Status,25.528
+child,bronze,diagnosis,HCC125,Respirator Dependence/Tracheostomy Status,25.420
+child,catastrophic,diagnosis,HCC125,Respirator Dependence/Tracheostomy Status,25.412
+child,platinum,diagnosis,HCC126,Respiratory Arrest,15.588
+child,gold,diagnosis,HCC126,Respiratory Arrest,15.336
+child,silver,diagnosis,HCC126,Respiratory Arrest,15.257
+child,bronze,diagnosis,HCC126,Respiratory Arrest,15.114
+child,catastrophic,diagnosis,HCC126,Respiratory Arrest,15.103
+child,platinum,diagnosis,HCC127,"Cardio-Respiratory Failure and Shock, Including Respiratory Distress Syndromes",15.588
+child,gold,diagnosis,HCC127,"Cardio-Respiratory Failure and Shock, Including Respiratory Distress Syndromes",15.336
+child,silver,diagnosis,HCC127,"Cardio-Respiratory Failure and Shock, Including Respiratory Distress Syndromes",15.257
+child,bronze,diagnosis,HCC127,"Cardio-Respiratory Failure and Shock, Including Respiratory Distress Syndromes",15.114
+child,catastrophic,diagnosis,HCC127,"Cardio-Respiratory Failure and Shock, Including Respiratory Distress Syndromes",15.103
+child,platinum,diagnosis,HCC128,Heart Assistive Device/Artificial Heart,14.936
+child,gold,diagnosis,HCC128,Heart Assistive Device/Artificial Heart,14.859
+child,silver,diagnosis,HCC128,Heart Assistive Device/Artificial Heart,14.793
+child,bronze,diagnosis,HCC128,Heart Assistive Device/Artificial Heart,14.709
+child,catastrophic,diagnosis,HCC128,Heart Assistive Device/Artificial Heart,14.693
+child,platinum,diagnosis,HCC129,Heart Transplant Status/Complications,14.936
+child,gold,diagnosis,HCC129,Heart Transplant Status/Complications,14.859
+child,silver,diagnosis,HCC129,Heart Transplant Status/Complications,14.793
+child,bronze,diagnosis,HCC129,Heart Transplant Status/Complications,14.709
+child,catastrophic,diagnosis,HCC129,Heart Transplant Status/Complications,14.693
+child,platinum,diagnosis,HCC130,Heart Failure,3.788
+child,gold,diagnosis,HCC130,Heart Failure,3.689
+child,silver,diagnosis,HCC130,Heart Failure,3.638
+child,bronze,diagnosis,HCC130,Heart Failure,3.557
+child,catastrophic,diagnosis,HCC130,Heart Failure,3.543
+child,platinum,diagnosis,HCC131,Acute Myocardial Infarction,1.294
+child,gold,diagnosis,HCC131,Acute Myocardial Infarction,1.230
+child,silver,diagnosis,HCC131,Acute Myocardial Infarction,1.180
+child,bronze,diagnosis,HCC131,Acute Myocardial Infarction,1.104
+child,catastrophic,diagnosis,HCC131,Acute Myocardial Infarction,1.092
+child,platinum,diagnosis,HCC132,Unstable Angina and Other Acute Ischemic Heart Disease,1.294
+child,gold,diagnosis,HCC132,Unstable Angina and Other Acute Ischemic Heart Disease,1.230
+child,silver,diagnosis,HCC132,Unstable Angina and Other Acute Ischemic Heart Disease,1.180
+child,bronze,diagnosis,HCC132,Unstable Angina and Other Acute Ischemic Heart Disease,1.104
+child,catastrophic,diagnosis,HCC132,Unstable Angina and Other Acute Ischemic Heart Disease,1.092
+child,platinum,diagnosis,HCC135,"Heart Infection/Inflammation, Except Rheumatic",15.963
+child,gold,diagnosis,HCC135,"Heart Infection/Inflammation, Except Rheumatic",15.860
+child,silver,diagnosis,HCC135,"Heart Infection/Inflammation, Except Rheumatic",15.788
+child,bronze,diagnosis,HCC135,"Heart Infection/Inflammation, Except Rheumatic",15.694
+child,catastrophic,diagnosis,HCC135,"Heart Infection/Inflammation, Except Rheumatic",15.675
+child,platinum,diagnosis,HCC137,Hypoplastic Left Heart Syndrome and Other Severe Congenital Heart Disorders,3.733
+child,gold,diagnosis,HCC137,Hypoplastic Left Heart Syndrome and Other Severe Congenital Heart Disorders,3.595
+child,silver,diagnosis,HCC137,Hypoplastic Left Heart Syndrome and Other Severe Congenital Heart Disorders,3.486
+child,bronze,diagnosis,HCC137,Hypoplastic Left Heart Syndrome and Other Severe Congenital Heart Disorders,3.351
+child,catastrophic,diagnosis,HCC137,Hypoplastic Left Heart Syndrome and Other Severe Congenital Heart Disorders,3.326
+child,platinum,diagnosis,HCC138,Major Congenital Heart/Circulatory Disorders,0.957
+child,gold,diagnosis,HCC138,Major Congenital Heart/Circulatory Disorders,0.868
+child,silver,diagnosis,HCC138,Major Congenital Heart/Circulatory Disorders,0.769
+child,bronze,diagnosis,HCC138,Major Congenital Heart/Circulatory Disorders,0.670
+child,catastrophic,diagnosis,HCC138,Major Congenital Heart/Circulatory Disorders,0.651
+child,platinum,diagnosis,HCC139,"Atrial and Ventricular Septal Defects, Patent Ductus Arteriosus, and Other Congenital Heart/Circulatory Disorders",0.487
+child,gold,diagnosis,HCC139,"Atrial and Ventricular Septal Defects, Patent Ductus Arteriosus, and Other Congenital Heart/Circulatory Disorders",0.406
+child,silver,diagnosis,HCC139,"Atrial and Ventricular Septal Defects, Patent Ductus Arteriosus, and Other Congenital Heart/Circulatory Disorders",0.328
+child,bronze,diagnosis,HCC139,"Atrial and Ventricular Septal Defects, Patent Ductus Arteriosus, and Other Congenital Heart/Circulatory Disorders",0.251
+child,catastrophic,diagnosis,HCC139,"Atrial and Ventricular Septal Defects, Patent Ductus Arteriosus, and Other Congenital Heart/Circulatory Disorders",0.238
+child,platinum,diagnosis,HCC142,Specified Heart Arrhythmias,3.006
+child,gold,diagnosis,HCC142,Specified Heart Arrhythmias,2.865
+child,silver,diagnosis,HCC142,Specified Heart Arrhythmias,2.783
+child,bronze,diagnosis,HCC142,Specified Heart Arrhythmias,2.670
+child,catastrophic,diagnosis,HCC142,Specified Heart Arrhythmias,2.653
+child,platinum,diagnosis,HCC145,Intracranial Hemorrhage,12.918
+child,gold,diagnosis,HCC145,Intracranial Hemorrhage,12.858
+child,silver,diagnosis,HCC145,Intracranial Hemorrhage,12.829
+child,bronze,diagnosis,HCC145,Intracranial Hemorrhage,12.790
+child,catastrophic,diagnosis,HCC145,Intracranial Hemorrhage,12.784
+child,platinum,diagnosis,HCC146,Ischemic or Unspecified Stroke,1.196
+child,gold,diagnosis,HCC146,Ischemic or Unspecified Stroke,1.087
+child,silver,diagnosis,HCC146,Ischemic or Unspecified Stroke,1.028
+child,bronze,diagnosis,HCC146,Ischemic or Unspecified Stroke,0.938
+child,catastrophic,diagnosis,HCC146,Ischemic or Unspecified Stroke,0.926
+child,platinum,diagnosis,HCC149,Cerebral Aneurysm and Arteriovenous Malformation,0.789
+child,gold,diagnosis,HCC149,Cerebral Aneurysm and Arteriovenous Malformation,0.690
+child,silver,diagnosis,HCC149,Cerebral Aneurysm and Arteriovenous Malformation,0.638
+child,bronze,diagnosis,HCC149,Cerebral Aneurysm and Arteriovenous Malformation,0.554
+child,catastrophic,diagnosis,HCC149,Cerebral Aneurysm and Arteriovenous Malformation,0.537
+child,platinum,diagnosis,HCC150,Hemiplegia/Hemiparesis,5.114
+child,gold,diagnosis,HCC150,Hemiplegia/Hemiparesis,4.996
+child,silver,diagnosis,HCC150,Hemiplegia/Hemiparesis,4.936
+child,bronze,diagnosis,HCC150,Hemiplegia/Hemiparesis,4.847
+child,catastrophic,diagnosis,HCC150,Hemiplegia/Hemiparesis,4.836
+child,platinum,diagnosis,HCC151,"Monoplegia, Other Paralytic Syndromes",2.054
+child,gold,diagnosis,HCC151,"Monoplegia, Other Paralytic Syndromes",1.941
+child,silver,diagnosis,HCC151,"Monoplegia, Other Paralytic Syndromes",1.874
+child,bronze,diagnosis,HCC151,"Monoplegia, Other Paralytic Syndromes",1.773
+child,catastrophic,diagnosis,HCC151,"Monoplegia, Other Paralytic Syndromes",1.758
+child,platinum,diagnosis,HCC153,Atherosclerosis of the Extremities with Ulceration or Gangrene,10.494
+child,gold,diagnosis,HCC153,Atherosclerosis of the Extremities with Ulceration or Gangrene,10.279
+child,silver,diagnosis,HCC153,Atherosclerosis of the Extremities with Ulceration or Gangrene,10.206
+child,bronze,diagnosis,HCC153,Atherosclerosis of the Extremities with Ulceration or Gangrene,10.072
+child,catastrophic,diagnosis,HCC153,Atherosclerosis of the Extremities with Ulceration or Gangrene,10.062
+child,platinum,diagnosis,HCC154,Vascular Disease with Complications,10.564
+child,gold,diagnosis,HCC154,Vascular Disease with Complications,10.421
+child,silver,diagnosis,HCC154,Vascular Disease with Complications,10.370
+child,bronze,diagnosis,HCC154,Vascular Disease with Complications,10.280
+child,catastrophic,diagnosis,HCC154,Vascular Disease with Complications,10.271
+child,platinum,diagnosis,HCC156,Pulmonary Embolism and Deep Vein Thrombosis,20.312
+child,gold,diagnosis,HCC156,Pulmonary Embolism and Deep Vein Thrombosis,20.192
+child,silver,diagnosis,HCC156,Pulmonary Embolism and Deep Vein Thrombosis,20.129
+child,bronze,diagnosis,HCC156,Pulmonary Embolism and Deep Vein Thrombosis,20.038
+child,catastrophic,diagnosis,HCC156,Pulmonary Embolism and Deep Vein Thrombosis,20.024
+child,platinum,diagnosis,HCC158,Lung Transplant Status/Complications,14.936
+child,gold,diagnosis,HCC158,Lung Transplant Status/Complications,14.859
+child,silver,diagnosis,HCC158,Lung Transplant Status/Complications,14.793
+child,bronze,diagnosis,HCC158,Lung Transplant Status/Complications,14.709
+child,catastrophic,diagnosis,HCC158,Lung Transplant Status/Complications,14.693
+child,platinum,diagnosis,HCC159,Cystic Fibrosis,51.368
+child,gold,diagnosis,HCC159,Cystic Fibrosis,50.855
+child,silver,diagnosis,HCC159,Cystic Fibrosis,50.808
+child,bronze,diagnosis,HCC159,Cystic Fibrosis,50.658
+child,catastrophic,diagnosis,HCC159,Cystic Fibrosis,50.665
+child,platinum,diagnosis,HCC160,"Chronic Obstructive Pulmonary Disease, Including Bronchiectasis",1.574
+child,gold,diagnosis,HCC160,"Chronic Obstructive Pulmonary Disease, Including Bronchiectasis",1.427
+child,silver,diagnosis,HCC160,"Chronic Obstructive Pulmonary Disease, Including Bronchiectasis",1.323
+child,bronze,diagnosis,HCC160,"Chronic Obstructive Pulmonary Disease, Including Bronchiectasis",1.186
+child,catastrophic,diagnosis,HCC160,"Chronic Obstructive Pulmonary Disease, Including Bronchiectasis",1.164
+child,platinum,diagnosis,HCC161_1,Severe Asthma,1.300
+child,gold,diagnosis,HCC161_1,Severe Asthma,1.150
+child,silver,diagnosis,HCC161_1,Severe Asthma,1.025
+child,bronze,diagnosis,HCC161_1,Severe Asthma,0.871
+child,catastrophic,diagnosis,HCC161_1,Severe Asthma,0.843
+child,platinum,diagnosis,HCC161_2,"Asthma, Except Severe",0.315
+child,gold,diagnosis,HCC161_2,"Asthma, Except Severe",0.248
+child,silver,diagnosis,HCC161_2,"Asthma, Except Severe",0.171
+child,bronze,diagnosis,HCC161_2,"Asthma, Except Severe",0.105
+child,catastrophic,diagnosis,HCC161_2,"Asthma, Except Severe",0.091
+child,platinum,diagnosis,HCC162,Fibrosis of Lung and Other Lung Disorders,1.467
+child,gold,diagnosis,HCC162,Fibrosis of Lung and Other Lung Disorders,1.341
+child,silver,diagnosis,HCC162,Fibrosis of Lung and Other Lung Disorders,1.229
+child,bronze,diagnosis,HCC162,Fibrosis of Lung and Other Lung Disorders,1.097
+child,catastrophic,diagnosis,HCC162,Fibrosis of Lung and Other Lung Disorders,1.072
+child,platinum,diagnosis,HCC163,Aspiration and Specified Bacterial Pneumonias and Other Severe Lung Infections,11.749
+child,gold,diagnosis,HCC163,Aspiration and Specified Bacterial Pneumonias and Other Severe Lung Infections,11.771
+child,silver,diagnosis,HCC163,Aspiration and Specified Bacterial Pneumonias and Other Severe Lung Infections,11.801
+child,bronze,diagnosis,HCC163,Aspiration and Specified Bacterial Pneumonias and Other Severe Lung Infections,11.852
+child,catastrophic,diagnosis,HCC163,Aspiration and Specified Bacterial Pneumonias and Other Severe Lung Infections,11.859
+child,platinum,diagnosis,HCC183,Kidney Transplant Status/Complications,12.113
+child,gold,diagnosis,HCC183,Kidney Transplant Status/Complications,12.102
+child,silver,diagnosis,HCC183,Kidney Transplant Status/Complications,12.086
+child,bronze,diagnosis,HCC183,Kidney Transplant Status/Complications,12.073
+child,catastrophic,diagnosis,HCC183,Kidney Transplant Status/Complications,12.068
+child,platinum,diagnosis,HCC184,End Stage Renal Disease,25.623
+child,gold,diagnosis,HCC184,End Stage Renal Disease,25.420
+child,silver,diagnosis,HCC184,End Stage Renal Disease,25.403
+child,bronze,diagnosis,HCC184,End Stage Renal Disease,25.338
+child,catastrophic,diagnosis,HCC184,End Stage Renal Disease,25.332
+child,platinum,diagnosis,HCC187,"Chronic Kidney Disease, Stage 5",0.854
+child,gold,diagnosis,HCC187,"Chronic Kidney Disease, Stage 5",0.779
+child,silver,diagnosis,HCC187,"Chronic Kidney Disease, Stage 5",0.729
+child,bronze,diagnosis,HCC187,"Chronic Kidney Disease, Stage 5",0.672
+child,catastrophic,diagnosis,HCC187,"Chronic Kidney Disease, Stage 5",0.665
+child,platinum,diagnosis,HCC188,"Chronic Kidney Disease, Severe (Stage 4)",0.854
+child,gold,diagnosis,HCC188,"Chronic Kidney Disease, Severe (Stage 4)",0.779
+child,silver,diagnosis,HCC188,"Chronic Kidney Disease, Severe (Stage 4)",0.729
+child,bronze,diagnosis,HCC188,"Chronic Kidney Disease, Severe (Stage 4)",0.672
+child,catastrophic,diagnosis,HCC188,"Chronic Kidney Disease, Severe (Stage 4)",0.665
+child,platinum,diagnosis,HCC203,Ectopic and Molar Pregnancy,0.755
+child,gold,diagnosis,HCC203,Ectopic and Molar Pregnancy,0.624
+child,silver,diagnosis,HCC203,Ectopic and Molar Pregnancy,0.472
+child,bronze,diagnosis,HCC203,Ectopic and Molar Pregnancy,0.330
+child,catastrophic,diagnosis,HCC203,Ectopic and Molar Pregnancy,0.308
+child,platinum,diagnosis,HCC204,Miscarriage with Complications,0.388
+child,gold,diagnosis,HCC204,Miscarriage with Complications,0.293
+child,silver,diagnosis,HCC204,Miscarriage with Complications,0.158
+child,bronze,diagnosis,HCC204,Miscarriage with Complications,0.035
+child,catastrophic,diagnosis,HCC204,Miscarriage with Complications,0.011
+child,platinum,diagnosis,HCC205,Miscarriage with No or Minor Complications,0.388
+child,gold,diagnosis,HCC205,Miscarriage with No or Minor Complications,0.293
+child,silver,diagnosis,HCC205,Miscarriage with No or Minor Complications,0.158
+child,bronze,diagnosis,HCC205,Miscarriage with No or Minor Complications,0.035
+child,catastrophic,diagnosis,HCC205,Miscarriage with No or Minor Complications,0.011
+child,platinum,diagnosis,HCC207,Pregnancy with Delivery with Major Complications,3.064
+child,gold,diagnosis,HCC207,Pregnancy with Delivery with Major Complications,2.798
+child,silver,diagnosis,HCC207,Pregnancy with Delivery with Major Complications,2.554
+child,bronze,diagnosis,HCC207,Pregnancy with Delivery with Major Complications,2.151
+child,catastrophic,diagnosis,HCC207,Pregnancy with Delivery with Major Complications,2.065
+child,platinum,diagnosis,HCC208,Pregnancy with Delivery with Complications,3.064
+child,gold,diagnosis,HCC208,Pregnancy with Delivery with Complications,2.798
+child,silver,diagnosis,HCC208,Pregnancy with Delivery with Complications,2.554
+child,bronze,diagnosis,HCC208,Pregnancy with Delivery with Complications,2.151
+child,catastrophic,diagnosis,HCC208,Pregnancy with Delivery with Complications,2.065
+child,platinum,diagnosis,HCC209,Pregnancy with Delivery with No or Minor Complications,2.183
+child,gold,diagnosis,HCC209,Pregnancy with Delivery with No or Minor Complications,1.985
+child,silver,diagnosis,HCC209,Pregnancy with Delivery with No or Minor Complications,1.734
+child,bronze,diagnosis,HCC209,Pregnancy with Delivery with No or Minor Complications,1.324
+child,catastrophic,diagnosis,HCC209,Pregnancy with Delivery with No or Minor Complications,1.218
+child,platinum,diagnosis,HCC210,(Ongoing) Pregnancy without Delivery with Major Complications,0.420
+child,gold,diagnosis,HCC210,(Ongoing) Pregnancy without Delivery with Major Complications,0.308
+child,silver,diagnosis,HCC210,(Ongoing) Pregnancy without Delivery with Major Complications,0.145
+child,bronze,diagnosis,HCC210,(Ongoing) Pregnancy without Delivery with Major Complications,0.014
+child,catastrophic,diagnosis,HCC210,(Ongoing) Pregnancy without Delivery with Major Complications,0.000
+child,platinum,diagnosis,HCC211,(Ongoing) Pregnancy without Delivery with Complications,0.420
+child,gold,diagnosis,HCC211,(Ongoing) Pregnancy without Delivery with Complications,0.308
+child,silver,diagnosis,HCC211,(Ongoing) Pregnancy without Delivery with Complications,0.145
+child,bronze,diagnosis,HCC211,(Ongoing) Pregnancy without Delivery with Complications,0.014
+child,catastrophic,diagnosis,HCC211,(Ongoing) Pregnancy without Delivery with Complications,0.000
+child,platinum,diagnosis,HCC212,(Ongoing) Pregnancy without Delivery with No or Minor Complications,0.210
+child,gold,diagnosis,HCC212,(Ongoing) Pregnancy without Delivery with No or Minor Complications,0.128
+child,silver,diagnosis,HCC212,(Ongoing) Pregnancy without Delivery with No or Minor Complications,0.027
+child,bronze,diagnosis,HCC212,(Ongoing) Pregnancy without Delivery with No or Minor Complications,0.000
+child,catastrophic,diagnosis,HCC212,(Ongoing) Pregnancy without Delivery with No or Minor Complications,0.000
+child,platinum,diagnosis,HCC217,"Chronic Ulcer of Skin, Except Pressure",2.285
+child,gold,diagnosis,HCC217,"Chronic Ulcer of Skin, Except Pressure",2.193
+child,silver,diagnosis,HCC217,"Chronic Ulcer of Skin, Except Pressure",2.119
+child,bronze,diagnosis,HCC217,"Chronic Ulcer of Skin, Except Pressure",2.040
+child,catastrophic,diagnosis,HCC217,"Chronic Ulcer of Skin, Except Pressure",2.026
+child,platinum,diagnosis,HCC218,Extensive Third-Degree Burns,22.632
+child,gold,diagnosis,HCC218,Extensive Third-Degree Burns,22.402
+child,silver,diagnosis,HCC218,Extensive Third-Degree Burns,22.327
+child,bronze,diagnosis,HCC218,Extensive Third-Degree Burns,22.205
+child,catastrophic,diagnosis,HCC218,Extensive Third-Degree Burns,22.186
+child,platinum,diagnosis,HCC219,Major Skin Burn or Condition,2.588
+child,gold,diagnosis,HCC219,Major Skin Burn or Condition,2.430
+child,silver,diagnosis,HCC219,Major Skin Burn or Condition,2.328
+child,bronze,diagnosis,HCC219,Major Skin Burn or Condition,2.189
+child,catastrophic,diagnosis,HCC219,Major Skin Burn or Condition,2.168
+child,platinum,diagnosis,HCC223,Severe Head Injury,22.632
+child,gold,diagnosis,HCC223,Severe Head Injury,22.402
+child,silver,diagnosis,HCC223,Severe Head Injury,22.327
+child,bronze,diagnosis,HCC223,Severe Head Injury,22.205
+child,catastrophic,diagnosis,HCC223,Severe Head Injury,22.186
+child,platinum,diagnosis,HCC226,Hip and Pelvic Fractures,4.602
+child,gold,diagnosis,HCC226,Hip and Pelvic Fractures,4.394
+child,silver,diagnosis,HCC226,Hip and Pelvic Fractures,4.290
+child,bronze,diagnosis,HCC226,Hip and Pelvic Fractures,4.154
+child,catastrophic,diagnosis,HCC226,Hip and Pelvic Fractures,4.137
+child,platinum,diagnosis,HCC228,Vertebral Fractures without Spinal Cord Injury,4.310
+child,gold,diagnosis,HCC228,Vertebral Fractures without Spinal Cord Injury,4.116
+child,silver,diagnosis,HCC228,Vertebral Fractures without Spinal Cord Injury,3.999
+child,bronze,diagnosis,HCC228,Vertebral Fractures without Spinal Cord Injury,3.829
+child,catastrophic,diagnosis,HCC228,Vertebral Fractures without Spinal Cord Injury,3.801
+child,platinum,diagnosis,HCC234,Traumatic Amputations and Amputation Complications,4.308
+child,gold,diagnosis,HCC234,Traumatic Amputations and Amputation Complications,4.125
+child,silver,diagnosis,HCC234,Traumatic Amputations and Amputation Complications,4.026
+child,bronze,diagnosis,HCC234,Traumatic Amputations and Amputation Complications,3.865
+child,catastrophic,diagnosis,HCC234,Traumatic Amputations and Amputation Complications,3.835
+child,platinum,diagnosis,HCC251,"Stem Cell, Including Bone Marrow, Transplant Status/Complications",14.936
+child,gold,diagnosis,HCC251,"Stem Cell, Including Bone Marrow, Transplant Status/Complications",14.859
+child,silver,diagnosis,HCC251,"Stem Cell, Including Bone Marrow, Transplant Status/Complications",14.793
+child,bronze,diagnosis,HCC251,"Stem Cell, Including Bone Marrow, Transplant Status/Complications",14.709
+child,catastrophic,diagnosis,HCC251,"Stem Cell, Including Bone Marrow, Transplant Status/Complications",14.693
+child,platinum,diagnosis,HCC253,Artificial Openings for Feeding or Elimination,5.156
+child,gold,diagnosis,HCC253,Artificial Openings for Feeding or Elimination,4.991
+child,silver,diagnosis,HCC253,Artificial Openings for Feeding or Elimination,4.959
+child,bronze,diagnosis,HCC253,Artificial Openings for Feeding or Elimination,4.879
+child,catastrophic,diagnosis,HCC253,Artificial Openings for Feeding or Elimination,4.875
+child,platinum,diagnosis,HCC254,"Amputation Status, Upper Limb or Lower Limb",4.308
+child,gold,diagnosis,HCC254,"Amputation Status, Upper Limb or Lower Limb",4.125
+child,silver,diagnosis,HCC254,"Amputation Status, Upper Limb or Lower Limb",4.026
+child,bronze,diagnosis,HCC254,"Amputation Status, Upper Limb or Lower Limb",3.865
+child,catastrophic,diagnosis,HCC254,"Amputation Status, Upper Limb or Lower Limb",3.835
+child,platinum,hcc_counts,"Severe illness, 1 payment HCC","Severe illness, 1 payment HCC",-11.722
+child,gold,hcc_counts,"Severe illness, 1 payment HCC","Severe illness, 1 payment HCC",-11.771
+child,silver,hcc_counts,"Severe illness, 1 payment HCC","Severe illness, 1 payment HCC",-11.801
+child,bronze,hcc_counts,"Severe illness, 1 payment HCC","Severe illness, 1 payment HCC",-11.852
+child,catastrophic,hcc_counts,"Severe illness, 1 payment HCC","Severe illness, 1 payment HCC",-11.859
+child,platinum,hcc_counts,"Severe illness, 2 payment HCCs","Severe illness, 2 payment HCCs",-11.722
+child,gold,hcc_counts,"Severe illness, 2 payment HCCs","Severe illness, 2 payment HCCs",-11.771
+child,silver,hcc_counts,"Severe illness, 2 payment HCCs","Severe illness, 2 payment HCCs",-11.801
+child,bronze,hcc_counts,"Severe illness, 2 payment HCCs","Severe illness, 2 payment HCCs",-11.852
+child,catastrophic,hcc_counts,"Severe illness, 2 payment HCCs","Severe illness, 2 payment HCCs",-11.859
+child,platinum,hcc_counts,"Severe illness, 3 payment HCCs","Severe illness, 3 payment HCCs",-10.550
+child,gold,hcc_counts,"Severe illness, 3 payment HCCs","Severe illness, 3 payment HCCs",-10.622
+child,silver,hcc_counts,"Severe illness, 3 payment HCCs","Severe illness, 3 payment HCCs",-10.563
+child,bronze,hcc_counts,"Severe illness, 3 payment HCCs","Severe illness, 3 payment HCCs",-10.543
+child,catastrophic,hcc_counts,"Severe illness, 3 payment HCCs","Severe illness, 3 payment HCCs",-10.525
+child,platinum,hcc_counts,"Severe illness, 4 payment HCCs","Severe illness, 4 payment HCCs",-9.240
+child,gold,hcc_counts,"Severe illness, 4 payment HCCs","Severe illness, 4 payment HCCs",-9.248
+child,silver,hcc_counts,"Severe illness, 4 payment HCCs","Severe illness, 4 payment HCCs",-9.085
+child,bronze,hcc_counts,"Severe illness, 4 payment HCCs","Severe illness, 4 payment HCCs",-8.937
+child,catastrophic,hcc_counts,"Severe illness, 4 payment HCCs","Severe illness, 4 payment HCCs",-8.892
+child,platinum,hcc_counts,"Severe illness, 5 payment HCCs","Severe illness, 5 payment HCCs",-8.084
+child,gold,hcc_counts,"Severe illness, 5 payment HCCs","Severe illness, 5 payment HCCs",-8.044
+child,silver,hcc_counts,"Severe illness, 5 payment HCCs","Severe illness, 5 payment HCCs",-7.824
+child,bronze,hcc_counts,"Severe illness, 5 payment HCCs","Severe illness, 5 payment HCCs",-7.608
+child,catastrophic,hcc_counts,"Severe illness, 5 payment HCCs","Severe illness, 5 payment HCCs",-7.549
+child,platinum,hcc_counts,"Severe illness, 6 or 7 payment HCCs","Severe illness, 6 or 7 payment HCCs",-3.580
+child,gold,hcc_counts,"Severe illness, 6 or 7 payment HCCs","Severe illness, 6 or 7 payment HCCs",-3.359
+child,silver,hcc_counts,"Severe illness, 6 or 7 payment HCCs","Severe illness, 6 or 7 payment HCCs",-3.017
+child,bronze,hcc_counts,"Severe illness, 6 or 7 payment HCCs","Severe illness, 6 or 7 payment HCCs",-2.629
+child,catastrophic,hcc_counts,"Severe illness, 6 or 7 payment HCCs","Severe illness, 6 or 7 payment HCCs",-2.542
+child,platinum,hcc_counts,"Severe illness, 8 or more payment HCCs","Severe illness, 8 or more payment HCCs",16.145
+child,gold,hcc_counts,"Severe illness, 8 or more payment HCCs","Severe illness, 8 or more payment HCCs",16.838
+child,silver,hcc_counts,"Severe illness, 8 or more payment HCCs","Severe illness, 8 or more payment HCCs",17.410
+child,bronze,hcc_counts,"Severe illness, 8 or more payment HCCs","Severe illness, 8 or more payment HCCs",18.129
+child,catastrophic,hcc_counts,"Severe illness, 8 or more payment HCCs","Severe illness, 8 or more payment HCCs",18.260
+child,platinum,hcc_counts,"Transplant severe illness, 4 or more payment HCCs","Transplant severe illness, 4 or more payment HCCs",13.213
+child,gold,hcc_counts,"Transplant severe illness, 4 or more payment HCCs","Transplant severe illness, 4 or more payment HCCs",13.245
+child,silver,hcc_counts,"Transplant severe illness, 4 or more payment HCCs","Transplant severe illness, 4 or more payment HCCs",13.254
+child,bronze,hcc_counts,"Transplant severe illness, 4 or more payment HCCs","Transplant severe illness, 4 or more payment HCCs",13.269
+child,catastrophic,hcc_counts,"Transplant severe illness, 4 or more payment HCCs","Transplant severe illness, 4 or more payment HCCs",13.272
+child,platinum,acf,HIV Pre-Exposure Prophylaxis (PREP),HIV Pre-Exposure Prophylaxis (PREP),2.143
+child,gold,acf,HIV Pre-Exposure Prophylaxis (PREP),HIV Pre-Exposure Prophylaxis (PREP),2.082
+child,silver,acf,HIV Pre-Exposure Prophylaxis (PREP),HIV Pre-Exposure Prophylaxis (PREP),2.016
+child,bronze,acf,HIV Pre-Exposure Prophylaxis (PREP),HIV Pre-Exposure Prophylaxis (PREP),1.933
+child,catastrophic,acf,HIV Pre-Exposure Prophylaxis (PREP),HIV Pre-Exposure Prophylaxis (PREP),1.914
+infant,platinum,group,Extremely Immature * Severity Level 5 (Highest),Extremely Immature * Severity Level 5 (Highest),202.124
+infant,gold,group,Extremely Immature * Severity Level 5 (Highest),Extremely Immature * Severity Level 5 (Highest),200.721
+infant,silver,group,Extremely Immature * Severity Level 5 (Highest),Extremely Immature * Severity Level 5 (Highest),200.443
+infant,bronze,group,Extremely Immature * Severity Level 5 (Highest),Extremely Immature * Severity Level 5 (Highest),199.930
+infant,catastrophic,group,Extremely Immature * Severity Level 5 (Highest),Extremely Immature * Severity Level 5 (Highest),199.923
+infant,platinum,group,Extremely Immature * Severity Level 4,Extremely Immature * Severity Level 4,135.710
+infant,gold,group,Extremely Immature * Severity Level 4,Extremely Immature * Severity Level 4,134.101
+infant,silver,group,Extremely Immature * Severity Level 4,Extremely Immature * Severity Level 4,133.672
+infant,bronze,group,Extremely Immature * Severity Level 4,Extremely Immature * Severity Level 4,132.966
+infant,catastrophic,group,Extremely Immature * Severity Level 4,Extremely Immature * Severity Level 4,132.922
+infant,platinum,group,Extremely Immature * Severity Level 3,Extremely Immature * Severity Level 3,31.009
+infant,gold,group,Extremely Immature * Severity Level 3,Extremely Immature * Severity Level 3,29.686
+infant,silver,group,Extremely Immature * Severity Level 3,Extremely Immature * Severity Level 3,29.283
+infant,bronze,group,Extremely Immature * Severity Level 3,Extremely Immature * Severity Level 3,28.690
+infant,catastrophic,group,Extremely Immature * Severity Level 3,Extremely Immature * Severity Level 3,28.647
+infant,platinum,group,Extremely Immature * Severity Level 2,Extremely Immature * Severity Level 2,31.009
+infant,gold,group,Extremely Immature * Severity Level 2,Extremely Immature * Severity Level 2,29.686
+infant,silver,group,Extremely Immature * Severity Level 2,Extremely Immature * Severity Level 2,29.283
+infant,bronze,group,Extremely Immature * Severity Level 2,Extremely Immature * Severity Level 2,28.690
+infant,catastrophic,group,Extremely Immature * Severity Level 2,Extremely Immature * Severity Level 2,28.647
+infant,platinum,group,Extremely Immature * Severity Level 1 (Lowest),Extremely Immature * Severity Level 1 (Lowest),31.009
+infant,gold,group,Extremely Immature * Severity Level 1 (Lowest),Extremely Immature * Severity Level 1 (Lowest),29.686
+infant,silver,group,Extremely Immature * Severity Level 1 (Lowest),Extremely Immature * Severity Level 1 (Lowest),29.283
+infant,bronze,group,Extremely Immature * Severity Level 1 (Lowest),Extremely Immature * Severity Level 1 (Lowest),28.690
+infant,catastrophic,group,Extremely Immature * Severity Level 1 (Lowest),Extremely Immature * Severity Level 1 (Lowest),28.647
+infant,platinum,group,Immature * Severity Level 5 (Highest),Immature * Severity Level 5 (Highest),129.458
+infant,gold,group,Immature * Severity Level 5 (Highest),Immature * Severity Level 5 (Highest),128.096
+infant,silver,group,Immature * Severity Level 5 (Highest),Immature * Severity Level 5 (Highest),127.837
+infant,bronze,group,Immature * Severity Level 5 (Highest),Immature * Severity Level 5 (Highest),127.350
+infant,catastrophic,group,Immature * Severity Level 5 (Highest),Immature * Severity Level 5 (Highest),127.343
+infant,platinum,group,Immature * Severity Level 4,Immature * Severity Level 4,68.163
+infant,gold,group,Immature * Severity Level 4,Immature * Severity Level 4,66.651
+infant,silver,group,Immature * Severity Level 4,Immature * Severity Level 4,66.320
+infant,bronze,group,Immature * Severity Level 4,Immature * Severity Level 4,65.727
+infant,catastrophic,group,Immature * Severity Level 4,Immature * Severity Level 4,65.699
+infant,platinum,group,Immature * Severity Level 3,Immature * Severity Level 3,31.009
+infant,gold,group,Immature * Severity Level 3,Immature * Severity Level 3,29.686
+infant,silver,group,Immature * Severity Level 3,Immature * Severity Level 3,29.283
+infant,bronze,group,Immature * Severity Level 3,Immature * Severity Level 3,28.690
+infant,catastrophic,group,Immature * Severity Level 3,Immature * Severity Level 3,28.647
+infant,platinum,group,Immature * Severity Level 2,Immature * Severity Level 2,26.411
+infant,gold,group,Immature * Severity Level 2,Immature * Severity Level 2,25.209
+infant,silver,group,Immature * Severity Level 2,Immature * Severity Level 2,24.810
+infant,bronze,group,Immature * Severity Level 2,Immature * Severity Level 2,24.230
+infant,catastrophic,group,Immature * Severity Level 2,Immature * Severity Level 2,24.181
+infant,platinum,group,Immature * Severity Level 1 (Lowest),Immature * Severity Level 1 (Lowest),23.143
+infant,gold,group,Immature * Severity Level 1 (Lowest),Immature * Severity Level 1 (Lowest),21.917
+infant,silver,group,Immature * Severity Level 1 (Lowest),Immature * Severity Level 1 (Lowest),21.486
+infant,bronze,group,Immature * Severity Level 1 (Lowest),Immature * Severity Level 1 (Lowest),20.866
+infant,catastrophic,group,Immature * Severity Level 1 (Lowest),Immature * Severity Level 1 (Lowest),20.806
+infant,platinum,group,Premature/Multiples * Severity Level 5 (Highest),Premature/Multiples * Severity Level 5 (Highest),110.758
+infant,gold,group,Premature/Multiples * Severity Level 5 (Highest),Premature/Multiples * Severity Level 5 (Highest),109.418
+infant,silver,group,Premature/Multiples * Severity Level 5 (Highest),Premature/Multiples * Severity Level 5 (Highest),109.135
+infant,bronze,group,Premature/Multiples * Severity Level 5 (Highest),Premature/Multiples * Severity Level 5 (Highest),108.626
+infant,catastrophic,group,Premature/Multiples * Severity Level 5 (Highest),Premature/Multiples * Severity Level 5 (Highest),108.606
+infant,platinum,group,Premature/Multiples * Severity Level 4,Premature/Multiples * Severity Level 4,28.791
+infant,gold,group,Premature/Multiples * Severity Level 4,Premature/Multiples * Severity Level 4,27.494
+infant,silver,group,Premature/Multiples * Severity Level 4,Premature/Multiples * Severity Level 4,27.114
+infant,bronze,group,Premature/Multiples * Severity Level 4,Premature/Multiples * Severity Level 4,26.514
+infant,catastrophic,group,Premature/Multiples * Severity Level 4,Premature/Multiples * Severity Level 4,26.473
+infant,platinum,group,Premature/Multiples * Severity Level 3,Premature/Multiples * Severity Level 3,12.969
+infant,gold,group,Premature/Multiples * Severity Level 3,Premature/Multiples * Severity Level 3,12.062
+infant,silver,group,Premature/Multiples * Severity Level 3,Premature/Multiples * Severity Level 3,11.572
+infant,bronze,group,Premature/Multiples * Severity Level 3,Premature/Multiples * Severity Level 3,10.902
+infant,catastrophic,group,Premature/Multiples * Severity Level 3,Premature/Multiples * Severity Level 3,10.797
+infant,platinum,group,Premature/Multiples * Severity Level 2,Premature/Multiples * Severity Level 2,7.878
+infant,gold,group,Premature/Multiples * Severity Level 2,Premature/Multiples * Severity Level 2,7.175
+infant,silver,group,Premature/Multiples * Severity Level 2,Premature/Multiples * Severity Level 2,6.664
+infant,bronze,group,Premature/Multiples * Severity Level 2,Premature/Multiples * Severity Level 2,5.992
+infant,catastrophic,group,Premature/Multiples * Severity Level 2,Premature/Multiples * Severity Level 2,5.863
+infant,platinum,group,Premature/Multiples * Severity Level 1 (Lowest),Premature/Multiples * Severity Level 1 (Lowest),5.519
+infant,gold,group,Premature/Multiples * Severity Level 1 (Lowest),Premature/Multiples * Severity Level 1 (Lowest),4.934
+infant,silver,group,Premature/Multiples * Severity Level 1 (Lowest),Premature/Multiples * Severity Level 1 (Lowest),4.429
+infant,bronze,group,Premature/Multiples * Severity Level 1 (Lowest),Premature/Multiples * Severity Level 1 (Lowest),3.846
+infant,catastrophic,group,Premature/Multiples * Severity Level 1 (Lowest),Premature/Multiples * Severity Level 1 (Lowest),3.726
+infant,platinum,group,Term * Severity Level 5 (Highest),Term * Severity Level 5 (Highest),81.499
+infant,gold,group,Term * Severity Level 5 (Highest),Term * Severity Level 5 (Highest),80.353
+infant,silver,group,Term * Severity Level 5 (Highest),Term * Severity Level 5 (Highest),80.008
+infant,bronze,group,Term * Severity Level 5 (Highest),Term * Severity Level 5 (Highest),79.461
+infant,catastrophic,group,Term * Severity Level 5 (Highest),Term * Severity Level 5 (Highest),79.415
+infant,platinum,group,Term * Severity Level 4,Term * Severity Level 4,16.505
+infant,gold,group,Term * Severity Level 4,Term * Severity Level 4,15.543
+infant,silver,group,Term * Severity Level 4,Term * Severity Level 4,15.080
+infant,bronze,group,Term * Severity Level 4,Term * Severity Level 4,14.433
+infant,catastrophic,group,Term * Severity Level 4,Term * Severity Level 4,14.351
+infant,platinum,group,Term * Severity Level 3,Term * Severity Level 3,5.467
+infant,gold,group,Term * Severity Level 3,Term * Severity Level 3,4.914
+infant,silver,group,Term * Severity Level 3,Term * Severity Level 3,4.413
+infant,bronze,group,Term * Severity Level 3,Term * Severity Level 3,3.825
+infant,catastrophic,group,Term * Severity Level 3,Term * Severity Level 3,3.702
+infant,platinum,group,Term * Severity Level 2,Term * Severity Level 2,3.655
+infant,gold,group,Term * Severity Level 2,Term * Severity Level 2,3.183
+infant,silver,group,Term * Severity Level 2,Term * Severity Level 2,2.680
+infant,bronze,group,Term * Severity Level 2,Term * Severity Level 2,2.112
+infant,catastrophic,group,Term * Severity Level 2,Term * Severity Level 2,1.991
+infant,platinum,group,Term * Severity Level 1 (Lowest),Term * Severity Level 1 (Lowest),1.955
+infant,gold,group,Term * Severity Level 1 (Lowest),Term * Severity Level 1 (Lowest),1.593
+infant,silver,group,Term * Severity Level 1 (Lowest),Term * Severity Level 1 (Lowest),1.156
+infant,bronze,group,Term * Severity Level 1 (Lowest),Term * Severity Level 1 (Lowest),0.813
+infant,catastrophic,group,Term * Severity Level 1 (Lowest),Term * Severity Level 1 (Lowest),0.752
+infant,platinum,group,Age1 * Severity Level 5 (Highest),Age1 * Severity Level 5 (Highest),67.661
+infant,gold,group,Age1 * Severity Level 5 (Highest),Age1 * Severity Level 5 (Highest),66.998
+infant,silver,group,Age1 * Severity Level 5 (Highest),Age1 * Severity Level 5 (Highest),66.818
+infant,bronze,group,Age1 * Severity Level 5 (Highest),Age1 * Severity Level 5 (Highest),66.533
+infant,catastrophic,group,Age1 * Severity Level 5 (Highest),Age1 * Severity Level 5 (Highest),66.516
+infant,platinum,group,Age1 * Severity Level 4,Age1 * Severity Level 4,12.321
+infant,gold,group,Age1 * Severity Level 4,Age1 * Severity Level 4,11.828
+infant,silver,group,Age1 * Severity Level 4,Age1 * Severity Level 4,11.591
+infant,bronze,group,Age1 * Severity Level 4,Age1 * Severity Level 4,11.279
+infant,catastrophic,group,Age1 * Severity Level 4,Age1 * Severity Level 4,11.240
+infant,platinum,group,Age1 * Severity Level 3,Age1 * Severity Level 3,2.767
+infant,gold,group,Age1 * Severity Level 3,Age1 * Severity Level 3,2.515
+infant,silver,group,Age1 * Severity Level 3,Age1 * Severity Level 3,2.325
+infant,bronze,group,Age1 * Severity Level 3,Age1 * Severity Level 3,2.133
+infant,catastrophic,group,Age1 * Severity Level 3,Age1 * Severity Level 3,2.100
+infant,platinum,group,Age1 * Severity Level 2,Age1 * Severity Level 2,1.792
+infant,gold,group,Age1 * Severity Level 2,Age1 * Severity Level 2,1.572
+infant,silver,group,Age1 * Severity Level 2,Age1 * Severity Level 2,1.374
+infant,bronze,group,Age1 * Severity Level 2,Age1 * Severity Level 2,1.176
+infant,catastrophic,group,Age1 * Severity Level 2,Age1 * Severity Level 2,1.136
+infant,platinum,group,Age1 * Severity Level 1 (Lowest),Age1 * Severity Level 1 (Lowest),0.576
+infant,gold,group,Age1 * Severity Level 1 (Lowest),Age1 * Severity Level 1 (Lowest),0.485
+infant,silver,group,Age1 * Severity Level 1 (Lowest),Age1 * Severity Level 1 (Lowest),0.431
+infant,bronze,group,Age1 * Severity Level 1 (Lowest),Age1 * Severity Level 1 (Lowest),0.396
+infant,catastrophic,group,Age1 * Severity Level 1 (Lowest),Age1 * Severity Level 1 (Lowest),0.389
+infant,platinum,demographic,Age 0 Male,Age 0 Male,0.606
+infant,gold,demographic,Age 0 Male,Age 0 Male,0.569
+infant,silver,demographic,Age 0 Male,Age 0 Male,0.541
+infant,bronze,demographic,Age 0 Male,Age 0 Male,0.484
+infant,catastrophic,demographic,Age 0 Male,Age 0 Male,0.471
+infant,platinum,demographic,Age 1 Male,Age 1 Male,0.074
+infant,gold,demographic,Age 1 Male,Age 1 Male,0.060
+infant,silver,demographic,Age 1 Male,Age 1 Male,0.044
+infant,bronze,demographic,Age 1 Male,Age 1 Male,0.025
+infant,catastrophic,demographic,Age 1 Male,Age 1 Male,0.021
