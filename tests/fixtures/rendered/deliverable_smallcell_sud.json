@@ -1,0 +1,10 @@
+{
+  "_synthetic": "SYNTHETIC TEST DATA — fabricated deliverable, no real patients. medecon-verify task 0.6.",
+  "title": "Synthetic cohort utilization summary",
+  "analysis_period": {"start": "2026-07-01", "end": "2026-09-30"},
+  "subgroup_counts": [3, 8, 45, 210],
+  "attributed_n": [5, 60, 12],
+  "narrative": "Opioid use disorder cohort utilization grew 12% among attributed members in the synthetic panel.",
+  "findings": ["Utilization rose in the fabricated test panel."],
+  "oldest_member_age": 94
+}
