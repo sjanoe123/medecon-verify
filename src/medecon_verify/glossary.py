@@ -23,6 +23,7 @@ Public API:
 """
 from __future__ import annotations
 
+import os
 import re
 from pathlib import Path
 from typing import Any
@@ -148,9 +149,8 @@ def _traversable_mtime(trav) -> float | None:
     mtime-based cache invalidation for that resource.
     """
     try:
-        fs_path = Path(str(trav))
-        if fs_path.exists():
-            return fs_path.stat().st_mtime
+        fs_path = trav if isinstance(trav, Path) else Path(os.fspath(trav))
+        return fs_path.stat().st_mtime
     except (OSError, ValueError, TypeError):
         pass
     return None
