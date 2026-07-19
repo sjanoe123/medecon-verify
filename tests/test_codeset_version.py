@@ -3,6 +3,8 @@ from __future__ import annotations
 
 from datetime import date, datetime
 
+import pytest
+
 from medecon_verify import codeset as cv
 
 
@@ -19,6 +21,94 @@ class TestStamp:
         d = {"code_set_versions": {"icd10cm_fy": "FY2024"}}
         out = cv.stamp(d, asof=date(2026, 5, 1))
         assert out["code_set_versions"]["icd10cm_fy"] == "FY2024"
+
+
+class TestFy2027:
+    """FY2027 ICD-10-CM vintage — derived from verified CMS FY2027 release ZIPs
+    by tools/extract_icd10cm_fy2027.py (docs/workpapers/fy2027-registry-sources.md).
+    """
+
+    def test_registry_has_fy2027_bounds(self) -> None:
+        reg = cv.icd10_registry()
+        assert reg["FY2027"] == {
+            "effective": "2026-10-01",
+            "obsolete": "2027-09-30",
+        }
+
+    def test_stamp_recognizes_fy2027(self) -> None:
+        out = cv.stamp({}, asof=date(2027, 5, 1))
+        assert out["code_set_versions"]["icd10cm_fy"] == "FY2027"
+
+    def test_stamp_at_oct01_2026_is_fy2027(self) -> None:
+        # First day of the FY2027 window.
+        out = cv.stamp({}, asof=date(2026, 10, 1))
+        assert out["code_set_versions"]["icd10cm_fy"] == "FY2027"
+
+    def test_stamp_at_sep30_2026_is_still_fy2026(self) -> None:
+        # Last day of FY2026 — the boundary is exclusive on the FY2026 side.
+        out = cv.stamp({}, asof=date(2026, 9, 30))
+        assert out["code_set_versions"]["icd10cm_fy"] == "FY2026"
+
+    def test_detect_icd10_fy_returns_fy2027(self) -> None:
+        records = [
+            {"service_date": "2026-11-15"},
+            {"service_date": "2027-02-10"},
+            {"service_date": "2027-08-22"},
+        ]
+        assert cv.detect_icd10_fy(records) == "FY2027"
+
+    def test_strict_mode_passes_for_fy2027_icd10(self) -> None:
+        # icd10cm_fy is covered for a FY2027 date; strict must not raise on it.
+        # (ms_drg is a separate, deferred concern — see test_ms_drg_v44_deferred.)
+        out = cv.stamp(
+            {"code_set_versions": {"hcpcs_quarter": "2027Q3", "ms_drg": "v44"}},
+            asof=date(2027, 5, 1),
+            strict=True,
+        )
+        assert out["code_set_versions"]["icd10cm_fy"] == "FY2027"
+
+    def test_ms_drg_v44_deferred_stamps_unknown_for_fy2027(self) -> None:
+        # DEFERRAL CONSEQUENCE: FY2027 diagnosis codes exist, but no final MS-DRG
+        # grouper does (FY2027 IPPS Final Rule unpublished; v44 is proposed-rule
+        # Test GROUPER only). So a FY2027 date stamps icd10cm_fy=FY2027 while
+        # ms_drg degrades to UNKNOWN — exactly the real-world state. When the
+        # final rule posts and v44 lands in ms_drg.json, this becomes "v44".
+        out = cv.stamp({}, asof=date(2027, 5, 1))
+        assert out["code_set_versions"]["icd10cm_fy"] == "FY2027"
+        assert out["code_set_versions"]["ms_drg"] == "UNKNOWN"
+
+    @pytest.mark.skip(
+        reason="MS-DRG v44 DEFERRED: FY2027 IPPS Final Rule unpublished as of "
+        "2026-07-19; v44 exists only as a proposed-rule Test GROUPER. Un-skip and "
+        "assert v44 once tools/extract_icd10cm_fy2027.extract_ms_drg_v44 ingests "
+        "the FINAL rule and ms_drg.json carries {'v44': {'fy': 'FY2027', "
+        "'effective': '2026-10-01'}}. Re-check: https://www.cms.gov/medicare/"
+        "payment/prospective-payment-systems/acute-inpatient-pps/"
+        "fy-2027-ipps-final-rule-home-page"
+    )
+    def test_ms_drg_v44_final_rule(self) -> None:
+        out = cv.stamp({}, asof=date(2027, 5, 1))
+        assert out["code_set_versions"]["ms_drg"] == "v44"
+
+
+class TestFy2026Fy2027BoundaryWarning:
+    """The Oct-01 2026 FY2026->FY2027 boundary must still warn on a blended span."""
+
+    def test_span_crossing_oct01_2026_lists_both_fys(self) -> None:
+        assert cv.detect_fy_span(["2026-09-15", "2026-11-15"]) == ["FY2026", "FY2027"]
+
+    def test_boundary_is_oct_01_2026(self) -> None:
+        assert cv._fy_for_date(date(2026, 9, 30)) == "FY2026"
+        assert cv._fy_for_date(date(2026, 10, 1)) == "FY2027"
+
+    def test_warning_names_fy2026_to_fy2027(self) -> None:
+        warning = cv.vintage_mismatch_warning(
+            ["2026-09-15", "2026-11-15"], context="blended paid total"
+        )
+        assert warning != ""
+        assert "FY2026→FY2027" in warning
+        assert "2026-09-15" in warning
+        assert "2026-11-15" in warning
 
 
 class TestDetectIcd10Fy:

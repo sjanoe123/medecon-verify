@@ -16,8 +16,9 @@ from medecon_verify import _data_discovery as dd
 from medecon_verify import codeset as cv
 
 
-# A vintage no bundled registry covers (bundled ICD-10-CM tops out at FY2026).
-_OUT_OF_REGISTRY = date(2027, 5, 1)
+# A vintage no bundled registry covers (bundled ICD-10-CM now tops out at
+# FY2027 after tools/extract_icd10cm_fy2027.py; the next uncovered FY is FY2028).
+_OUT_OF_REGISTRY = date(2028, 5, 1)
 # A vintage fully covered by the bundled tier.
 _COVERED = date(2026, 5, 1)
 
@@ -47,7 +48,7 @@ def test_strict_raises_on_out_of_registry_vintage():
         cv.stamp({}, asof=_OUT_OF_REGISTRY, strict=True)
     msg = str(exc.value)
     assert "icd10cm_fy" in msg          # names the missing registry
-    assert "2027-05-01" in msg          # names the uncovered date
+    assert "2028-05-01" in msg          # names the uncovered date
     assert "medecon-verify-data" in msg  # names the package to renew
 
 

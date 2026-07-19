@@ -109,8 +109,9 @@ def test_stamp_known_vintage_in_registry() -> None:
 
 
 def test_stamp_unknown_vintage_past_registry() -> None:
-    # FY2027 (on/after 2026-10-01) is not yet in the bundled registry -> UNKNOWN.
-    deliverable = codeset.stamp({"title": "synthetic"}, asof=date(2026, 11, 1))
+    # FY2028 (on/after 2027-10-01) is not yet in the bundled registry -> UNKNOWN.
+    # (FY2027 is now bundled via tools/extract_icd10cm_fy2027.py.)
+    deliverable = codeset.stamp({"title": "synthetic"}, asof=date(2027, 11, 1))
     assert deliverable["code_set_versions"]["icd10cm_fy"] == "UNKNOWN"
 
 
@@ -196,8 +197,9 @@ def test_end_to_end_pipeline_over_corpus() -> None:
         "narrative": NARRATIVE_PHI.read_text(),
     }
 
-    # 2. codeset.stamp (asof inside the FY2027 span -> UNKNOWN, honestly stamped).
-    deliverable = codeset.stamp(deliverable, asof=date(2026, 11, 1))
+    # 2. codeset.stamp (asof past the bundled registry -> UNKNOWN, honestly
+    #    stamped; FY2028 is not yet bundled, whereas FY2026/FY2027 now are).
+    deliverable = codeset.stamp(deliverable, asof=date(2027, 11, 1))
     assert deliverable["code_set_versions"]["icd10cm_fy"] == "UNKNOWN"
 
     # 3. privacy.apply: small-cell suppression + audit section.

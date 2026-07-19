@@ -60,7 +60,10 @@ def test_bundled_tier_loads_each_registry():
 def test_bundled_icd10_values_are_faithful():
     reg = dd.load_registry("icd10cm_fy")
     assert reg["FY2026"] == {"effective": "2025-10-01", "obsolete": "2026-09-30"}
-    assert set(reg) == {"FY2022", "FY2023", "FY2024", "FY2025", "FY2026"}
+    # FY2027 added by tools/extract_icd10cm_fy2027.py from the verified CMS
+    # FY2027 ICD-10-CM release ZIPs (see docs/workpapers/fy2027-registry-sources.md).
+    assert reg["FY2027"] == {"effective": "2026-10-01", "obsolete": "2027-09-30"}
+    assert set(reg) == {"FY2022", "FY2023", "FY2024", "FY2025", "FY2026", "FY2027"}
 
 
 def test_bundled_cms_hcc_phase_in_faithful():

@@ -53,6 +53,9 @@ def test_icd10cm_fy_faithful():
         "FY2024": {"effective": "2023-10-01", "obsolete": "2024-09-30"},
         "FY2025": {"effective": "2024-10-01", "obsolete": "2025-09-30"},
         "FY2026": {"effective": "2025-10-01", "obsolete": "2026-09-30"},
+        # FY2027 derived from verified CMS FY2027 ICD-10-CM release ZIPs by
+        # tools/extract_icd10cm_fy2027.py (docs/workpapers/fy2027-registry-sources.md).
+        "FY2027": {"effective": "2026-10-01", "obsolete": "2027-09-30"},
     }
 
 
@@ -106,15 +109,17 @@ def test_codeset_module_globals_match_bundled_files():
 # No data package: strict raises loudly, default yields UNKNOWN
 # --------------------------------------------------------------------------- #
 def test_no_data_package_default_yields_unknown():
+    # FY2027 is now bundled (tools/extract_icd10cm_fy2027.py); the next
+    # out-of-registry ICD-10-CM vintage is FY2028 (asof 2028-05-01).
     assert dd.has_data_package() is False
-    out = cv.stamp({}, asof=date(2027, 5, 1))
+    out = cv.stamp({}, asof=date(2028, 5, 1))
     assert out["code_set_versions"]["icd10cm_fy"] == "UNKNOWN"
 
 
 def test_no_data_package_strict_raises_loudly():
     assert dd.has_data_package() is False
     with pytest.raises(cv.CodesetVersionError):
-        cv.stamp({}, asof=date(2027, 5, 1), strict=True)
+        cv.stamp({}, asof=date(2028, 5, 1), strict=True)
 
 
 # --------------------------------------------------------------------------- #
