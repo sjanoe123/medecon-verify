@@ -166,9 +166,12 @@ expect `v44`.
 ## 3. Test impact
 
 `PYTHONPATH=src python3 -m pytest tests/` → **411 passed, 2 skipped, 2 deselected**
-(the deselected items are `optional` real-source / network-gated tests excluded by
-the default `-m 'not slow and not optional'`; the 2 skips are the v44 deferral test
-and one pre-existing skip).
+(the 2 deselected items are excluded by the default `-m 'not slow and not optional'`:
+one is the `optional` real-source / network-gated test
+`test_extract_icd10cm_fy2027.py::test_real_sources_reproduce_committed_registry_and_workpaper_counts`,
+the other is the unrelated `slow` synthetic 1M-row reversal-pairs benchmark
+`test_reversal_pairs_phase_d.py::test_reversal_pairs_1m_rows_under_10s`; the 2 skips
+are the v44 deferral test and one pre-existing skip).
 
 `tests/test_extract_icd10cm_fy2027.py` (new) drives the extractor's real parsing
 and cross-check logic against synthetic ground-truth fixtures — the fixed-column
