@@ -1,0 +1,25 @@
+{
+  "fy": 2027,
+  "fy_key": "FY2027",
+  "effective": "2026-10-01",
+  "obsolete": "2027-09-30",
+  "counts": {
+    "billable": 74879,
+    "header_non_billable": 23524,
+    "total_order_entries": 98403,
+    "codes_file_lines": 74879
+  },
+  "source_members": {
+    "order_file": "Code Descriptions/icd10cm_order_2027.txt",
+    "codes_file": "Code Descriptions/icd10cm_codes_2027.txt"
+  },
+  "source_checksums": {
+    "2027-code-descriptions-tabular-order.zip": "91c6c9d1117764ce72375a0f3a5493b1725dafbc1ab283b55799076c9e194965",
+    "2027-code-tables-tabular-index.zip": "37baa476323714be16f95c9b2c96812bf6f3623d9f15188866e584dc529b0298",
+    "2027-conversion-table.zip": "9478b8f95e137177e18be3df906c35566674b16313b12740d9e8e3778cb0e67a",
+    "2027-icd-10-addendum.zip": "16986a34d1458e549217229686f1a487cf6419ee6acb1043fbc770f8fabdd026",
+    "2027-poa-exempt-codes.zip": "03f55091045024d07c99860470b9069ef2db4c19242d4c2ba0e9f30905bea904",
+    "2027-version-update-summary.zip": "c26b19c9246f24ecaccf056eb21640bf1cdded07527910e24bb1d006494f2860"
+  },
+  "conversion_table_status": "FINAL"
+}

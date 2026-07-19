@@ -57,15 +57,27 @@ class TestFy2027:
         ]
         assert cv.detect_icd10_fy(records) == "FY2027"
 
-    def test_strict_mode_passes_for_fy2027_icd10(self) -> None:
-        # icd10cm_fy is covered for a FY2027 date; strict must not raise on it.
-        # (ms_drg is a separate, deferred concern — see test_ms_drg_v44_deferred.)
-        out = cv.stamp(
-            {"code_set_versions": {"hcpcs_quarter": "2027Q3", "ms_drg": "v44"}},
-            asof=date(2027, 5, 1),
-            strict=True,
-        )
-        assert out["code_set_versions"]["icd10cm_fy"] == "FY2027"
+    def test_strict_mode_fy2027_icd10_covered_but_still_fails_closed(self) -> None:
+        # Proves FY2027 ICD-10-CM coverage is REAL without fabricating overrides.
+        #
+        # We must NOT stamp an invented 2027Q3 HCPCS quarter or an unfinalized
+        # ms_drg=v44 just to force strict=True green — that would mask the real
+        # fail-closed result and normalize stamping a proposed-rule grouper as
+        # valid. Instead:
+        #   1. icd10cm_fy alone resolves to FY2027 (the registry row is real), and
+        #   2. strict mode STILL fails closed for a 2027-05-01 date, because the
+        #      bundled HCPCS registry (tops out 2026Q2) and ms_drg.json (v43/
+        #      FY2026) genuinely do not cover it. The strict error must name
+        #      hcpcs_quarter — the first still-uncovered date-windowed field —
+        #      and must NOT name icd10cm_fy, which is now covered. If FY2027
+        #      coverage regressed, icd10cm_fy would become the blocker again and
+        #      this assertion would flip.
+        assert cv._vintage_for(date(2027, 5, 1), cv.ICD10CM_FY_REGISTRY) == "FY2027"
+        with pytest.raises(cv.CodesetVersionError) as exc:
+            cv.stamp({}, asof=date(2027, 5, 1), strict=True)
+        msg = str(exc.value)
+        assert "hcpcs_quarter" in msg  # the genuinely-uncovered field is the blocker
+        assert "icd10cm_fy" not in msg  # FY2027 is covered; it is NOT the blocker
 
     def test_ms_drg_v44_deferred_stamps_unknown_for_fy2027(self) -> None:
         # DEFERRAL CONSEQUENCE: FY2027 diagnosis codes exist, but no final MS-DRG

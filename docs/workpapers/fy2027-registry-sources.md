@@ -15,6 +15,28 @@ python3 tools/extract_icd10cm_fy2027.py           # derive + write registry
 
 Derivation date: 2026-07-19. Extractor exit status 0; all cross-checks passed.
 
+**Auditable from committed artifacts (not just the external `~/.gstack` path).**
+The provenance chain is committed under
+[`fy2027-sources/`](fy2027-sources/README.md):
+
+- [`fy2027-sources/icd10cm-fy2027-acquisition-manifest.md`](fy2027-sources/icd10cm-fy2027-acquisition-manifest.md)
+  — the acquisition manifest (CMS URL → SHA-256 → byte size → timestamp) for
+  every downloaded ZIP; the SHA-256 literals here match `SOURCES` in
+  `tools/extract_icd10cm_fy2027.py` verbatim.
+- [`fy2027-sources/extract-run-log.json`](fy2027-sources/extract-run-log.json)
+  — the captured `--check` output of a real successful run: recomputed source
+  checksums, the derived registry row, and the derived counts below. Re-running
+  `--check` reproduces it byte-for-byte.
+- [`fy2027-sources/ipps-fy2027-deferral-manifest.md`](fy2027-sources/ipps-fy2027-deferral-manifest.md)
+  — the IPPS check documenting the MS-DRG v44 deferral (section 2).
+- `tests/test_extract_icd10cm_fy2027.py` drives the extractor's real parsers and
+  cross-checks against synthetic ground-truth fixtures, and its `optional` test
+  `test_real_sources_reproduce_committed_registry_and_workpaper_counts`
+  re-derives the committed registry row **and the counts in section 1 below**
+  from the real sources when present — so the numbers here are tied to a runnable
+  reproduction, not hand-typed. Run:
+  `PYTHONPATH=src python3 -m pytest tests/test_extract_icd10cm_fy2027.py -m optional`.
+
 ---
 
 ## 1. ICD-10-CM FY2027 — SOURCED, verified 2026-07-19
@@ -143,10 +165,30 @@ expect `v44`.
 
 ## 3. Test impact
 
-`PYTHONPATH=src python3 -m pytest tests/` → **391 passed, 2 skipped, 1 deselected**
-(the deselected item is a `slow`/`optional` network-gated test excluded by the
-default `-m 'not slow and not optional'`; the 2 skips are the v44 deferral test
+`PYTHONPATH=src python3 -m pytest tests/` → **411 passed, 2 skipped, 2 deselected**
+(the deselected items are `optional` real-source / network-gated tests excluded by
+the default `-m 'not slow and not optional'`; the 2 skips are the v44 deferral test
 and one pre-existing skip).
+
+`tests/test_extract_icd10cm_fy2027.py` (new) drives the extractor's real parsing
+and cross-check logic against synthetic ground-truth fixtures — the fixed-column
+order-file parser, the codes-file counter, the ZIP-member reader, the
+conversion-filename parser, every `derive_fy2027` cross-check (checksum mismatch,
+missing source, PROPOSED-not-FINAL, billable≠codes, non-Oct-01 boundary), the
+`apply_to_registry` write path, and the v44 deferral guard. Its `optional`
+`test_real_sources_reproduce_committed_registry_and_workpaper_counts` re-derives
+the committed registry row and the section-1 counts from the real downloaded CMS
+sources when present. This replaces the earlier circular validation where tests
+only re-asserted the pre-baked JSON.
+
+The FY2027 strict-mode test was corrected: the former
+`test_strict_mode_passes_for_fy2027_icd10` fabricated `hcpcs_quarter=2027Q3` and
+`ms_drg=v44` overrides to force `strict=True` green, masking the real fail-closed
+result and normalizing an unfinalized v44 stamp. It is now
+`test_strict_mode_fy2027_icd10_covered_but_still_fails_closed`, which proves
+FY2027 ICD-10-CM coverage is real (icd10cm_fy resolves to FY2027 and is no longer
+the strict blocker) while asserting strict mode **still fails closed** on the
+genuinely-uncovered `hcpcs_quarter` — no invented overrides.
 
 Test expectations updated (each because FY2027 is now a *covered* vintage, so
 dates previously used as "out-of-registry" sentinels had to move to the next
@@ -163,6 +205,7 @@ uncovered FY — FY2028):
 | `test_fixture_corpus.test_end_to_end_pipeline_over_corpus` | asof 2026-11-01 | asof 2027-11-01 | same |
 
 New coverage added in `test_codeset_version.py`: `TestFy2027` (registry bounds,
-`stamp()` recognition incl. the Oct-01 2026 boundary, `detect_icd10_fy`, strict
-pass, the v44 deferral consequence + skipped v44 test) and
+`stamp()` recognition incl. the Oct-01 2026 boundary, `detect_icd10_fy`, the
+strict-mode fail-closed check that proves FY2027 coverage without fabricated
+overrides, the v44 deferral consequence + skipped v44 test) and
 `TestFy2026Fy2027BoundaryWarning` (the FY2026→FY2027 span still warns).
