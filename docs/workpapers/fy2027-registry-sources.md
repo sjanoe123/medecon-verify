@@ -30,12 +30,17 @@ The provenance chain is committed under
 - [`fy2027-sources/ipps-fy2027-deferral-manifest.md`](fy2027-sources/ipps-fy2027-deferral-manifest.md)
   — the IPPS check documenting the MS-DRG v44 deferral (section 2).
 - `tests/test_extract_icd10cm_fy2027.py` drives the extractor's real parsers and
-  cross-checks against synthetic ground-truth fixtures, and its `optional` test
+  cross-checks against synthetic ground-truth fixtures, and its real-source test
   `test_real_sources_reproduce_committed_registry_and_workpaper_counts`
   re-derives the committed registry row **and the counts in section 1 below**
   from the real sources when present — so the numbers here are tied to a runnable
-  reproduction, not hand-typed. Run:
-  `PYTHONPATH=src python3 -m pytest tests/test_extract_icd10cm_fy2027.py -m optional`.
+  reproduction, not hand-typed. That test is **not** `optional`-marked (its inputs
+  are local files, no network/credentials): the default suite collects it and it
+  skips cleanly when the `~/.gstack` sources are absent, so the release-gate run
+  on a machine that has them actually verifies the committed artifacts. It pins
+  the committed row **and** the parser's fresh output to independent static
+  literals (never to each other), so a shared wrong derivation is caught rather
+  than hidden. Run: `PYTHONPATH=src python3 -m pytest tests/test_extract_icd10cm_fy2027.py`.
 
 ---
 
@@ -71,8 +76,14 @@ Derivation and cross-checks (all inside `derive_fy2027`):
 
 - **Fiscal year = 2027** — parsed from the inner member names, which must agree:
   `Code Descriptions/icd10cm_order_2027.txt`,
-  `Code Descriptions/icd10cm_codes_2027.txt`, and the conversion-table member
-  `ICD-10-CM-CONVERSION-TABLE-FY2027-October 1 2026 - FINAL-.xlsx`. Disagreement → raise.
+  `Code Descriptions/icd10cm_codes_2027.txt`, and the conversion-table members.
+  The conversion ZIP ships the table under **two** matching members (the real
+  archive contains
+  `508-VERSION-ICD-10-CM-CONVERSION-TABLE-FY2027-October 1 2026 - FINAL-.csv`
+  and `ICD-10-CM-CONVERSION-TABLE-FY2027-October 1 2026 - FINAL-.xlsx`); the
+  extractor parses **every** matching member and requires all of them agree on
+  `(fy, effective_date, status)`. It does **not** accept the first match by
+  archive order — a ZIP mixing FINAL/PROPOSED or conflicting dates → raise.
 - **effective = 2026-10-01** — the statutory Oct-01 boundary date for FY2027,
   `date(FY-1, 10, 1)`, **cross-checked** against the effective date parsed out of
   the conversion-table filename (`...FY2027-October 1 2026 - FINAL...` →
@@ -165,13 +176,17 @@ expect `v44`.
 
 ## 3. Test impact
 
-`PYTHONPATH=src python3 -m pytest tests/` → **411 passed, 2 skipped, 2 deselected**
-(the 2 deselected items are excluded by the default `-m 'not slow and not optional'`:
-one is the `optional` real-source / network-gated test
-`test_extract_icd10cm_fy2027.py::test_real_sources_reproduce_committed_registry_and_workpaper_counts`,
-the other is the unrelated `slow` synthetic 1M-row reversal-pairs benchmark
+`PYTHONPATH=src python3 -m pytest tests/` → **415 passed, 2 skipped, 1 deselected**
+(the 1 deselected item is excluded by the default `-m 'not slow and not optional'`:
+the unrelated `slow` synthetic 1M-row reversal-pairs benchmark
 `test_reversal_pairs_phase_d.py::test_reversal_pairs_1m_rows_under_10s`; the 2 skips
-are the v44 deferral test and one pre-existing skip).
+are the v44 deferral test and one pre-existing skip). The real-source test
+`test_real_sources_reproduce_committed_registry_and_workpaper_counts` is now part
+of the default suite (it skips, never fails, when the `~/.gstack` sources are
+absent), so this count is with the real CMS sources present and the real-source
+verification actually executed. (Prior to the task-1.1 review fixes this run was
+411 passed / 2 deselected, because the real-source test was `optional`-marked and
+never ran in the release gate.)
 
 `tests/test_extract_icd10cm_fy2027.py` (new) drives the extractor's real parsing
 and cross-check logic against synthetic ground-truth fixtures — the fixed-column
@@ -206,6 +221,31 @@ uncovered FY — FY2028):
 | `test_codeset_strict` `_OUT_OF_REGISTRY` (+2 asserts) | 2027-05-01 | 2028-05-01 | 2027-05-01 now covered; strict must name the first truly-uncovered field |
 | `test_fixture_corpus.test_stamp_unknown_vintage_past_registry` | asof 2026-11-01 | asof 2027-11-01 | 2026-11-01 now → FY2027 |
 | `test_fixture_corpus.test_end_to_end_pipeline_over_corpus` | asof 2026-11-01 | asof 2027-11-01 | same |
+
+### Adversarial review fixes (codex GPT-5.6, task 1.1 second pass)
+
+Three findings were raised against the first pass and dispositioned here:
+
+1. **(fatal) Conversion-table first-match acceptance.**
+   `_derive_effective_from_conversion` returned on the first ZIP member matching
+   `CONVERSION_RE`; the real archive has two matching members, so status/date
+   were being decided by archive order. Fixed to parse **all** matching members
+   and require they agree on `(fy, effective, status)` — else `ExtractionError`.
+   New tests: `test_multiple_agreeing_members_are_accepted`,
+   `test_members_disagreeing_on_status_fail_closed`,
+   `test_members_disagreeing_on_effective_date_fail_closed`.
+2. **(major) Circular / deselected real-source test.** The real-source test
+   compared the committed JSON to the parser's own fresh output (a shared wrong
+   derivation would agree) and was `optional`-marked, so it never ran in the
+   release gate. Fixed: it pins both the committed row and the parser output to
+   independent static literals, and the `optional` marker is removed (inputs are
+   local files; it skips cleanly without sources).
+3. **(major) Public behavior change without SemVer bump.** Adding the FY2027 row
+   changes `codeset.stamp(asof=2027-05-01)` from `icd10cm_fy=UNKNOWN` to
+   `FY2027` and moves which field strict mode reports. This is *additive* (a new
+   recognized vintage; signatures and fail-closed posture unchanged), so per the
+   repo's SemVer contract it is a **minor** bump: `pyproject.toml` `version`
+   `1.0.0 → 1.1.0`. Release/tag flow (`git tag v1.1.0`) follows on merge.
 
 New coverage added in `test_codeset_version.py`: `TestFy2027` (registry bounds,
 `stamp()` recognition incl. the Oct-01 2026 boundary, `detect_icd10_fy`, the

@@ -179,6 +179,48 @@ class TestDeriveEffectiveFromConversion:
         with pytest.raises(ex.ExtractionError, match="no CONVERSION-TABLE"):
             ex._derive_effective_from_conversion(z)
 
+    def test_multiple_agreeing_members_are_accepted(self, tmp_path):
+        # The real CMS ZIP ships the table as both a 508 CSV and an XLSX; both
+        # encode the same FY/date/status, so all matching members agree and the
+        # parser returns that shared value.
+        z = tmp_path / "conv.zip"
+        with zipfile.ZipFile(z, "w") as zf:
+            zf.writestr(
+                "508-VERSION-ICD-10-CM-CONVERSION-TABLE-FY2027-October 1 2026 - FINAL-.csv",
+                b"csv body",
+            )
+            zf.writestr(_FINAL_MEMBER, b"xlsx body")
+        from datetime import date
+
+        fy, eff, status = ex._derive_effective_from_conversion(z)
+        assert (fy, eff, status) == (2027, date(2026, 10, 1), "FINAL")
+
+    def test_members_disagreeing_on_status_fail_closed(self, tmp_path):
+        # One FINAL + one PROPOSED member. Accepting the first by archive order
+        # would silently pick a status on member ordering alone; all matching
+        # members must agree or the parser fails closed.
+        z = tmp_path / "conv.zip"
+        with zipfile.ZipFile(z, "w") as zf:
+            zf.writestr(_FINAL_MEMBER, b"xlsx body")
+            zf.writestr(
+                "508-VERSION-ICD-10-CM-CONVERSION-TABLE-FY2027-October 1 2026 - PROPOSED-.csv",
+                b"csv body",
+            )
+        with pytest.raises(ex.ExtractionError, match="disagree"):
+            ex._derive_effective_from_conversion(z)
+
+    def test_members_disagreeing_on_effective_date_fail_closed(self, tmp_path):
+        # Same status, conflicting effective dates across members -> fail closed.
+        z = tmp_path / "conv.zip"
+        with zipfile.ZipFile(z, "w") as zf:
+            zf.writestr(_FINAL_MEMBER, b"xlsx body")
+            zf.writestr(
+                "508-VERSION-ICD-10-CM-CONVERSION-TABLE-FY2027-October 2 2026 - FINAL-.csv",
+                b"csv body",
+            )
+        with pytest.raises(ex.ExtractionError, match="disagree"):
+            ex._derive_effective_from_conversion(z)
+
 
 # --------------------------------------------------------------------------- #
 # Integration: derive_fy2027 over synthetic sources (checksums monkeypatched).
@@ -302,26 +344,46 @@ def test_extract_ms_drg_v44_is_deferred_and_raises(tmp_path):
 
 
 # --------------------------------------------------------------------------- #
-# Optional: drive the real extractor over the real downloaded CMS sources.
-# Ties the committed registry row + workpaper counts to the actual artifacts.
-# Skips (never fails) when the ~/.gstack sources are absent, so CI stays green.
+# Real-source check: drive the real extractor over the real downloaded CMS
+# sources and pin BOTH the parser output and the committed registry row to
+# independent static literals (workpaper section 1 + the statutory Oct-01
+# boundary) — never to each other. Comparing the committed JSON to the parser's
+# own fresh output is circular: a shared wrong derivation (both written by the
+# same buggy parser) would agree and pass. Checking each side against a constant
+# catches that.
+#
+# Not `optional`-marked: the sources are local files (no network, no
+# credentials), so this is collected by the default suite and SKIPS cleanly when
+# the ~/.gstack sources are absent (hermetic CI stays green) while the
+# release-gate run on a machine that has them actually verifies the committed
+# artifacts against the real CMS files.
 # --------------------------------------------------------------------------- #
-@pytest.mark.optional
+
+# Independently-recorded expectations. These constants are the static source of
+# truth; both the parser output and the committed JSON are checked against them.
+_EXPECTED_FY2027_ROW = {"effective": "2026-10-01", "obsolete": "2027-09-30"}
+_EXPECTED_FY2027_COUNTS = {
+    "billable": 74879,
+    "header_non_billable": 23524,
+    "total_order_entries": 98403,
+    "codes_file_lines": 74879,
+}
+
+
 def test_real_sources_reproduce_committed_registry_and_workpaper_counts():
     src = ex.DEFAULT_SOURCE_DIR
     if not src.is_dir() or not all((src / n).is_file() for n in ex.SOURCES):
         pytest.skip(f"real CMS FY2027 sources not present at {src}")
     derived = ex.derive_fy2027(src)  # verifies real SHA-256s, then parses
-    # The committed registry row must equal what the real files derive.
-    committed = json.loads(ex.REGISTRY_PATH.read_text(encoding="utf-8"))
-    assert committed["FY2027"] == {
+    # (1) The parser's fresh derivation must equal the independent static row ...
+    assert {
         "effective": derived["effective"],
         "obsolete": derived["obsolete"],
-    }
-    # The workpaper's provenance counts must equal what the real files derive.
-    assert derived["counts"] == {
-        "billable": 74879,
-        "header_non_billable": 23524,
-        "total_order_entries": 98403,
-        "codes_file_lines": 74879,
-    }
+    } == _EXPECTED_FY2027_ROW
+    # (2) ... and the committed registry row must equal the SAME static row —
+    # checked against the constant, not against `derived`, so a shared wrong
+    # derivation cannot make both sides agree on a wrong value.
+    committed = json.loads(ex.REGISTRY_PATH.read_text(encoding="utf-8"))
+    assert committed["FY2027"] == _EXPECTED_FY2027_ROW
+    # (3) The workpaper's provenance counts must equal what the real files derive.
+    assert derived["counts"] == _EXPECTED_FY2027_COUNTS

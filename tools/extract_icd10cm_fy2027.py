@@ -200,28 +200,46 @@ def _count_codes_lines(raw: bytes) -> int:
 
 
 def _derive_effective_from_conversion(zip_path: Path) -> tuple[int, date, str]:
-    """Derive (fy, effective_date, status) from the conversion-table filename.
+    """Derive (fy, effective_date, status) from the conversion-table filename(s).
 
     CMS encodes the fiscal year, the Oct-01 effective date, and the FINAL vs.
     PROPOSED status directly in the conversion-table member names. This gives an
     independent, file-sourced corroboration of the effective date rather than a
     hand-typed constant.
+
+    The real CMS ZIP ships the same table under *multiple* members (a 508-
+    compliant CSV and an XLSX), so this parses **every** matching member and
+    requires they all agree on (fy, effective_date, status). Returning the first
+    match by archive order would let a ZIP that mixed FINAL and PROPOSED — or
+    conflicting effective dates — pass on member ordering alone, defeating the
+    fail-closed guarantee.
     """
     with zipfile.ZipFile(zip_path) as zf:
         names = zf.namelist()
+    parsed: list[tuple[str, tuple[int, date, str]]] = []
     for n in names:
         m = CONVERSION_RE.search(n)
-        if m:
-            fy = int(m.group("fy"))
-            month = _MONTHS.get(m.group("month").lower())
-            if month is None:
-                raise ExtractionError(f"unparseable month in {n!r}")
-            eff = date(int(m.group("year")), month, int(m.group("day")))
-            return fy, eff, m.group("status").upper()
-    raise ExtractionError(
-        f"no CONVERSION-TABLE-FY####-<date> - FINAL member found in "
-        f"{zip_path.name}; members: {names}"
-    )
+        if m is None:
+            continue
+        month = _MONTHS.get(m.group("month").lower())
+        if month is None:
+            raise ExtractionError(f"unparseable month in {n!r}")
+        eff = date(int(m.group("year")), month, int(m.group("day")))
+        parsed.append((n, (int(m.group("fy")), eff, m.group("status").upper())))
+    if not parsed:
+        raise ExtractionError(
+            f"no CONVERSION-TABLE-FY####-<date> - FINAL member found in "
+            f"{zip_path.name}; members: {names}"
+        )
+    distinct = {value for _n, value in parsed}
+    if len(distinct) != 1:
+        detail = ", ".join(f"{n!r}->{value}" for n, value in parsed)
+        raise ExtractionError(
+            f"conversion-table members disagree on (fy, effective, status) in "
+            f"{zip_path.name}: {detail} — refusing to derive a vintage whose own "
+            "source members contradict each other."
+        )
+    return parsed[0][1]
 
 
 def derive_fy2027(source_dir: Path) -> dict:
