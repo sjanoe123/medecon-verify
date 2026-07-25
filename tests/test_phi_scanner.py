@@ -42,6 +42,54 @@ class TestSSN:
         assert "12345678" in out
 
 
+class TestDecimalContextGuards:
+    """9/10-digit fractional tails of decimal numbers are arithmetic output,
+    not identifiers (2026-07-24: unrounded CMS payment averages like
+    "52.465118644" tripped 54 false SSN hits in one national aggregate file)."""
+
+    def test_decimal_fraction_not_redacted_as_ssn(self) -> None:
+        out = phi_scanner.scan_text('"Avg_Sbmtd_Chrg": "52.465118644"')
+        assert "52.465118644" in out
+        assert "[REDACTED:SSN]" not in out
+
+    def test_decimal_fraction_not_redacted_as_phone(self) -> None:
+        out = phi_scanner.scan_text("pi is 3.1415926535 roughly")
+        assert "3.1415926535" in out
+        assert "[REDACTED:PHONE]" not in out
+
+    def test_integer_part_of_decimal_not_redacted(self) -> None:
+        # 9 digits followed by ".<digit>" is the integer part of a decimal.
+        out = phi_scanner.scan_text("total 123456789.5 units")
+        assert "123456789.5" in out
+
+    def test_bare_leading_dot_still_redacts(self) -> None:
+        # Only true decimal context (digit-dot prefix) is exempt.
+        out = phi_scanner.scan_text("SSN noted: .123456789")
+        assert "[REDACTED:SSN]" in out
+
+    def test_real_ssn_after_decimal_sentence_still_redacts(self) -> None:
+        # Sentence period then SSN: preceding char pair is "<letter>." not
+        # "<digit>." so the guard does not fire.
+        out = phi_scanner.scan_text("Claim v2. 123-45-6789 follows")
+        assert "[REDACTED:SSN]" in out
+
+    def test_dotted_phone_still_redacted(self) -> None:
+        out = phi_scanner.scan_text("call 617.555.0142 today")
+        assert "[REDACTED:PHONE]" in out
+        assert "617.555.0142" not in out
+
+    def test_three_digit_dollar_average_not_redacted_as_phone(self) -> None:
+        # NNN.NNNNNNN (3-digit dollars, 7-digit fraction) previously parsed as
+        # a phone with one dot separator and one missing separator.
+        out = phi_scanner.scan_text('"Avg_Sbmtd_Chrg": "172.5111753"')
+        assert "172.5111753" in out
+        assert "[REDACTED:PHONE]" not in out
+
+    def test_paren_and_bare_phone_formats_still_redacted(self) -> None:
+        assert "[REDACTED:PHONE]" in phi_scanner.scan_text("(617) 555-0142")
+        assert "[REDACTED:PHONE]" in phi_scanner.scan_text("phone 6175550142")
+
+
 class TestMBI:
     def test_mbi_pattern_matches(self) -> None:
         # Valid MBI shape per CMS spec

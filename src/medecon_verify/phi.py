@@ -44,7 +44,14 @@ from typing import Any
 # ---------------------------------------------------------------------------
 
 # 1. SSN
-_SSN = re.compile(r"\b\d{3}-?\d{2}-?\d{4}\b")
+# Decimal-context guards (2026-07-24): a 9-digit run that is the fractional part
+# of a decimal number ("52.465118644") is arithmetic output, not an identifier —
+# unrounded CMS payment averages were tripping the write-gate 54 times in one
+# aggregate file. (?<!\d\.) refuses a match whose first digit follows "<digit>.",
+# and (?!\.\d) refuses one whose last digit is the integer part of a decimal
+# ("123456789.5"). A bare leading dot (".123456789") still redacts — only true
+# decimal context is exempt, so err-on-redaction is preserved.
+_SSN = re.compile(r"\b(?<!\d\.)\d{3}-?\d{2}-?\d{4}\b(?!\.\d)")
 
 # 2. MBI (Medicare Beneficiary ID, 11-char CMS format)
 # Position 1: 1-9; 2,5,8: A-Z excl SLOIBZ; 3: 0-9; 4: alnum excl SLOIBZ;
@@ -55,7 +62,18 @@ _MBI = re.compile(
 )
 
 # 3. Phone (US-centric; international is broader)
-_PHONE = re.compile(r"\b(?:\+?1[-.\s]?)?\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}\b")
+# Same decimal-context guards as _SSN: a 10-digit fractional tail
+# ("3.1415926535") is not a phone number. Additionally, dot separators must be
+# CONSISTENT — "617.555.0142" matches (both dots), but "172.5111753" does not
+# (a 3-digit-dollar currency average is not a phone with one dot and one
+# missing separator). Hyphen/space separators stay loose ("(617) 555-0142").
+# Narrowing accepted 2026-07-24: single-dot mixed formats ("617.5550142") no
+# longer match — vanishingly rare as phones, ubiquitous as decimals.
+_PHONE = re.compile(
+    r"\b(?<!\d\.)(?:\+?1[-.\s]?)?"
+    r"(?:\(?\d{3}\)?([-.\s])\d{3}\1\d{4}|\(?\d{3}\)?[-\s]?\d{3}[-\s]?\d{4})"
+    r"\b(?!\.\d)"
+)
 
 # 4. Email (org-domain allow-list applied at higher layer if needed)
 _EMAIL = re.compile(r"\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b")
