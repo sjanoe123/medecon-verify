@@ -58,6 +58,38 @@ threshold sits at 0.80, inside that gap. Guards: claims under 4 content tokens
 fall through to the full-coverage rule, a claim must cover at least 30% of the
 branch, and a claim contained in two branches maps to neither.
 
+### 2.2.0 — the composition-as-driver blocker closes its escape hatch
+
+**This can newly BLOCK deliverables that previously passed** — deliberately.
+
+A driver claim is excused when a decomposition backs it, so `is_decomposition`
+is the gate's escape hatch. It was a plain substring test, which meant any
+`method` string merely *containing* "decomposition" opened it — including one
+that denies the method outright:
+
+```
+"composition groupby only; decomposition not performed"   # read as BOTH
+"groupby cohort; regression not run"                      # blocker suppressed
+```
+
+The method that said in words that no decomposition was run was the method that
+excused the driver claim.
+
+Classification is now **word-bounded** (`composition` is a substring of
+`decomposition`, so unbounded matching read every decomposition as a
+composition too) and **clause-level negation-aware**. Each clause votes, and an
+explicit denial beats a positive, so a method cannot both claim and disclaim a
+decomposition to get past the gate.
+
+Clause splitting is what keeps a negation bound to the method it actually
+denies — `"trend decomposition, not a groupby"` does not negate its own
+decomposition, because the negation lands in the second clause with the groupby
+it refers to. Both directions are pinned by tests: eight method strings that
+must still block, five that must not become false blockers.
+
+If a deliverable starts blocking after this upgrade, the finding is claiming a
+cause its method cannot support. That is the gate working.
+
 ### 2.1.1 — matcher correctness fixes
 
 Found by an adversarial review of 2.1.0. Depend on **>= 2.1.1**, not a bare

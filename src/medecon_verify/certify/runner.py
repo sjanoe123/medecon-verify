@@ -1195,6 +1195,69 @@ _DECOMPOSITION_METHODS = ("decomposition", "decompose", "waterfall",
                           "difference-in-difference", "diff-in-diff",
                           "shapley", "variance decomposition", "attribution model")
 
+# Method classification is WORD-BOUNDED, not a bare substring test. "composition"
+# is a substring of "decomposition", so an unbounded scan reads every
+# decomposition method as also being a composition — and, worse, lets a negated
+# decomposition clause cancel a real composition flag.
+_COMPOSITION_RE = re.compile(
+    r"\b(?:%s)\b" % "|".join(re.escape(m) for m in _COMPOSITION_METHODS)
+)
+_DECOMPOSITION_RE = re.compile(
+    r"\b(?:%s)\b" % "|".join(re.escape(m) for m in _DECOMPOSITION_METHODS)
+)
+
+# A `method` string is read CLAUSE BY CLAUSE so a negation binds only to the
+# method named in its own clause. Splitting on these boundaries is what keeps
+# "trend decomposition, not a groupby" from negating its own decomposition:
+# the negation lands in the second clause, with the groupby it actually denies.
+_METHOD_CLAUSE_SPLIT = re.compile(
+    r"[;,()]|\bbut\b|\bhowever\b|\bthough\b|\brather than\b|\binstead of\b"
+)
+_METHOD_NEGATION = re.compile(
+    r"\b(?:not|no|never|without|none|lacking|absent|neither|nor|cannot|"
+    r"can't|didn't|wasn't|isn't)\b"
+)
+
+
+def _method_flags(method: str) -> tuple[bool, bool]:
+    """`(is_composition, is_decomposition)` for a method string, negation-aware.
+
+    A plain substring test made the composition-as-driver BLOCKER trivially
+    escapable. `is_decomposition` is the gate's escape hatch — a driver claim is
+    allowed when a decomposition backs it — so any string merely CONTAINING
+    "decomposition" opened it, including one that denies the method outright:
+
+        "composition groupby only; decomposition not performed"
+
+    read as both, and `and not is_decomposition` suppressed the blocker. The
+    method that says in words that no decomposition was run was the method that
+    excused the driver claim.
+
+    Each clause votes: a method term in a clause with no negation is a positive
+    signal, the same term in a negated clause is an explicit denial. **An
+    explicit denial wins over a positive** — `positive and not negated` — so a
+    method cannot both claim and disclaim a decomposition to get past the gate.
+    That direction is deliberate: for the escape hatch, failing closed means
+    blocking, which is the safe error.
+
+    Applied symmetrically to composition, where the same fail-closed rule points
+    the other way (a denied composition means no blocker). That asymmetry of
+    consequence is accepted rather than special-cased: a finding whose method
+    denies being a composition and names nothing else is simply outside this
+    rule's reach, exactly as `method: "sum"` always has been.
+    """
+    method = (method or "").lower()
+    comp_pos = comp_neg = decomp_pos = decomp_neg = False
+    for clause in _METHOD_CLAUSE_SPLIT.split(method):
+        negated = bool(_METHOD_NEGATION.search(clause))
+        if _COMPOSITION_RE.search(clause):
+            comp_neg |= negated
+            comp_pos |= not negated
+        if _DECOMPOSITION_RE.search(clause):
+            decomp_neg |= negated
+            decomp_pos |= not negated
+    return (comp_pos and not comp_neg), (decomp_pos and not decomp_neg)
+
 # Stopwords stripped before token-matching a finding's branch claim against a
 # hypothesis-tree branch label. These are the connective words that make a
 # 1-token substring like "a" or "data" spuriously "match" a JSON blob.
@@ -1638,13 +1701,9 @@ def check_analysis_answers_scope(rendered: str, sidecar: dict) -> EvalResult:
         ftext = str(f.get("finding", "")).lower()
         fmethod = str(f.get("method") or f.get("analysis_type") or "").lower()
         finding_token_sets.append(_branch_tokens(ftext))
-        finding_is_decomposition.append(
-            any(m in fmethod for m in _DECOMPOSITION_METHODS)
-        )
-        finding_is_composition.append(
-            any(m in fmethod for m in _COMPOSITION_METHODS)
-            and not any(m in fmethod for m in _DECOMPOSITION_METHODS)
-        )
+        f_is_comp, f_is_decomp = _method_flags(fmethod)
+        finding_is_decomposition.append(f_is_decomp)
+        finding_is_composition.append(f_is_comp and not f_is_decomp)
 
     # Two severities, deliberately separated (see the return block below).
     # `problems` are ship-blocking; `unmapped` are reported but do not gate.
@@ -1670,8 +1729,9 @@ def check_analysis_answers_scope(rendered: str, sidecar: dict) -> EvalResult:
             any(w in finding_text for w in _DRIVER_WORDS)
             or any(w in bound_rendered for w in _DRIVER_WORDS)
         )
-        is_composition = any(m in method for m in _COMPOSITION_METHODS)
-        is_decomposition = any(m in method for m in _DECOMPOSITION_METHODS)
+        # Negation-aware: a method that DENIES running a decomposition must not
+        # be read as having one. See `_method_flags`.
+        is_composition, is_decomposition = _method_flags(method)
         if claims_driver and is_composition and not is_decomposition:
             problems.append(
                 f"finding {i} claims a driver/cause but its method is "

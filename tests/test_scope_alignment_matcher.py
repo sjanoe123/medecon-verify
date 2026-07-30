@@ -351,6 +351,60 @@ class TestSeveritySplit:
         assert r.status == "pass"
 
 
+class TestMethodNegation:
+    """The escape hatch must not be openable by a method that denies itself.
+
+    `is_decomposition` excuses a driver claim. A plain substring test opened it
+    for any string merely CONTAINING "decomposition" -- including one saying no
+    decomposition was run. These pin both directions: the escape is closed, and
+    a legitimate decomposition is not turned into a false blocker.
+    """
+
+    def _sc(self, method):
+        return {
+            "scope": {"hypothesis_tree": ["access expansion"]},
+            "findings": [{
+                "finding": "ED visits rose, driven by the ESRD cohort",
+                "method": method, "answers": "access expansion",
+            }],
+        }
+
+    @pytest.mark.parametrize("method", [
+        "composition groupby only; decomposition not performed",
+        "groupby cohort; regression not run",
+        "composition groupby; a decomposition was NOT run",
+        "no decomposition was performed, only a share-of-total cut",
+        "composition, not decomposition",
+        "share of total; no causal claim",
+        "composition (groupby cohort, share of total)",
+        "groupby",
+    ])
+    def test_composition_driver_still_blocks(self, method) -> None:
+        r = er.check_analysis_answers_scope("", self._sc(method))
+        assert r.status == "fail", f"{method!r} -> {r.status}: {r.detail}"
+        assert "composition" in r.detail.lower()
+
+    @pytest.mark.parametrize("method", [
+        "trend decomposition (util x unit cost x case mix waterfall)",
+        "trend decomposition, not a groupby",     # must not negate ITSELF
+        "decomposition, not composition",
+        "waterfall decomposition",
+        "shapley variance decomposition",
+    ])
+    def test_real_decomposition_is_not_a_false_blocker(self, method) -> None:
+        # The other direction: loosening until nothing blocks is one failure;
+        # tightening until honest work blocks is the other.
+        r = er.check_analysis_answers_scope("", self._sc(method))
+        assert r.status == "pass", f"{method!r} -> {r.status}: {r.detail}"
+
+    def test_composition_substring_of_decomposition_is_not_a_match(self) -> None:
+        # "composition" is a substring of "decomposition". Unbounded matching
+        # read every decomposition as a composition too, and let a negated
+        # decomposition clause cancel a real composition flag.
+        assert er._method_flags("decomposition") == (False, True)
+        assert er._method_flags("composition") == (True, False)
+
+
 class TestWarnStatusPlumbing:
     """`warn` must be countable and must not move the launch gate."""
 
