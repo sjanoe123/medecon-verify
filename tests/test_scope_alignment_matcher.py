@@ -85,6 +85,76 @@ class TestBranchMatchShapes:
         assert r.status == "pass"
 
 
+class TestExplicitBranchReference:
+    """The contract that removes the matching problem: an id or an index."""
+
+    ID_TREE = [
+        {"id": "H1", "hypothesis": "MLR drift"},
+        {"id": "H2", "hypothesis": "RAF lag"},
+    ]
+
+    def _sc(self, answers, tree=None):
+        return {
+            "hypotheses": tree if tree is not None else self.ID_TREE,
+            "findings": [{"finding": "Margin moved.", "method": "decomposition",
+                          "answers": answers}],
+        }
+
+    def test_branch_id_maps(self) -> None:
+        assert er.check_analysis_answers_scope("", self._sc("H2")).status == "pass"
+
+    def test_branch_id_is_case_and_space_insensitive(self) -> None:
+        assert er.check_analysis_answers_scope("", self._sc(" h2 ")).status == "pass"
+
+    def test_zero_index_maps(self) -> None:
+        # `answers: 0` is a valid reference to the FIRST branch. Resolving the
+        # declaration field by truthiness would drop it silently.
+        assert er.check_analysis_answers_scope("", self._sc(0)).status == "pass"
+
+    def test_last_index_maps(self) -> None:
+        assert er.check_analysis_answers_scope("", self._sc(1)).status == "pass"
+
+    def test_out_of_range_index_is_reported_not_resolved(self) -> None:
+        # A dangling reference must surface rather than resolve to something
+        # approximate.
+        r = er.check_analysis_answers_scope("", self._sc(7))
+        assert r.status == "warn"
+
+    def test_unknown_id_is_reported(self) -> None:
+        r = er.check_analysis_answers_scope("", self._sc("H9"))
+        assert r.status == "warn"
+
+    def test_true_is_not_a_branch_selector(self) -> None:
+        # bool is an int in Python; `answers: true` must not select branch 1.
+        r = er.check_analysis_answers_scope("", self._sc(True))
+        assert r.status == "warn"
+
+    def test_id_reference_survives_a_branch_rewording(self) -> None:
+        # The whole point of the contract: rewording the branch text does not
+        # break a mapping expressed as an id. The free-text equivalent
+        # ("MLR drift") would no longer match this reworded branch.
+        reworded = [
+            {"id": "H1", "hypothesis": "medical loss ratio deterioration "
+                                       "year over year in the retained book"},
+            {"id": "H2", "hypothesis": "RAF lag"},
+        ]
+        r = er.check_analysis_answers_scope("", self._sc("H1", tree=reworded))
+        assert r.status == "pass"
+
+    def test_index_alignment_skips_empty_branch_labels(self) -> None:
+        # Branch labels with no content token are dropped. Ids, labels and
+        # token sets must be filtered together or an index resolves to the
+        # wrong branch.
+        tree = [
+            {"id": "H1", "hypothesis": "of the"},   # no content tokens -> dropped
+            {"id": "H2", "hypothesis": "coding intensity"},
+        ]
+        # Index 0 must now mean "coding intensity", the only surviving branch.
+        r = er.check_analysis_answers_scope("", self._sc(0, tree=tree))
+        assert r.status == "pass"
+        assert er.check_analysis_answers_scope("", self._sc(1, tree=tree)).status == "warn"
+
+
 class TestTrueNegatives:
     """A matcher loosened until nothing fails is worse than the bug."""
 
@@ -113,10 +183,10 @@ class TestTrueNegatives:
         assert r.status == "warn"
         assert "finding 1 maps to no /scope hypothesis branch" in r.detail
 
-    def test_claim_spread_evenly_over_two_branches_does_not_map(self) -> None:
-        # Coverage may clear 0.40 against a long branch, but without a 2x
-        # margin over the runner-up it is not a match to either. This is the
-        # margin rule doing the discriminating, not the threshold.
+    def test_claim_contained_in_two_branches_does_not_map(self) -> None:
+        # The uniqueness guard. This claim is fully contained in BOTH branches
+        # (precision 1.00 against each), differing only in the phrase it omits.
+        # A claim that cannot distinguish two branches maps to neither.
         tree = [
             {"branch": "inpatient admissions rose because of expanded access "
                        "across the commercial population in the northern region"},
@@ -126,12 +196,30 @@ class TestTrueNegatives:
         sidecar = {
             "hypotheses": tree,
             "findings": [{
-                "finding": "Inpatient admissions rose across the commercial "
-                           "population in the northern region.",
-                "method": "groupby", "answers": None,
+                "finding": "A quantitative result.", "method": "groupby",
+                "answers": "inpatient admissions rose across the commercial "
+                           "population in the northern region",
             }],
         }
         r = er.check_analysis_answers_scope("", sidecar)
+        assert r.status == "warn"
+
+    def test_generic_fragment_of_a_branch_does_not_map(self) -> None:
+        # Precision 1.00 (every word is lifted from branch 1) but coverage far
+        # under 0.30 - a claim assembled from a branch's filler has not engaged
+        # with the hypothesis. This is what the coverage floor is for.
+        r = er.check_analysis_answers_scope("", _sidecar(
+            "the hospital organizations they report", finding="A result."
+        ))
+        assert r.status == "warn"
+
+    def test_short_claim_contained_in_a_branch_does_not_map(self) -> None:
+        # "financial assistance" is contained in all three branches and
+        # identifies none. Below the 4-token floor the containment path is
+        # unavailable, so this cannot map on precision alone.
+        r = er.check_analysis_answers_scope("", _sidecar(
+            "financial assistance", finding="A result."
+        ))
         assert r.status == "warn"
 
     def test_junk_answers_does_not_map(self) -> None:

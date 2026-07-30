@@ -1248,87 +1248,150 @@ def _stemmed_tokens(label) -> set[str]:
     return {_stem(t) for t in _branch_tokens(label)}
 
 
-# Long-branch matching constants. See `_maps_to_branch` for the justification.
-_LONG_BRANCH_MIN_TOKENS = 8
-_LONG_BRANCH_MIN_COVERAGE = 0.40
-_LONG_BRANCH_MIN_MARGIN = 2.0
+# Containment-path constants. See `_contained_branch_index` for the measured
+# justification of each. All three sit in wide empirical gaps, not on a tuned
+# edge.
+_CONTAINMENT_MIN_CLAIM_TOKENS = 4
+_CONTAINMENT_MIN_PRECISION = 0.80
+_CONTAINMENT_MIN_COVERAGE = 0.30
+
+
+def _explicit_branch_reference(
+    answers, branch_ids: list[str | None], n_branches: int
+) -> int | None:
+    """Resolve `answers` to a branch index when it is an EXPLICIT reference.
+
+    This is the contract that makes the whole matching problem disappear, and
+    it is the shape producers should emit. A finding may reference its branch
+    by:
+
+    - **0-based index** — `answers: 0` selects the first declared branch;
+    - **branch id** — `answers: "H1"` against a tree entry carrying
+      `{"id": "H1", "hypothesis": "..."}`.
+
+    Either form is exact and unambiguous: no tokenizing, no thresholds, no way
+    for a rewording of the branch text to silently break the mapping. Every
+    heuristic below this function exists only to support the free-text shape
+    that producers actually emit today; a producer that adopts ids never
+    touches them.
+
+    An out-of-range index or an unknown id returns None and therefore falls
+    through to the text paths — and, failing those, is reported. That is the
+    right outcome: a dangling reference must surface, not resolve to something
+    approximate.
+
+    Note `bool` is excluded before the `int` check because `True` is an `int`
+    in Python and `answers: true` is not a branch selector.
+    """
+    if isinstance(answers, bool):
+        return None
+    if isinstance(answers, int):
+        return answers if 0 <= answers < n_branches else None
+    if isinstance(answers, str):
+        needle = answers.strip().casefold()
+        if needle:
+            for i, bid in enumerate(branch_ids):
+                if bid and bid.strip().casefold() == needle:
+                    return i
+    return None
+
+
+def _contained_branch_index(
+    claim_tokens: set[str], branch_token_sets: list[set[str]]
+) -> int | None:
+    """Index of the one branch that CONTAINS a declared free-text claim.
+
+    The signal is **precision** — what fraction of the claim's own content
+    words appear in the branch — not coverage of the branch. That distinction
+    is the whole point.
+
+    Coverage (branch-side) is what the original rule used, and it degrades as
+    the branch gets wordier: a 22-token branch carrying editorial filler
+    ("obviously", "one", "line") can never be fully covered by an honest
+    `answers` value, so every finding on a sentence-shaped tree read as drift.
+    Precision (claim-side) does not care how verbose the branch is. A claim
+    that is a prefix, a suffix, or a faithful paraphrase of a branch is
+    *contained in* it — nearly every word it uses appears there — whatever the
+    branch's length.
+
+    Measured on the real 3-branch sentence-shaped tree that exposed the bug,
+    with each finding's declared `answers`:
+
+        intended branch:  precision 1.00, 1.00, 1.00, 1.00
+        every other:      precision 0.20, 0.22, 0.19, 0.10  (max 0.22)
+
+    A gap of 0.78. `_CONTAINMENT_MIN_PRECISION` = 0.80 sits inside it with
+    0.58 of headroom below and 0.20 above — chosen from the shape of the
+    separation, not fitted to the closest observation. (The prior rule's
+    branch-side threshold had to be set at 0.40 against a 0.27 noise floor: a
+    0.13 gap. Same data, a measure that separates ~6x better.)
+
+    Two guards keep precision from being trivially satisfiable:
+
+    - `_CONTAINMENT_MIN_CLAIM_TOKENS` (4). Precision on a 1-2 token claim is
+      meaningless — "financial assistance" is contained in all three branches
+      and identifies none of them. Short claims fall through to the
+      full-coverage rule, which is exactly right for short branch labels.
+    - `_CONTAINMENT_MIN_COVERAGE` (0.30). Blocks a claim built only of generic
+      words lifted from a branch: 6 filler tokens out of 22 is precision 1.00
+      but coverage 0.27, and has not engaged with the hypothesis. Observed
+      intended coverages were 0.41-0.89, all clear of it.
+
+    Finally the match must be **unique**. If two branches both contain the
+    claim, the claim does not distinguish them and maps to neither — which is
+    what makes near-identical branches (differing only in "expanded access"
+    vs "coding intensity") safe.
+
+    Returns the branch index, or None when no branch or more than one
+    qualifies.
+    """
+    if len(claim_tokens) < _CONTAINMENT_MIN_CLAIM_TOKENS:
+        return None
+    hits = [
+        i for i, bt in enumerate(branch_token_sets)
+        if bt
+        and (len(bt & claim_tokens) / len(claim_tokens)) >= _CONTAINMENT_MIN_PRECISION
+        and (len(bt & claim_tokens) / len(bt)) >= _CONTAINMENT_MIN_COVERAGE
+    ]
+    return hits[0] if len(hits) == 1 else None
 
 
 def _maps_to_branch(
-    claim_tokens: set[str], branch_token_sets: list[set[str]]
+    answers,
+    answers_tokens: set[str],
+    all_tokens: set[str],
+    branch_ids: list[str | None],
+    branch_token_sets: list[set[str]],
 ) -> bool:
-    """Does a finding's claim map to one of the declared hypothesis branches?
+    """Does a finding map to one of the declared hypothesis branches?
 
-    Two paths, because branch labels come in two very different shapes.
+    Three paths, tried in descending order of certainty:
 
-    **Path 1 — full coverage (exact subset).** A claim maps to a branch when it
-    carries every one of that branch's content tokens. This is the original
-    rule and stays authoritative for SHORT branch labels, where it is exactly
-    right: with branches "MLR drift" and "RAF lag", a claim "RAF drift" covers
-    neither in full and correctly reads as scope drift. A single shared token
-    must never be enough.
-
-    **Path 2 — long-branch coverage ratio.** Full coverage is unsatisfiable
-    once /scope declares branches as SENTENCES rather than labels. A 22-token
-    branch like "the forgone federal income tax ... is of the same order of
-    magnitude as the financial assistance they report, so the exemption is not
-    obviously earned on that one line" requires the claim to reproduce every
-    word including pure editorial filler ("obviously", "one", "line"). No
-    honest `answers` value does that, so every finding on a sentence-shaped
-    tree was reported as drift — a false positive on the whole tree, not on one
-    finding. (Observed: a finding rejected for missing the single word
-    "several".)
-
-    For branches at or above `_LONG_BRANCH_MIN_TOKENS` we therefore accept
-    partial coverage, guarded by TWO conditions rather than a bare threshold:
-
-    - coverage >= `_LONG_BRANCH_MIN_COVERAGE` (0.40), and
-    - coverage >= `_LONG_BRANCH_MIN_MARGIN` (2x) the next-best branch's.
-
-    The **margin is doing most of the discrimination**, not the threshold, and
-    that is deliberate. Measured on a real 3-branch sentence-shaped tree, the
-    intended branch scored 0.45-0.94 while the best wrong branch scored
-    0.17-0.27 — a consistent 2.7x-5.3x separation. An absolute threshold alone
-    would sit uncomfortably close to that noise floor; requiring the winner to
-    *dominate* is what makes the match trustworthy. A claim that spreads itself
-    evenly over two branches is not a match to either, and is still flagged.
-
-    The threshold is not a tuned constant so much as a floor beneath the margin
-    test: a claim covering under 40% of a branch has not engaged with it,
-    however little it engaged with the others.
-
-    Note the asymmetry against false positives: a genuinely off-tree finding
-    (an external cross-check, an unscoped fishing result) covers ~0.27 of its
-    nearest branch with a margin near 1.0, failing BOTH conditions. Loosening
-    to catch it would require dropping to ~0.25 with no margin, which is where
-    the rule stops discriminating at all.
-
-    When only one branch is declared there is no runner-up, so the margin test
-    is vacuous and the 0.40 floor carries the decision alone. That is the
-    intended reading: with a single branch there is no competing home for the
-    finding, and the only question is whether it engaged with the one on offer.
+    1. **Explicit reference** (`_explicit_branch_reference`) — an index or a
+       branch id. Exact, and the shape producers should emit.
+    2. **Full coverage** — the claim carries every content token of some
+       branch. Authoritative for SHORT branch labels, where it is exactly
+       right: with "MLR drift" and "RAF lag", a claim "RAF drift" covers
+       neither and correctly reads as drift. Applied to the claim's full token
+       set (declared `answers` plus the finding's own text), so a finding that
+       plainly names a branch in prose is not flagged for omitting the field.
+    3. **Containment** (`_contained_branch_index`) — for a sentence-shaped
+       branch that path 2 cannot satisfy. Deliberately restricted to the
+       DECLARED `answers` value: it measures whether an analyst's stated
+       mapping is a faithful fragment of a branch. Running it over incidental
+       finding prose would measure nothing — that prose is full of figures and
+       proper nouns absent from every branch — so absent `answers`, path 3
+       does not apply and the finding is reported.
     """
-    if not claim_tokens:
-        return False
-    # Path 1: full coverage. Authoritative at every branch length.
-    if any(bt and bt <= claim_tokens for bt in branch_token_sets):
+    if _explicit_branch_reference(
+        answers, branch_ids, len(branch_token_sets)
+    ) is not None:
         return True
-    # Path 2: long-branch partial coverage, threshold AND margin.
-    coverages = [
-        (len(bt & claim_tokens) / len(bt)) if bt else 0.0
-        for bt in branch_token_sets
-    ]
-    if not coverages:
-        return False
-    best_i = max(range(len(coverages)), key=lambda i: coverages[i])
-    best = coverages[best_i]
-    runner_up = max(
-        [c for i, c in enumerate(coverages) if i != best_i], default=0.0
-    )
+    if all_tokens and any(bt and bt <= all_tokens for bt in branch_token_sets):
+        return True
     return (
-        len(branch_token_sets[best_i]) >= _LONG_BRANCH_MIN_TOKENS
-        and best >= _LONG_BRANCH_MIN_COVERAGE
-        and best >= _LONG_BRANCH_MIN_MARGIN * runner_up
+        bool(answers_tokens)
+        and _contained_branch_index(answers_tokens, branch_token_sets) is not None
     )
 
 
@@ -1396,16 +1459,20 @@ def _best_finding_index_for_block(block: str, finding_token_sets: list[set[str]]
     return best_idx
 
 
-def _hypothesis_branches(*sources) -> list[str]:
-    """Normalize hypothesis-tree branch labels from any of the real shapes.
+def _hypothesis_entries(*sources) -> list[tuple[str | None, str]]:
+    """Normalize a hypothesis tree to aligned `(id, label)` pairs.
 
     The canonical /scope payload carries `hypotheses` as a list of dicts
     ({"hypothesis": str, "disconfirming_test": str, "data_source": str}); other
     producers carry a flat list of label strings, or a dict keyed by branch
-    name. Accept all of them, from whichever location they really live in, and
-    return the branch *labels* (the `hypothesis` text for dict entries).
+    name. Accept all of them, from whichever location they really live in.
+
+    `id` is an OPTIONAL stable identifier a producer may attach to a branch
+    (`id` / `key` / `ref`). When present, a finding can reference the branch by
+    that id instead of restating its text — see `_explicit_branch_reference`.
+    It is None for the shapes that carry no identifier, which is most of them.
     """
-    branches: list[str] = []
+    entries: list[tuple[str | None, str]] = []
     for tree in sources:
         if not tree:
             continue
@@ -1417,10 +1484,16 @@ def _hypothesis_branches(*sources) -> list[str]:
             if isinstance(item, dict):
                 label = item.get("hypothesis") or item.get("branch") or item.get("name")
                 if label:
-                    branches.append(str(label))
+                    bid = item.get("id") or item.get("key") or item.get("ref")
+                    entries.append((str(bid) if bid else None, str(label)))
             elif item:
-                branches.append(str(item))
-    return branches
+                entries.append((None, str(item)))
+    return entries
+
+
+def _hypothesis_branches(*sources) -> list[str]:
+    """The branch *labels* of a hypothesis tree. See `_hypothesis_entries`."""
+    return [label for _, label in _hypothesis_entries(*sources)]
 
 
 def check_analysis_answers_scope(rendered: str, sidecar: dict) -> EvalResult:
@@ -1443,8 +1516,16 @@ def check_analysis_answers_scope(rendered: str, sidecar: dict) -> EvalResult:
        from wherever it really lives — `sidecar["hypotheses"]` (the canonical
        /scope payload shape), `sidecar["scope"]["hypotheses"]` /
        `["hypothesis_tree"]` (the carried-scope shape) — and branches are
-       matched by content-word overlap, not a substring-in-JSON test (so
+       matched by `_maps_to_branch`, not a substring-in-JSON test (so
        answers="a" or answers="data_source" no longer pass spuriously).
+
+       A finding declares its branch via `answers` / `hypothesis` / `branch`.
+       **Prefer an explicit reference** — a 0-based index (`answers: 0`) or a
+       branch id (`answers: "H1"` against `{"id": "H1", ...}`). Those are
+       exact. Free text is still accepted and matched heuristically, but it is
+       the shape that made this gate fragile: a paraphrase, a truncation, or a
+       later rewording of the branch silently breaks a mapping that an id
+       would have held.
 
     Each finding may carry `method` / `analysis_type` and `answers` /
     `hypothesis` (the branch it addresses). When neither structure is present we
@@ -1463,7 +1544,7 @@ def check_analysis_answers_scope(rendered: str, sidecar: dict) -> EvalResult:
     # canonical /scope payload puts `hypotheses` at top level (list of dicts);
     # a carried-scope /analyze sidecar may nest it under `scope`. Both the
     # legacy `hypothesis_tree` key and the canonical `hypotheses` key are read.
-    branches = _hypothesis_branches(
+    entries = _hypothesis_entries(
         sidecar.get("hypotheses"),
         sidecar.get("hypothesis_tree"),
         scope.get("hypotheses"),
@@ -1471,8 +1552,20 @@ def check_analysis_answers_scope(rendered: str, sidecar: dict) -> EvalResult:
     )
     # Stem branch tokens (singular/plural) so a branch "admissions" matches a
     # finding that says "admission" and is not mis-read as scope drift.
-    branch_token_sets = [_stemmed_tokens(b) for b in branches]
-    branch_token_sets = [s for s in branch_token_sets if s]
+    #
+    # Branches whose label carries no content token (all stopwords/too short)
+    # are dropped, and ids/labels/token-sets are filtered TOGETHER so the three
+    # lists stay index-aligned — `_explicit_branch_reference` resolves an index
+    # against this same list, so a misalignment would resolve to a branch the
+    # producer did not name.
+    _kept = [
+        (bid, label, toks)
+        for bid, label in entries
+        if (toks := _stemmed_tokens(label))
+    ]
+    branch_ids = [bid for bid, _, _ in _kept]
+    branches = [label for _, label, _ in _kept]
+    branch_token_sets = [toks for _, _, toks in _kept]
 
     have_method = any(
         isinstance(f, dict) and (f.get("method") or f.get("analysis_type"))
@@ -1547,31 +1640,36 @@ def check_analysis_answers_scope(rendered: str, sidecar: dict) -> EvalResult:
             )
 
         # Failure mode 2: a finding that maps to no hypothesis-tree branch.
-        # Match by *coverage of a branch's distinguishing content*, not a single
-        # shared token. A claim maps to a branch only when it carries every one
-        # of that branch's key terms (the branch's token set is a subset of the
-        # claim's token set). A single shared token is not enough: with branches
-        # "MLR drift" {mlr, drift} and "RAF lag" {raf, lag}, answers="RAF drift"
-        # {raf, drift} covers neither branch in full, so it correctly maps to no
-        # declared branch. (Distinguishing words like drift/lag/gap are no longer
-        # stripped, so they count toward coverage.)
+        # See `_maps_to_branch` for the three matching paths and why each
+        # exists. A single shared token is never enough.
         if branch_token_sets:
-            branch = f.get("answers") or f.get("hypothesis") or f.get("branch")
             # The branch a finding addresses comes from an explicit field when
             # present; otherwise fall back to the finding's own text. A finding
             # that PLAINLY names a branch in its `finding` text (but omits the
             # `answers` field) should not be auto-flagged as drift. Tokens are
             # stemmed so singular/plural ("admission"/"admissions") still cover.
             #
-            # An ABSENT `answers` field is therefore not a distinct rule: the
+            # An ABSENT declaration is therefore not a distinct rule: the
             # finding still gets matched on its own text, and is reported only
             # if that text engages no declared branch either. There is no
             # separate penalty for omitting the field — what is reported is
             # always the substantive condition (this finding answers nothing we
             # said we were asking), never the bookkeeping one.
-            claim_tokens = _stemmed_tokens(branch) if branch else set()
-            claim_tokens |= _stemmed_tokens(finding_text)
-            if not _maps_to_branch(claim_tokens, branch_token_sets):
+            #
+            # Field precedence is resolved on PRESENCE, not truthiness: with an
+            # `or` chain, the perfectly valid explicit reference `answers: 0`
+            # (the first declared branch) is falsy and would be skipped in
+            # favour of a later field or of no declaration at all.
+            branch = None
+            for key in ("answers", "hypothesis", "branch"):
+                if f.get(key) is not None:
+                    branch = f[key]
+                    break
+            answers_tokens = _stemmed_tokens(branch) if branch else set()
+            all_tokens = answers_tokens | _stemmed_tokens(finding_text)
+            if not _maps_to_branch(
+                branch, answers_tokens, all_tokens, branch_ids, branch_token_sets
+            ):
                 unmapped.append(
                     f"finding {i} maps to no /scope hypothesis branch "
                     f"(answers={branch!r}; finding={f.get('finding')!r}; "
