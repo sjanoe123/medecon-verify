@@ -141,18 +141,45 @@ class TestExplicitBranchReference:
         r = er.check_analysis_answers_scope("", self._sc("H1", tree=reworded))
         assert r.status == "pass"
 
-    def test_index_alignment_skips_empty_branch_labels(self) -> None:
-        # Branch labels with no content token are dropped. Ids, labels and
-        # token sets must be filtered together or an index resolves to the
-        # wrong branch.
+    def test_index_is_positional_in_the_DECLARED_tree(self) -> None:
+        # An index counts branches as the producer DECLARED them, including one
+        # whose label carries no content token ("ED" is stripped by the <3-char
+        # rule). Compacting the list first renumbered every later index, so
+        # `answers: 1` silently resolved to a branch nobody named — a wrong
+        # mapping reported as success.
         tree = [
-            {"id": "H1", "hypothesis": "of the"},   # no content tokens -> dropped
+            {"id": "H1", "hypothesis": "ED"},           # tokenizes to nothing
             {"id": "H2", "hypothesis": "coding intensity"},
         ]
-        # Index 0 must now mean "coding intensity", the only surviving branch.
-        r = er.check_analysis_answers_scope("", self._sc(0, tree=tree))
-        assert r.status == "pass"
-        assert er.check_analysis_answers_scope("", self._sc(1, tree=tree)).status == "warn"
+        # 1 is "coding intensity" as declared, and must resolve.
+        assert er.check_analysis_answers_scope(
+            "", self._sc(1, tree=tree)).status == "pass"
+        # 2 is past the end of the declared tree.
+        assert er.check_analysis_answers_scope(
+            "", self._sc(2, tree=tree)).status == "warn"
+
+    def test_duplicate_ids_do_not_resolve(self) -> None:
+        # Two branches claiming the same id is a producer error. Taking the
+        # first would map the finding to an arbitrary one of them.
+        tree = [
+            {"id": "H1", "hypothesis": "coding intensity"},
+            {"id": "H1", "hypothesis": "network access"},
+        ]
+        r = er.check_analysis_answers_scope("", self._sc("H1", tree=tree))
+        assert r.status == "warn"
+
+    def test_numeric_string_and_float_are_not_selectors(self) -> None:
+        # Only a real int indexes. "0" and 0.0 fall through to the text paths
+        # and are reported rather than guessed at.
+        for bad in ("0", 0.0):
+            assert er.check_analysis_answers_scope(
+                "", self._sc(bad)).status == "warn", bad
+
+    def test_negative_index_does_not_wrap(self) -> None:
+        # Python would read -1 as the last branch; that would silently select a
+        # branch the producer did not name.
+        assert er.check_analysis_answers_scope(
+            "", self._sc(-1)).status == "warn"
 
 
 class TestTrueNegatives:
@@ -221,6 +248,50 @@ class TestTrueNegatives:
             "financial assistance", finding="A result."
         ))
         assert r.status == "warn"
+
+    def test_branches_that_tokenize_identically_are_ambiguous(self) -> None:
+        # "ED"/"IP" are stripped by the <3-char rule, leaving two branches with
+        # IDENTICAL token sets. A claim about OP utilization answers neither
+        # and must not map to whichever was declared first. The full-coverage
+        # path needs its own ambiguity guard for this - containment's
+        # uniqueness check never runs, because full coverage matches first.
+        sidecar = {
+            "hypotheses": ["ED utilization increased in rural counties",
+                           "IP utilization increased in rural counties"],
+            "findings": [{
+                "finding": "OP utilization increased in rural counties.",
+                "method": "decomposition",
+                "answers": "OP utilization increased in rural counties",
+            }],
+        }
+        assert er.check_analysis_answers_scope("", sidecar).status == "warn"
+
+    def test_more_specific_branch_wins_when_nested(self) -> None:
+        # The flip side of the ambiguity guard: when one covered branch's
+        # tokens are a strict subset of another's, that is not a tie - the
+        # more specific branch is the better answer and must still map.
+        sidecar = {
+            "hypotheses": ["coding intensity",
+                           "coding intensity rose in the commercial book"],
+            "findings": [{
+                "finding": "A result.", "method": "decomposition",
+                "answers": "coding intensity rose in the commercial book",
+            }],
+        }
+        assert er.check_analysis_answers_scope("", sidecar).status == "pass"
+
+    def test_tree_that_tokenizes_to_nothing_still_reports(self) -> None:
+        # Every branch label strips to an empty token set. Previously the
+        # branch list went empty and failure mode 2 stopped running entirely,
+        # so an off-tree finding came back "pass" - the gate went quiet
+        # instead of reporting that it could not match.
+        sidecar = {
+            "hypotheses": [{"id": "H1", "hypothesis": "ED"},
+                           {"id": "H2", "hypothesis": "IP"}],
+            "findings": [{"finding": "Pharmacy spend rose.", "method": "sum",
+                          "answers": "weather"}],
+        }
+        assert er.check_analysis_answers_scope("", sidecar).status == "warn"
 
     def test_junk_answers_does_not_map(self) -> None:
         sidecar = {

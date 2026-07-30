@@ -58,6 +58,29 @@ threshold sits at 0.80, inside that gap. Guards: claims under 4 content tokens
 fall through to the full-coverage rule, a claim must cover at least 30% of the
 branch, and a claim contained in two branches maps to neither.
 
+### 2.1.1 — matcher correctness fixes
+
+Found by an adversarial review of 2.1.0. Depend on **>= 2.1.1**, not a bare
+`>= 2`:
+
+- **A 0-based index counts branches as DECLARED.** 2.1.0 compacted away
+  branches whose label carried no content token (short codes like `ED` are
+  stripped by the <3-char rule), silently renumbering every later index — so a
+  reference could resolve to a branch the producer never named and report
+  success.
+- **A tree that tokenizes to nothing now reports instead of passing.** When
+  every branch label stripped to empty, the branch list went empty and the
+  off-tree check stopped running altogether.
+- **Full coverage gained an ambiguity guard.** When several branches are fully
+  covered, the most specific (largest token set) wins and a tie maps to
+  nothing. Two branches that tokenize identically no longer resolve to whichever
+  was declared first.
+- **Duplicate branch ids no longer resolve.** Taking the first silently mapped
+  a finding to an arbitrary one of them.
+- Negative indices, floats, and numeric strings (`"0"`) are explicitly not
+  selectors — they fall through to the text paths and are reported rather than
+  guessed at.
+
 > **Upgrading from 2.0.0.** 2.0.0 matched free text by branch-side *coverage*
 > (0.40 with a 2x margin over the next-best branch). 2.1.0 replaces that with
 > containment, so a small number of free-text claims may resolve differently —

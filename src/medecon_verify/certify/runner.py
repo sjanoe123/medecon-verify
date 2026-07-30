@@ -1275,13 +1275,22 @@ def _explicit_branch_reference(
     that producers actually emit today; a producer that adopts ids never
     touches them.
 
-    An out-of-range index or an unknown id returns None and therefore falls
-    through to the text paths — and, failing those, is reported. That is the
-    right outcome: a dangling reference must surface, not resolve to something
-    approximate.
+    An out-of-range index, a negative index, an unknown id, or an id claimed by
+    more than one branch all return None and therefore fall through to the text
+    paths — and, failing those, are reported. That is the right outcome: a
+    dangling or ambiguous reference must surface, not resolve to something
+    approximate. Note negative values are rejected rather than allowed to index
+    from the end, which would quietly select a branch the producer did not
+    name.
+
+    The index is resolved against the branches as DECLARED, including any whose
+    label carries no content token — see the note at the call site. Compacting
+    that list would renumber every index after the dropped entry.
 
     Note `bool` is excluded before the `int` check because `True` is an `int`
-    in Python and `answers: true` is not a branch selector.
+    in Python and `answers: true` is not a branch selector. A float or a
+    numeric *string* ("0") is not a selector either: neither is an int, so both
+    fall through to the text paths and are reported rather than guessed at.
     """
     if isinstance(answers, bool):
         return None
@@ -1290,9 +1299,15 @@ def _explicit_branch_reference(
     if isinstance(answers, str):
         needle = answers.strip().casefold()
         if needle:
-            for i, bid in enumerate(branch_ids):
-                if bid and bid.strip().casefold() == needle:
-                    return i
+            hits = [
+                i for i, bid in enumerate(branch_ids)
+                if bid and bid.strip().casefold() == needle
+            ]
+            # Exactly one, or it is not a reference. Duplicate ids are a
+            # producer error; silently taking the first would map the finding
+            # to an arbitrary one of them.
+            if len(hits) == 1:
+                return hits[0]
     return None
 
 
@@ -1375,6 +1390,16 @@ def _maps_to_branch(
        neither and correctly reads as drift. Applied to the claim's full token
        set (declared `answers` plus the finding's own text), so a finding that
        plainly names a branch in prose is not flagged for omitting the field.
+
+       When several branches are fully covered, the MOST SPECIFIC one wins —
+       the largest token set — and a tie at that size is ambiguous, so the
+       claim maps to nothing. Specificity is what distinguishes the nested case
+       ("coding intensity" vs "coding intensity in the commercial book", where
+       the longer branch is the better answer) from the genuinely ambiguous one
+       (branches that tokenize identically because their only distinguishing
+       words were stripped, e.g. "ED utilization rose" vs "IP utilization
+       rose" — a claim about OP utilization answers neither and must not map
+       to whichever happened to be declared first).
     3. **Containment** (`_contained_branch_index`) — for a sentence-shaped
        branch that path 2 cannot satisfy. Deliberately restricted to the
        DECLARED `answers` value: it measures whether an analyst's stated
@@ -1387,8 +1412,17 @@ def _maps_to_branch(
         answers, branch_ids, len(branch_token_sets)
     ) is not None:
         return True
-    if all_tokens and any(bt and bt <= all_tokens for bt in branch_token_sets):
-        return True
+    if all_tokens:
+        covered = [
+            i for i, bt in enumerate(branch_token_sets)
+            if bt and bt <= all_tokens
+        ]
+        if covered:
+            widest = max(len(branch_token_sets[i]) for i in covered)
+            if sum(
+                1 for i in covered if len(branch_token_sets[i]) == widest
+            ) == 1:
+                return True
     return (
         bool(answers_tokens)
         and _contained_branch_index(answers_tokens, branch_token_sets) is not None
@@ -1553,19 +1587,24 @@ def check_analysis_answers_scope(rendered: str, sidecar: dict) -> EvalResult:
     # Stem branch tokens (singular/plural) so a branch "admissions" matches a
     # finding that says "admission" and is not mis-read as scope drift.
     #
-    # Branches whose label carries no content token (all stopwords/too short)
-    # are dropped, and ids/labels/token-sets are filtered TOGETHER so the three
-    # lists stay index-aligned — `_explicit_branch_reference` resolves an index
-    # against this same list, so a misalignment would resolve to a branch the
-    # producer did not name.
-    _kept = [
-        (bid, label, toks)
-        for bid, label in entries
-        if (toks := _stemmed_tokens(label))
-    ]
-    branch_ids = [bid for bid, _, _ in _kept]
-    branches = [label for _, label, _ in _kept]
-    branch_token_sets = [toks for _, _, toks in _kept]
+    # NOTHING IS FILTERED OUT HERE, deliberately. A branch whose label carries
+    # no content token (all stopwords, or short codes like "ED"/"IP" that the
+    # <3-char rule strips) keeps its slot with an EMPTY token set. Dropping
+    # such branches broke two things:
+    #
+    #   - `answers: 1` is a 0-based index into the branches the producer
+    #     DECLARED. Compacting the list silently renumbered it, so an index
+    #     could resolve to a branch the producer never named — a wrong mapping
+    #     that reports success, the worst possible direction for this gate.
+    #   - When every branch stripped to empty, the list went empty and failure
+    #     mode 2 stopped running altogether: an off-tree finding came back
+    #     `pass`. A tree that cannot be matched must report, not go quiet.
+    #
+    # An empty token set simply never matches on the text paths (every one of
+    # them guards on `bt`), which is the correct behavior and needs no filter.
+    branch_ids = [bid for bid, _ in entries]
+    branches = [label for _, label in entries]
+    branch_token_sets = [_stemmed_tokens(label) for label in branches]
 
     have_method = any(
         isinstance(f, dict) and (f.get("method") or f.get("analysis_type"))
