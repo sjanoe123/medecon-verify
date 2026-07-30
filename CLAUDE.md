@@ -40,11 +40,38 @@ change customers will `pip install`.
 2. Wheel gate: `python3 -m build --wheel`; install into a fresh venv; re-run the
    full suite from the installed wheel (empty cwd, PYTHONPATH unset).
 3. Bump `version` in `pyproject.toml` per SemVer; update README if API changed.
-4. Commit, `git tag vX.Y.Z`, `git push --tags`.
+4. Commit, `git tag vX.Y.Z`, push **the branch and the tags**, then VERIFY the
+   release is reachable from `main` — not just from the tag:
+
+   ```bash
+   git branch --show-current                        # know what you are on
+   git push origin HEAD:main --tags                 # explicit source ref
+   git fetch -q origin
+   git merge-base --is-ancestor vX.Y.Z origin/main \
+     && echo "release is on main" || echo "RELEASE IS NOT ON MAIN"
+   ```
+
+   **Why this is a step and not a formality.** `git push origin main` pushes the
+   *local ref named main*, which is not necessarily what you committed to. On
+   2026-07-30 four releases (v2.0.0–v2.2.0) were built on a feature branch and
+   pushed with `git push origin main --tags`: the tags landed, `main` was a
+   silent no-op, and `origin/main` sat 9 commits behind at `1.0.0` with the
+   superseded matcher still in it. Consumers were fine — medecon-stack pins the
+   tag — but because the local install is **editable**, a plain
+   `git checkout main` here would have swapped the running pipeline back to the
+   old code with no reinstall, no version change, and no warning. The tag output
+   scrolling past is not evidence that `main` moved. Check the ancestor.
+
 5. Bridge to the plugin: bump the pin in medecon-stack's `requirements.txt`,
    reinstall in its envs, run its full suite (~2,776 tests), bump its
    `plugin.json` + CHANGELOG. A traveling-test failure over there is the
    contract gate working — reconcile deliberately, never by weakening a test.
+
+**This repo has no CI.** Nothing re-runs steps 1–2 after a push, so a release is
+only as verified as the local run that produced it. Do not skip the wheel gate
+on the theory that something downstream will catch it — the only downstream
+gate is medecon-stack's traveling tests, and those run against whatever the pin
+resolves to, which is the tag you just pushed.
 
 ## Structure
 
