@@ -195,9 +195,11 @@ def test_eval_report_summary_counts():
         er.EvalResult(eval_id="b", skill_name="x", status="fail"),
         er.EvalResult(eval_id="c", skill_name="x", status="not_runnable"),
         er.EvalResult(eval_id="d", skill_name="x", status="skipped"),
+        er.EvalResult(eval_id="e", skill_name="x", status="warn"),
     ]
     s = report.summary
-    assert s == {"passed": 1, "failed": 1, "not_runnable": 1, "skipped": 1, "total": 4}
+    assert s == {"passed": 1, "failed": 1, "warned": 1, "not_runnable": 1,
+                 "skipped": 1, "total": 5}
 
 
 # ---------------------------------------------------------------------------

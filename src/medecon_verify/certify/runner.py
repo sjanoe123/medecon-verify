@@ -40,7 +40,15 @@ class EvalSpec:
 class EvalResult:
     eval_id: str
     skill_name: str
-    status: str  # pass | fail | not_runnable | skipped
+    # pass | warn | fail | not_runnable | skipped
+    #
+    # `warn` is a checker finding that is REAL but not ship-blocking: the
+    # condition is reported, recorded in telemetry, and surfaced to the analyst,
+    # yet does not gate the deliverable. It is deliberately excluded from the
+    # `gate()` accuracy denominator (like not_runnable/skipped) — a warning is
+    # neither a correct answer nor an incorrect one, and folding it into either
+    # bucket would silently move a launch gate.
+    status: str
     detail: str = ""
 
 
@@ -57,6 +65,10 @@ class EvalReport:
         return sum(1 for r in self.results if r.status == "fail")
 
     @property
+    def warned(self) -> int:
+        return sum(1 for r in self.results if r.status == "warn")
+
+    @property
     def not_runnable(self) -> int:
         return sum(1 for r in self.results if r.status == "not_runnable")
 
@@ -68,6 +80,7 @@ class EvalReport:
     def summary(self) -> dict:
         return {
             "passed": self.passed, "failed": self.failed,
+            "warned": self.warned,
             "not_runnable": self.not_runnable, "skipped": self.skipped,
             "total": len(self.results),
         }
@@ -1235,6 +1248,90 @@ def _stemmed_tokens(label) -> set[str]:
     return {_stem(t) for t in _branch_tokens(label)}
 
 
+# Long-branch matching constants. See `_maps_to_branch` for the justification.
+_LONG_BRANCH_MIN_TOKENS = 8
+_LONG_BRANCH_MIN_COVERAGE = 0.40
+_LONG_BRANCH_MIN_MARGIN = 2.0
+
+
+def _maps_to_branch(
+    claim_tokens: set[str], branch_token_sets: list[set[str]]
+) -> bool:
+    """Does a finding's claim map to one of the declared hypothesis branches?
+
+    Two paths, because branch labels come in two very different shapes.
+
+    **Path 1 — full coverage (exact subset).** A claim maps to a branch when it
+    carries every one of that branch's content tokens. This is the original
+    rule and stays authoritative for SHORT branch labels, where it is exactly
+    right: with branches "MLR drift" and "RAF lag", a claim "RAF drift" covers
+    neither in full and correctly reads as scope drift. A single shared token
+    must never be enough.
+
+    **Path 2 — long-branch coverage ratio.** Full coverage is unsatisfiable
+    once /scope declares branches as SENTENCES rather than labels. A 22-token
+    branch like "the forgone federal income tax ... is of the same order of
+    magnitude as the financial assistance they report, so the exemption is not
+    obviously earned on that one line" requires the claim to reproduce every
+    word including pure editorial filler ("obviously", "one", "line"). No
+    honest `answers` value does that, so every finding on a sentence-shaped
+    tree was reported as drift — a false positive on the whole tree, not on one
+    finding. (Observed: a finding rejected for missing the single word
+    "several".)
+
+    For branches at or above `_LONG_BRANCH_MIN_TOKENS` we therefore accept
+    partial coverage, guarded by TWO conditions rather than a bare threshold:
+
+    - coverage >= `_LONG_BRANCH_MIN_COVERAGE` (0.40), and
+    - coverage >= `_LONG_BRANCH_MIN_MARGIN` (2x) the next-best branch's.
+
+    The **margin is doing most of the discrimination**, not the threshold, and
+    that is deliberate. Measured on a real 3-branch sentence-shaped tree, the
+    intended branch scored 0.45-0.94 while the best wrong branch scored
+    0.17-0.27 — a consistent 2.7x-5.3x separation. An absolute threshold alone
+    would sit uncomfortably close to that noise floor; requiring the winner to
+    *dominate* is what makes the match trustworthy. A claim that spreads itself
+    evenly over two branches is not a match to either, and is still flagged.
+
+    The threshold is not a tuned constant so much as a floor beneath the margin
+    test: a claim covering under 40% of a branch has not engaged with it,
+    however little it engaged with the others.
+
+    Note the asymmetry against false positives: a genuinely off-tree finding
+    (an external cross-check, an unscoped fishing result) covers ~0.27 of its
+    nearest branch with a margin near 1.0, failing BOTH conditions. Loosening
+    to catch it would require dropping to ~0.25 with no margin, which is where
+    the rule stops discriminating at all.
+
+    When only one branch is declared there is no runner-up, so the margin test
+    is vacuous and the 0.40 floor carries the decision alone. That is the
+    intended reading: with a single branch there is no competing home for the
+    finding, and the only question is whether it engaged with the one on offer.
+    """
+    if not claim_tokens:
+        return False
+    # Path 1: full coverage. Authoritative at every branch length.
+    if any(bt and bt <= claim_tokens for bt in branch_token_sets):
+        return True
+    # Path 2: long-branch partial coverage, threshold AND margin.
+    coverages = [
+        (len(bt & claim_tokens) / len(bt)) if bt else 0.0
+        for bt in branch_token_sets
+    ]
+    if not coverages:
+        return False
+    best_i = max(range(len(coverages)), key=lambda i: coverages[i])
+    best = coverages[best_i]
+    runner_up = max(
+        [c for i, c in enumerate(coverages) if i != best_i], default=0.0
+    )
+    return (
+        len(branch_token_sets[best_i]) >= _LONG_BRANCH_MIN_TOKENS
+        and best >= _LONG_BRANCH_MIN_COVERAGE
+        and best >= _LONG_BRANCH_MIN_MARGIN * runner_up
+    )
+
+
 def _split_rendered_blocks(rendered: str) -> list[str]:
     """Split a rendered artifact into section blocks for per-finding binding.
 
@@ -1417,7 +1514,10 @@ def check_analysis_answers_scope(rendered: str, sidecar: dict) -> EvalResult:
             and not any(m in fmethod for m in _DECOMPOSITION_METHODS)
         )
 
+    # Two severities, deliberately separated (see the return block below).
+    # `problems` are ship-blocking; `unmapped` are reported but do not gate.
     problems: list[str] = []
+    unmapped: list[str] = []
     for i, f in enumerate(findings, 1):
         if not isinstance(f, dict):
             continue
@@ -1462,13 +1562,17 @@ def check_analysis_answers_scope(rendered: str, sidecar: dict) -> EvalResult:
             # that PLAINLY names a branch in its `finding` text (but omits the
             # `answers` field) should not be auto-flagged as drift. Tokens are
             # stemmed so singular/plural ("admission"/"admissions") still cover.
+            #
+            # An ABSENT `answers` field is therefore not a distinct rule: the
+            # finding still gets matched on its own text, and is reported only
+            # if that text engages no declared branch either. There is no
+            # separate penalty for omitting the field — what is reported is
+            # always the substantive condition (this finding answers nothing we
+            # said we were asking), never the bookkeeping one.
             claim_tokens = _stemmed_tokens(branch) if branch else set()
             claim_tokens |= _stemmed_tokens(finding_text)
-            mapped = bool(claim_tokens) and any(
-                bt and bt <= claim_tokens for bt in branch_token_sets
-            )
-            if not mapped:
-                problems.append(
+            if not _maps_to_branch(claim_tokens, branch_token_sets):
+                unmapped.append(
                     f"finding {i} maps to no /scope hypothesis branch "
                     f"(answers={branch!r}; finding={f.get('finding')!r}; "
                     f"branches={branches!r})"
@@ -1541,11 +1645,43 @@ def check_analysis_answers_scope(rendered: str, sidecar: dict) -> EvalResult:
                 )
                 break
 
+    # Severity split between the gate's two failure modes.
+    #
+    # Failure mode 1 (composition presented as a driver) BLOCKS. It is an
+    # assertion the analysis cannot support: a share-of-total cut is being
+    # published as a cause. That is a wrong claim, and wrong claims do not ship.
+    #
+    # Failure mode 2 (a finding mapping to no declared branch) WARNS. It is not
+    # a wrong claim — the finding may be perfectly correct — it is a claim
+    # outside what /scope said it was asking. That covers two very different
+    # cases the checker cannot tell apart from text: a legitimate external
+    # cross-check validating the arithmetic against a published estimate, and
+    # the thing this rule actually hunts for, an unscoped fishing result
+    # presented with the authority of a pre-registered hypothesis. Blocking
+    # both would gate honest work on a bookkeeping omission; staying silent on
+    # both would let p-hacking through unremarked. Reporting without gating
+    # keeps the signal in front of the analyst and in the telemetry record, and
+    # leaves the judgement with the human who can actually tell the two apart.
+    #
+    # Unmapped findings are ALWAYS reported, including alongside a blocking
+    # problem — a blocker must never suppress the warning under it.
     if problems:
-        return EvalResult(
-            eid, "", "fail",
+        detail = (
             "analysis design does not answer the scoped question — "
-            + "; ".join(problems[:5]),
+            + "; ".join(problems[:5])
+        )
+        if unmapped:
+            detail += (
+                f" | also (non-blocking) {len(unmapped)} finding(s) map to no "
+                f"/scope hypothesis branch: " + "; ".join(unmapped[:5])
+            )
+        return EvalResult(eid, "", "fail", detail)
+    if unmapped:
+        return EvalResult(
+            eid, "", "warn",
+            f"{len(unmapped)} finding(s) map to no /scope hypothesis branch — "
+            "not ship-blocking, but confirm each is a deliberate cross-check or "
+            "context finding and not an unscoped result: " + "; ".join(unmapped[:5]),
         )
     return EvalResult(
         eid, "", "pass",
