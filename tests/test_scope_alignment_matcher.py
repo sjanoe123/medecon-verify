@@ -441,3 +441,150 @@ class TestVacuousPasses:
             "", {"scope": {}, "findings": [{"finding": "ED visits up"}]}
         )
         assert r.status == "pass"
+
+
+class TestGaapAttributionExemption:
+    """GAAP allocation boilerplate must not read as a driver claim.
+
+    "Net income (loss) attributable to non-controlling interests" is the
+    standard income-statement line name in essentially every 10-Q/10-K. It
+    allocates WHO keeps the income; it asserts nothing about WHY a number
+    moved. A draft quoting an income statement verbatim tripped the orphan
+    driver-claim scan on 2026-08-02 (healthnews daily run) because
+    "attributable to" sits in both driver-phrase lists.
+
+    The exemption is deliberately narrow: BOTH sides of the phrase must look
+    like the idiom (net income/loss before it, an ownership party after it).
+    A genuine causal claim that borrows the words — including one about a net
+    loss — must keep flagging. All fixtures synthetic; the rendered fixture
+    mirrors the real flagged sentence's shape.
+    """
+
+    # The real flagged shape: a section quoting income-statement lines, bound
+    # to a finding whose method is a quotation (neither composition nor
+    # decomposition), alongside a separate composition finding that arms the
+    # orphan scan.
+    GAAP_RENDERED = (
+        "# Article\n\n"
+        "## The same building is worth more to some owners than others\n\n"
+        "Start with what gets kept. Operating income was $65.8 million. Net "
+        "interest was $69.1 million, leaving a $3.3 million pretax loss. Then "
+        "$33.8 million of net income was attributable to non-controlling "
+        "interests, the minority owners of individual facilities, and the "
+        "parent company booked a $35.9 million net loss.\n\n"
+        "## Payer mix section\n\n"
+        "Medicare share of cases was 41 percent, a share-of-total cut by "
+        "payer.\n"
+    )
+
+    GAAP_SIDECAR = {
+        "hypotheses": [
+            {"id": "H2", "hypothesis": "Payer mix shifted toward Medicare"},
+            {"id": "H3", "hypothesis": "Parent-level profitability lags "
+                                       "facility-level operating income"},
+        ],
+        "findings": [
+            {"finding": "Medicare share of cases was 41 percent",
+             "answers": "H2",
+             "method": "composition groupby by payer; share-of-total cut"},
+            {"finding": "The company reported $65.8M of operating income "
+                        "against $69.1M of net interest expense; $33.8M of "
+                        "net income was attributable to non-controlling "
+                        "interests and the parent booked a $35.9M net loss.",
+             "answers": "H3",
+             "method": "direct quotation of reported financial statement "
+                       "lines; no model, no attribution analysis"},
+        ],
+    }
+
+    def test_quoted_income_statement_does_not_block(self) -> None:
+        # Failure mode 1b (orphan scan): the GAAP sentence is the only
+        # strong-phrase hit in the artifact and must not fire the blocker.
+        r = er.check_analysis_answers_scope(self.GAAP_RENDERED, self.GAAP_SIDECAR)
+        assert r.status == "pass", f"{r.status}: {r.detail}"
+
+    def test_gaap_idiom_in_finding_text_does_not_block(self) -> None:
+        # Failure mode 1 (finding-text path): a composition finding that
+        # QUOTES the allocation line makes no causal claim either.
+        sidecar = {
+            "scope": {"hypothesis_tree": ["parent-level profitability"]},
+            "findings": [{
+                "finding": "Net income attributable to non-controlling "
+                           "interests was $33.8M; parent-level profitability "
+                           "was negative",
+                "method": "composition (groupby owner, share of total)",
+                "answers": "parent-level profitability",
+            }],
+        }
+        r = er.check_analysis_answers_scope("", sidecar)
+        assert r.status == "pass", f"{r.status}: {r.detail}"
+
+    @pytest.mark.parametrize("line", [
+        "Net income attributable to non-controlling interests was $33.8M.",
+        "Net loss attributable to Surgery Partners, Inc. was $35.9M.",
+        "Net income (loss) attributable to controlling interests widened.",
+        "Net income attributable to noncontrolling interests fell.",
+    ])
+    def test_gaap_variants_are_exempt(self, line) -> None:
+        rendered = (
+            "# Article\n\n## Filings section\n\n" + line + "\n\n"
+            "## Payer mix section\n\nMedicare share of cases was 41 percent.\n"
+        )
+        sidecar = {
+            "hypotheses": [{"id": "H2",
+                            "hypothesis": "Payer mix shifted toward Medicare"}],
+            "findings": [{"finding": "Medicare share of cases was 41 percent",
+                          "answers": "H2",
+                          "method": "composition groupby by payer"}],
+        }
+        r = er.check_analysis_answers_scope(rendered, sidecar)
+        assert r.status == "pass", f"{line!r} -> {r.status}: {r.detail}"
+
+    @pytest.mark.parametrize("decoy", [
+        # Real driver claims wearing the same words. Object is a CAUSE, not an
+        # ownership party — the exemption must not cover them, including the
+        # over-widening trap where "net loss" alone would exempt.
+        "The margin decline is attributable to payer mix.",
+        "Most of the loss is attributable to the new facility ramp.",
+        "The net loss is attributable to the new facility ramp.",
+    ])
+    def test_causal_attributable_to_still_blocks_in_rendered(self, decoy) -> None:
+        # Orphan-scan path: the decoy section shares no content words with any
+        # finding, so it binds to nothing and must flag as an orphan claim.
+        rendered = "# Article\n\n## Outlook\n\n" + decoy + "\n"
+        sidecar = {
+            "scope": {"hypothesis_tree": ["access expansion"]},
+            "findings": [{"finding": "ED visits rose in the ESRD cohort",
+                          "method": "composition groupby cohort",
+                          "answers": "access expansion"}],
+        }
+        r = er.check_analysis_answers_scope(rendered, sidecar)
+        assert r.status == "fail", f"{decoy!r} -> {r.status}: {r.detail}"
+
+    def test_causal_attributable_to_still_blocks_in_finding_text(self) -> None:
+        sidecar = {
+            "scope": {"hypothesis_tree": ["margin pressure"]},
+            "findings": [{
+                "finding": "The margin decline is attributable to payer mix",
+                "method": "composition (groupby payer, share of total)",
+                "answers": "margin pressure",
+            }],
+        }
+        r = er.check_analysis_answers_scope("", sidecar)
+        assert r.status == "fail", f"{r.status}: {r.detail}"
+
+    def test_other_strong_phrases_are_untouched(self) -> None:
+        # The exemption is specific to "attributable to"; "driven by" in the
+        # same GAAP-ish clause still flags.
+        rendered = (
+            "# Article\n\n## Outlook\n\n"
+            "Net income was driven by non-controlling interests.\n"
+        )
+        sidecar = {
+            "scope": {"hypothesis_tree": ["access expansion"]},
+            "findings": [{"finding": "ED visits rose in the ESRD cohort",
+                          "method": "composition groupby cohort",
+                          "answers": "access expansion"}],
+        }
+        r = er.check_analysis_answers_scope(rendered, sidecar)
+        assert r.status == "fail", f"{r.status}: {r.detail}"

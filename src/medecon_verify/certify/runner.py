@@ -1186,6 +1186,53 @@ _STRONG_DRIVER_PHRASES = (
     "explained by",
 )
 
+# GAAP allocation idiom. "attributable to" is also the standard
+# income-statement line name — "Net income (loss) attributable to
+# non-controlling interests" / "... attributable to <Company>, Inc." — that
+# appears in essentially every 10-Q/10-K. That line allocates WHO keeps the
+# income; it asserts nothing about WHY a number moved, so it must not read as
+# a driver claim (2026-08-02: a rendered section quoting an income statement
+# verbatim tripped the orphan scan on a consumer's daily run). The exemption
+# is deliberately the minimum that clears documented accounting idiom: BOTH
+# sides of the phrase must look like the line — preceded in-clause by
+# net income / net loss / net income (loss), AND followed by an ownership
+# party (controlling / non-controlling interests, or an Inc./Corp./LLC-shaped
+# entity). Requiring both sides keeps a genuine causal claim that borrows the
+# words ("the net loss is attributable to the new facility ramp") flagging:
+# its object is a cause, not an owner.
+_GAAP_ATTRIBUTION_RE = re.compile(
+    r"net\s+(?:income|loss)(?:\s*\(\s*loss\s*\))?[^.;:]{0,40}?"
+    r"\battributable\s+to\b[^.;:]{0,80}?"
+    r"(?:\bnon-?\s?controlling\s+interests?\b|\bcontrolling\s+interests?\b"
+    r"|,?\s*\b(?:inc|corp|corporation|llc|l\.l\.c|ltd|plc|lp)\b)"
+)
+
+
+def _contains_driver_phrase(text: str, phrases: tuple[str, ...]) -> bool:
+    """True when `text` carries a driver/cause phrase, GAAP idiom excluded.
+
+    Every phrase except "attributable to" is the same plain substring test the
+    callers used inline. An "attributable to" occurrence counts only when it
+    falls OUTSIDE every `_GAAP_ATTRIBUTION_RE` span — one exempt quotation
+    must not shadow a real causal claim elsewhere in the same text. Shared by
+    both consumers of the phrase lists (failure mode 1 and the orphan scan)
+    so the finding-text path and the rendered-block path agree on what a
+    driver claim is.
+    """
+    lowered = text.lower()
+    for p in phrases:
+        if p == "attributable to":
+            exempt = [m.span() for m in _GAAP_ATTRIBUTION_RE.finditer(lowered)]
+            start = 0
+            while (i := lowered.find(p, start)) != -1:
+                if not any(s <= i < e for s, e in exempt):
+                    return True
+                start = i + 1
+            continue
+        if p in lowered:
+            return True
+    return False
+
 _COMPOSITION_METHODS =("composition", "groupby", "group-by", "group by",
                         "breakdown", "mix", "share", "distribution", "cross-tab",
                         "crosstab", "pivot", "count by", "top-n", "top n")
@@ -1726,8 +1773,8 @@ def check_analysis_answers_scope(rendered: str, sidecar: dict) -> EvalResult:
             _branch_tokens(finding_text), rendered_blocks
         ).lower()
         claims_driver = (
-            any(w in finding_text for w in _DRIVER_WORDS)
-            or any(w in bound_rendered for w in _DRIVER_WORDS)
+            _contains_driver_phrase(finding_text, _DRIVER_WORDS)
+            or _contains_driver_phrase(bound_rendered, _DRIVER_WORDS)
         )
         # Negation-aware: a method that DENIES running a decomposition must not
         # be read as having one. See `_method_flags`.
@@ -1815,7 +1862,7 @@ def check_analysis_answers_scope(rendered: str, sidecar: dict) -> EvalResult:
                 # "non-analytical" sections by header: a strong driver claim
                 # laundered under a "Notes"/"Appendix" heading must still flag,
                 # else the header becomes a trivial evasion of the gate.
-                if not any(p in block.lower() for p in _STRONG_DRIVER_PHRASES):
+                if not _contains_driver_phrase(block, _STRONG_DRIVER_PHRASES):
                     continue
                 owner = _best_finding_index_for_block(block, finding_token_sets)
                 explained = owner is not None and finding_is_decomposition[owner]

@@ -58,6 +58,24 @@ threshold sits at 0.80, inside that gap. Guards: claims under 4 content tokens
 fall through to the full-coverage rule, a claim must cover at least 30% of the
 branch, and a claim contained in two branches maps to neither.
 
+### 2.2.1 — GAAP "attributable to" boilerplate is not a driver claim
+
+`attributable to` sits in both driver-phrase lists, and it is also the standard
+income-statement line name — "Net income (loss) attributable to
+non-controlling interests" / "... attributable to *Company*, Inc." — appearing
+in essentially every 10-Q/10-K. A rendered section quoting an income statement
+verbatim tripped the orphan driver-claim scan (2026-08-02, consumer daily run):
+an accounting allocation label was read as a causal assertion.
+
+The exemption is the minimum that clears documented accounting idiom, and BOTH
+sides of the phrase must look like the line: preceded in-clause by `net income`
+/ `net loss` / `net income (loss)`, **and** followed by an ownership party
+(`controlling` / `non-controlling interests`, or an Inc./Corp./LLC-shaped
+entity). A genuine causal claim that borrows the words — `"the net loss is
+attributable to the new facility ramp"` — still blocks: its object is a cause,
+not an owner. Applied identically to the finding-text path and the
+rendered-block scan; three decoy fixtures pin the narrowness.
+
 ### 2.2.0 — the composition-as-driver blocker closes its escape hatch
 
 **This can newly BLOCK deliverables that previously passed** — deliberately.
